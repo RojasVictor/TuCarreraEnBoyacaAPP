@@ -8,6 +8,7 @@ public class TestUsuario {
 	private String nombreUsuario;
 	private ArrayList preguntaTest;
 	
+	/*Constructor de la clase TestUsuario*/
 	public TestUsuario(){
 		
 	}
