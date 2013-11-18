@@ -6,8 +6,7 @@ package tuCarreraBoycacaAPP.logica;
 import java.util.ArrayList;
 
 /**
- * @author victor_rojas
- *
+ * @author victor_rojas*
  */
 public class GestionPreguntaTest {
 
@@ -93,11 +92,16 @@ public class GestionPreguntaTest {
 	}
 		
 	/**
-	 * 
-	 * @param id
-	 * @return
+	 ** @param id
+	 ** @return - true si el registro se elimina satisfactoriamente
 	 */
 	public boolean removePreguntaTest(int id){
+		for (int i=0; i<preguntas.size();i++){
+			if(preguntas.get(i).getId() == id){
+				preguntas.remove(i);
+				return true;
+			}
+		}
 		return false;
 	}
 
