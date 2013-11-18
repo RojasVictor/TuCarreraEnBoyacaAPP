@@ -2,17 +2,27 @@ package tuCarreraBoycacaAPP.logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author victor_rojas
+ *
+ */
+
 public class TestUsuario {
 
+	//Attributes---------------------------------------
 	private int idTest;
 	private String nombreUsuario;
-	private ArrayList preguntaTest;
-	
-	/*Constructor de la clase TestUsuario*/
-	public TestUsuario(){
+	private ArrayList<PreguntaTest> preguntaTest;
 		
+	//Building-----------------------------------------
+	public TestUsuario(){
+		idTest = 0;
+		nombreUsuario = "";
+		preguntaTest = new ArrayList<>();
 	}
 
+	//Methods------------------------------------------
+	
 	public String toString() {
 		return "TestUsuario [idTest=" + idTest + ", nombreUsuario="
 				+ nombreUsuario + "]";
@@ -32,6 +42,14 @@ public class TestUsuario {
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
+	}
+	
+	public ArrayList<PreguntaTest> getPreguntaTest() {
+		return preguntaTest;
+	}
+
+	public void setPreguntaTest(ArrayList<PreguntaTest> preguntaTest) {
+		this.preguntaTest = preguntaTest;
 	}
  	
 }

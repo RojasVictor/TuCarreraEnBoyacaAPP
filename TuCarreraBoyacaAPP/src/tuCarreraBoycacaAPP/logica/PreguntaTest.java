@@ -17,6 +17,13 @@ public class PreguntaTest {
 	private int respuestaCorrecta;
 	
 	public PreguntaTest (){
+		id=0;
+		descripcion="";
+		respuesta1="";
+		respuesta2="";
+		respuesta3="";
+		respuesta4="";
+		respuestaCorrecta=0;
 		
 	}
 	
