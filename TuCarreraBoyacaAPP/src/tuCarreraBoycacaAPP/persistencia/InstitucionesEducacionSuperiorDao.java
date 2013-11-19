@@ -5,6 +5,8 @@ package tuCarreraBoycacaAPP.persistencia;
 
 import java.sql.ResultSet;
 
+import tuCarreraBoycacaAPP.logica.InstitucionEducacionSuperior;
+
 /**
  * @author JUDIT
  *
@@ -16,11 +18,12 @@ public class InstitucionesEducacionSuperiorDao {
 	 */
 	public InstitucionesEducacionSuperiorDao() {
 		
-		private Institucion institucion;
+		InstitucionEducacionSuperior institucion;
 		
 	}
 	
-	public int insertInstitucion  (Institucion institucion) {
+	public int insertInstitucion  (InstitucionEducacionSuperior institucion) {
+		return 0;
 	
 		
 	}
@@ -31,7 +34,8 @@ public class InstitucionesEducacionSuperiorDao {
 	
 	}
 	
-	public int updateInstitucion  (Institucion institucion) {
+	public int updateInstitucion  (InstitucionEducacionSuperior institucion) {
+		return 0;
 		
 
 	}

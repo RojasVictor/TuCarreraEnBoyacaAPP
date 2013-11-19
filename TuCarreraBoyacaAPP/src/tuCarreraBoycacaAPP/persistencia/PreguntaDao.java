@@ -5,6 +5,8 @@ package tuCarreraBoycacaAPP.persistencia;
 
 import java.sql.ResultSet;
 
+import tuCarreraBoycacaAPP.logica.PreguntaTest;
+
 /**
  * @author JUDIT
  *
@@ -16,11 +18,12 @@ public class PreguntaDao {
 	 */
 	public PreguntaDao() {
 		
-		private Pregunta pregunta;
+		PreguntaTest pregunta;
 		
 	}
 	
-	public int insertPregunta (Pregunta pregunta) {
+	public int insertPregunta (PreguntaTest pregunta) {
+		return 0;
 	
 		
 	}
@@ -31,7 +34,8 @@ public class PreguntaDao {
 	
 	}
 	
-	public int updatePregunta (Pregunta pregunta) {
+	public int updatePregunta (PreguntaTest pregunta) {
+		return 0;
 		
 
 	}

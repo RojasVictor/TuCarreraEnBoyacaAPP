@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import tuCarreraBoycacaAPP.logica.InstitucionEducacionSuperior;
+import tuCarreraBoycacaAPP.logica.ProgramaAcademico;
 
 /**
  * @author JUDIT
@@ -14,9 +15,9 @@ import tuCarreraBoycacaAPP.logica.InstitucionEducacionSuperior;
  */
 public class ProgramaAcademicoDao {
 	
-	private static Programa programa;
+	ProgramaAcademico programa;
 
-public static int insertPrograma(Programa programa){
+public static int insertPrograma(ProgramaAcademico programa){
 	return 0;
 }
 
@@ -32,6 +33,7 @@ public static <Programa> int updatePrograma(Programa programa){
 
 
 public static ResultSet selectProgramas(){
+	return null;
 }
 
 
