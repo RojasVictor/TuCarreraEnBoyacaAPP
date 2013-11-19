@@ -23,6 +23,8 @@ public class LoginAdminText extends JPanel{
 //Building---------------------------------
 	public LoginAdminText(){
 		this.setLayout(new GridLayout(2,2));
+		inicializar();
+		agregar();
 	}
 //Methods----------------------------------
 	/**
@@ -40,6 +42,7 @@ public class LoginAdminText extends JPanel{
 	public void agregar(){
 		this.add(lblUser);
 		this.add(txtUser);
+		this.add(lblPassword);
 		this.add(txtPassword);
 	}
 	/**
