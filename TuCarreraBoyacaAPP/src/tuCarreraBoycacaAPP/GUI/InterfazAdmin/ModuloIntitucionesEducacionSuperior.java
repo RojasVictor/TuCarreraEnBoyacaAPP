@@ -54,7 +54,7 @@ public class ModuloIntitucionesEducacionSuperior extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/Logo_TCBAPP2.png")));
+		label.setIcon(new ImageIcon(this.getClass().getResource("images/Logo_TCBAPP2.png")));
 		label.setBounds(10, 11, 107, 91);
 		contentPane.add(label);
 		
@@ -107,27 +107,27 @@ public class ModuloIntitucionesEducacionSuperior extends JFrame {
 		contentPane.add(textField_2);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/btnExit.PNG")));
+		label_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
 		label_2.setBounds(20, 237, 88, 25);
 		contentPane.add(label_2);
 		
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/add.png")));
+		label_3.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
 		label_3.setBounds(152, 230, 32, 32);
 		contentPane.add(label_3);
 		
 		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/reload.png")));
+		label_4.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
 		label_4.setBounds(226, 234, 32, 28);
 		contentPane.add(label_4);
 		
 		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/save.png")));
+		label_5.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
 		label_5.setBounds(305, 229, 32, 33);
 		contentPane.add(label_5);
 		
 		JLabel label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(ModuloIntitucionesEducacionSuperior.class.getResource("/imagenes/delete.png")));
+		label_6.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
 		label_6.setBounds(376, 229, 32, 33);
 		contentPane.add(label_6);
 	}
