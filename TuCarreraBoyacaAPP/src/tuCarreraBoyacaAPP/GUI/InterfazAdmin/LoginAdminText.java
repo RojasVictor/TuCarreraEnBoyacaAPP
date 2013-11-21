@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -18,7 +19,8 @@ public class LoginAdminText extends JPanel{
 	private JLabel lblUser;
 	private JLabel lblPassword;
 	private JTextField txtUser;
-	private JTextField txtPassword;
+	//private JTextField txtPassword;
+	private JPasswordField jpwPassword;
 	
 //Building---------------------------------
 	public LoginAdminText(){
@@ -34,7 +36,7 @@ public class LoginAdminText extends JPanel{
 		lblUser=new JLabel("Usuario:");
 		lblPassword=new JLabel("Contrasena");
 		txtUser=new JTextField();
-		txtPassword=new JTextField();
+		jpwPassword=new JPasswordField();
 	}
 	/**
 	 * Aca se agregan los elementos al panel
@@ -43,7 +45,7 @@ public class LoginAdminText extends JPanel{
 		this.add(lblUser);
 		this.add(txtUser);
 		this.add(lblPassword);
-		this.add(txtPassword);
+		this.add(jpwPassword);
 	}
 	/**
 	 * @return the lblUser
@@ -67,7 +69,7 @@ public class LoginAdminText extends JPanel{
 	 * @return the txtPassword
 	 */
 	public JTextField getTxtPassword() {
-		return txtPassword;
+		return jpwPassword;
 	}
 	
 }
