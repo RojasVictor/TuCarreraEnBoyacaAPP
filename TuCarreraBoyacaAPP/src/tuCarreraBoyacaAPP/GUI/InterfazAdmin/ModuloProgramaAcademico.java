@@ -108,30 +108,31 @@ public class ModuloProgramaAcademico  extends JFrame {
 		textField_2.setBounds(268, 193, 179, 20);
 		contentPane.add(textField_2);
 		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
+		button.setBounds(153, 292, 45, 41);
+		contentPane.add(button);
+		
 		JButton button_1 = new JButton("");
 		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
-		button_1.setBounds(376, 297, 32, 33);
+		button_1.setBounds(402, 292, 45, 41);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("");
 		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
-		button_2.setBounds(305, 297, 32, 33);
+		button_2.setBounds(320, 292, 45, 41);
 		contentPane.add(button_2);
 		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
-		button_3.setBounds(226, 302, 32, 28);
+		button_3.setBounds(235, 292, 45, 41);
 		contentPane.add(button_3);
 		
 		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
-		button_4.setBounds(152, 298, 32, 32);
+		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
+		button_4.setBounds(24, 292, 87, 41);
 		contentPane.add(button_4);
-		
-		JButton button_5 = new JButton("");
-		button_5.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
-		button_5.setBounds(29, 297, 88, 25);
-		button_5.addActionListener(new ActionListener() {
+		button_4.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -140,7 +141,7 @@ public class ModuloProgramaAcademico  extends JFrame {
 				
 			}
 		});
-		contentPane.add(button_5);
+		contentPane.add(button_4);
 		
 		JLabel lblCostoProgramaAcadmico = new JLabel("Costo  Programa Academico");
 		lblCostoProgramaAcadmico.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
