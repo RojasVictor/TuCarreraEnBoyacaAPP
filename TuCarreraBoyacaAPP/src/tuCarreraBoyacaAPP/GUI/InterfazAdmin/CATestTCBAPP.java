@@ -59,7 +59,7 @@ public class CATestTCBAPP extends JFrame {
 		contentPane.add(lblTuCarreraEn);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(CATestTCBAPP.class.getResource("/imagenes/Logo_TCBAPP2.png")));
+		label.setIcon(new ImageIcon(CATestTCBAPP.class.getResource("images/Logo_TCBAPP2.png")));
 		label.setBounds(10, 11, 107, 91);
 		contentPane.add(label);
 		
