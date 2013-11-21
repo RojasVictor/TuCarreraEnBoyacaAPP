@@ -4,6 +4,8 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @author harold_patino
@@ -69,10 +71,28 @@ public class Conexion {
 	 * @return true si se logro conectar de manera exitosa con la BD
 	 */
 	public boolean conectar(){
-		return true;
+		boolean resp=false;
+		try{
+			Class.forName(DRIVER).newInstance();
+			conexion=DriverManager.getConnection(URL,USER,PASSWORD);
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}catch (IllegalAccessException e) {
+			System.out.println(e.getMessage());
+		}catch (InstantiationException e) {
+			System.out.println(e.getMessage());
+		}
+		resp=true;
+		return resp;
 	}
 	public void close(){
-		
+		try{
+			conexion.close();
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/* (non-Javadoc)
