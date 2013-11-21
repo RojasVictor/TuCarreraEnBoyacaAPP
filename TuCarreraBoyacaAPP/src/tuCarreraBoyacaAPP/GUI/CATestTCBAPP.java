@@ -1,13 +1,13 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.GUI;
+package tuCarreraBoyacaAPP.GUI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JPanel;
 
-import tuCarreraBoycacaAPP.logica.GestionInstitucionesEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
 
 /**
  * @author JUDIT

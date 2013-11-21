@@ -1,21 +1,19 @@
-package tuCarreraBoycacaAPP.logica;
+package tuCarreraBoyacaAPP.logica;
 
-public class ProgramaAcademico {
+public class InstitucionEducacionSuperior {
 
-	private int id;
+	private  int id;
 	
 	private String nombre;
 	
-	private String area;
+	private String direccionURL;
 	
-	public ProgramaAcademico () {
+	public InstitucionEducacionSuperior(){
 		
 	}
 	
 	public String toString (){
-		
 		return null;
-		
 	}
 
 	public int getId() {
@@ -34,13 +32,13 @@ public class ProgramaAcademico {
 		this.nombre = nombre;
 	}
 
-	public String getArea() {
-		return area;
+	public String getDireccionURL() {
+		return direccionURL;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setDireccionURL(String direccionURL) {
+		this.direccionURL = direccionURL;
 	}
-		
+	
 	
 }

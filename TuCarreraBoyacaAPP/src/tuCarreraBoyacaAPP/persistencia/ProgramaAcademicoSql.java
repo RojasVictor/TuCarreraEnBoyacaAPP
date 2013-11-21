@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.persistencia;
+package tuCarreraBoyacaAPP.persistencia;
 
 /**
  * @author JUDIT

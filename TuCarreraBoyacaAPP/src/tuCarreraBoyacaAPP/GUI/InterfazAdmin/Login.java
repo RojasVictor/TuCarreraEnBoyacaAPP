@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
+package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.BorderLayout;
 import java.net.MalformedURLException;
@@ -12,9 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import tuCarreraBoycacaAPP.logica.GestionInstitucionesEducacionSuperior;
-import tuCarreraBoycacaAPP.logica.GestionPreguntaTest;
-import tuCarreraBoycacaAPP.logica.GestionProgramasAcademico;
+import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
+import tuCarreraBoyacaAPP.logica.GestionProgramasAcademico;
 
 /**
  * @author harold_patino

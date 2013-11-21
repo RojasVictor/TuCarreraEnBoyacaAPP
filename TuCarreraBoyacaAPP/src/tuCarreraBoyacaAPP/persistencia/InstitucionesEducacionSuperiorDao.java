@@ -1,11 +1,11 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.persistencia;
+package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.ResultSet;
 
-import tuCarreraBoycacaAPP.logica.InstitucionEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 
 /**
  * @author JUDIT

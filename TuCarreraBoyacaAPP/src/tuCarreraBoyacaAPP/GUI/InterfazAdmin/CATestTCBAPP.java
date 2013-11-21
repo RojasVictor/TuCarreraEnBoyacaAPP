@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
+package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -52,7 +52,7 @@ public class CATestTCBAPP extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTuCarreraEn = new JLabel("TU CARRERA EN BOYACÁ APP");
+		JLabel lblTuCarreraEn = new JLabel("TU CARRERA EN BOYACï¿½ APP");
 		lblTuCarreraEn.setFont(new Font("Berlin Sans FB", Font.BOLD, 16));
 		lblTuCarreraEn.setForeground(new Color(0, 0, 128));
 		lblTuCarreraEn.setBounds(154, 31, 244, 40);
@@ -68,7 +68,7 @@ public class CATestTCBAPP extends JFrame {
 		lblUsuario.setBounds(111, 116, 86, 14);
 		contentPane.add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("CONTRASEÑA :");
+		JLabel lblContrasea = new JLabel("CONTRASEï¿½A :");
 		lblContrasea.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 		lblContrasea.setBounds(111, 159, 100, 14);
 		contentPane.add(lblContrasea);

@@ -1,4 +1,4 @@
-package tuCarreraBoycacaAPP.logica;
+package tuCarreraBoyacaAPP.logica;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,5 @@
 
-package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
+package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -20,7 +20,6 @@ import java.awt.event.ActionEvent;
 public class MenuAdmin extends JFrame {
 
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -36,7 +35,7 @@ public class MenuAdmin extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -82,6 +81,9 @@ public class MenuAdmin extends JFrame {
 		button.setIcon(new ImageIcon(this.getClass().getResource("images/btnIES.PNG")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ModuloIntitucionesEducacionSuperior.main(null);
+				
 			}
 		});
 		button.setBounds(30, 124, 303, 40);

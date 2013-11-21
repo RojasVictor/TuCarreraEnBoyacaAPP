@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
+package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

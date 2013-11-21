@@ -1,13 +1,13 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.persistencia;
+package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import tuCarreraBoycacaAPP.logica.InstitucionEducacionSuperior;
-import tuCarreraBoycacaAPP.logica.ProgramaAcademico;
+import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 
 /**
  * @author JUDIT

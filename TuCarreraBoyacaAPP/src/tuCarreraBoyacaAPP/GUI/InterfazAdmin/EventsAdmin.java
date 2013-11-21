@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
+package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class EventsAdmin implements ActionListener{
 //Attributes-------------------------------------------
 	public static final String INGRESAR="Ingresar";
+	public static final String IES="Universidades";
 	private Login login;
 	
 //Building---------------------------------------------
@@ -36,6 +37,8 @@ public class EventsAdmin implements ActionListener{
 				if(user.equals("admin01") && password.equals("12345")){
 					getLogin().getLblUserSesion().setText(user);
 					getLogin().getLblPasswordSesion().setText(password);
+					login.dispose();
+					MenuAdmin.main(null);
 				}
 				else{
 					JOptionPane.showMessageDialog(login, "El nombre de usuario o la contrasena son incorrectos");
