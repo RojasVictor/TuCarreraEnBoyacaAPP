@@ -96,20 +96,29 @@ public class MenuAdmin extends JFrame {
 		button_1.setBounds(30, 175, 303, 40);
 		contentPane.add(button_1);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(this.getClass().getResource("images/reportes.png")));
-		label_2.setBounds(357, 100, 64, 64);
-		contentPane.add(label_2);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.PNG")));
-		lblNewLabel.setBounds(357, 168, 64, 64);
-		contentPane.add(lblNewLabel);
-		
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
-		button_2.setBounds(343, 233, 90, 33);
+		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/reportes.png")));
+		button_2.setBounds(357, 100, 64, 64);
 		contentPane.add(button_2);
+		
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.PNG")));
+		button_3.setBounds(357, 168, 64, 64);
+		contentPane.add(button_3);
+		
+		JButton button_4 = new JButton("");
+		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
+		button_4.setBounds(343, 233, 90, 33);
+		button_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login.main(null);
+				
+			}
+		});
+		contentPane.add(button_4);
 	}
 
 }

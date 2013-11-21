@@ -4,12 +4,18 @@
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
@@ -106,30 +112,38 @@ public class ModuloIntitucionesEducacionSuperior extends JFrame {
 		textField_2.setBounds(284, 198, 179, 20);
 		contentPane.add(textField_2);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
-		label_2.setBounds(20, 237, 88, 25);
-		contentPane.add(label_2);
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
+		button_1.setBounds(20, 237, 88, 25);
+		button_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				Login.main(null);				
+			}
+		});
+		contentPane.add(button_1);
 		
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
-		label_3.setBounds(152, 230, 32, 32);
-		contentPane.add(label_3);
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
+		button_2.setBounds(152, 230, 32, 32);
+		contentPane.add(button_2);
 		
-		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
-		label_4.setBounds(226, 234, 32, 28);
-		contentPane.add(label_4);
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
+		button_3.setBounds(226, 234, 32, 28);
+		contentPane.add(button_3);
 		
-		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
-		label_5.setBounds(305, 229, 32, 33);
-		contentPane.add(label_5);
+		JButton button_4 = new JButton("");
+		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
+		button_4.setBounds(305, 229, 32, 33);
+		contentPane.add(button_4);
 		
-		JLabel label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
-		label_6.setBounds(376, 229, 32, 33);
-		contentPane.add(label_6);
+		JButton button_5 = new JButton("");
+		button_5.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
+		button_5.setBounds(376, 229, 32, 33);
+		contentPane.add(button_5);
 	}
 
 }
