@@ -46,6 +46,27 @@ public class Login extends JFrame{
 		this.add(btnIngresar,BorderLayout.SOUTH);
 	}
 	/**
+	 * @return the lblLogo
+	 */
+	public JLabel getLblLogo() {
+		return lblLogo;
+	}
+
+	/**
+	 * @return the btnIngresar
+	 */
+	public JButton getBtnIngresar() {
+		return btnIngresar;
+	}
+
+	/**
+	 * @return the adminText
+	 */
+	public LoginAdminText getAdminText() {
+		return adminText;
+	}
+
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
