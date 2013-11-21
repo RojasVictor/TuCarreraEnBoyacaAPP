@@ -3,6 +3,7 @@
  */
 package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +33,14 @@ public class EventsAdmin implements ActionListener{
 			String user=getLogin().getAdminText().getTxtUser().getText();
 			String password=getLogin().getAdminText().getTxtPassword().getText();
 			if(user.length()>0 && password.length()>0){
-				
+				if(user.equals("admin01") && password.equals("12345")){
+					getLogin().getLblUserSesion().setText(user);
+					getLogin().getLblPasswordSesion().setText(password);
+				}
+				else{
+					JOptionPane.showMessageDialog(login, "El nombre de usuario o la contrasena son incorrectos");
+					getLogin().getAdminText().getTxtPassword().setText("");
+				}
 			}
 			else{
 				JOptionPane.showMessageDialog(login, "Alguno de los campos solicitados ha quedado vacio");
