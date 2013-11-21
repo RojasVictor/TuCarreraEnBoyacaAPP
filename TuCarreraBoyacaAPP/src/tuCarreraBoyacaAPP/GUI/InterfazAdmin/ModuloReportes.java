@@ -5,12 +5,17 @@ package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -88,6 +93,14 @@ public class ModuloReportes extends JFrame{
 		JButton btnRegresar = new JButton("");
 		btnRegresar.setIcon(new ImageIcon(ModuloReportes.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/images/btnExit.PNG")));
 		btnRegresar.setBounds(40, 352, 88, 33);
+		btnRegresar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MenuAdmin.main(null);				
+			}
+		});
 		contentPane.add(btnRegresar);
 		
 		JButton btnGenerar = new JButton("");

@@ -99,6 +99,8 @@ public class MenuAdmin extends JFrame {
 		contentPane.add(button_2);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ModuloPreguntas.main(null);
 			}
 		});
 			
@@ -106,6 +108,14 @@ public class MenuAdmin extends JFrame {
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/btn_Listar.png")));
 		button_3.setBounds(361, 105, 77, 73);
+		button_3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ModuloReportes.main(null);
+			}
+		});
 		contentPane.add(button_3);
 				
 		JButton button_4 = new JButton("");

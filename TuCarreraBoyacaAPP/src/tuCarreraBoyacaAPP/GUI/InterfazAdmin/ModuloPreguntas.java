@@ -5,12 +5,17 @@ package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -115,6 +120,14 @@ public class ModuloPreguntas extends JFrame {
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
 		button.setBounds(40, 279, 87, 41);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MenuAdmin.main(null);				
+			}
+		});
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("");
