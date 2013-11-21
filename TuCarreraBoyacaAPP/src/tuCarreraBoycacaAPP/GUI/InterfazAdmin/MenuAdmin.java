@@ -50,7 +50,7 @@ public class MenuAdmin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(MenuAdmin.class.getResource("/tuCarreraBoycacaAPP.GUI.InterfazAdmin.images/Logo_TCBAPP2.png")));
+		label.setIcon(new ImageIcon(MenuAdmin.class.getResource("images/Logo_TCBAPP2.png")));
 		label.setBounds(10, 11, 107, 91);
 		contentPane.add(label);
 		
