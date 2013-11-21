@@ -68,7 +68,7 @@ public class MenuAdmin extends JFrame {
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		btnNewButton.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/btnPreguntas.PNG")));
+		btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("images/btnPreguntas.PNG")));
 		btnNewButton.setBackground(new Color(0, 102, 153));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -79,7 +79,7 @@ public class MenuAdmin extends JFrame {
 		
 		JButton button = new JButton("");
 		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		button.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/btnIES.PNG")));
+		button.setIcon(new ImageIcon(this.getClass().getResource("images/btnIES.PNG")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -89,23 +89,23 @@ public class MenuAdmin extends JFrame {
 		
 		JButton button_1 = new JButton("");
 		button_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		button_1.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/btnProgramas.PNG")));
+		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/btnProgramas.PNG")));
 		button_1.setBackground(new Color(0, 102, 153));
 		button_1.setBounds(30, 175, 303, 40);
 		contentPane.add(button_1);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/document.png")));
+		label_2.setIcon(new ImageIcon(this.getClass().getResource("images/reportes.png")));
 		label_2.setBounds(357, 100, 64, 64);
 		contentPane.add(label_2);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/key.png")));
+		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.PNG")));
 		lblNewLabel.setBounds(357, 168, 64, 64);
 		contentPane.add(lblNewLabel);
 		
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagenes/btnExit.PNG")));
+		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
 		button_2.setBounds(343, 233, 90, 33);
 		contentPane.add(button_2);
 	}

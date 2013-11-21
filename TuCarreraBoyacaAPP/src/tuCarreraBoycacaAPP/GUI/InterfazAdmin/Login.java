@@ -42,7 +42,7 @@ public class Login extends JFrame{
 		agregar();
 	}
 	
-//Mehods-------------------------------
+//Methods-------------------------------
 	public void inicializar(){
 		preguntaTest=new GestionPreguntaTest();
 		proAcademico=new GestionProgramasAcademico();
