@@ -32,7 +32,7 @@ public class LoginAdminText extends JPanel{
 	 */
 	public void inicializar(){
 		lblUser=new JLabel("Usuario:");
-		lblPassword=new JLabel("Contraseña");
+		lblPassword=new JLabel("Contrasena");
 		txtUser=new JTextField();
 		txtPassword=new JTextField();
 	}

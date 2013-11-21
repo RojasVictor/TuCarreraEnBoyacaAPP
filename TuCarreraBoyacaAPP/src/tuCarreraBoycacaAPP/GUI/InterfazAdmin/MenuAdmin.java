@@ -4,6 +4,8 @@
 package tuCarreraBoycacaAPP.GUI.InterfazAdmin;
 
 import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -31,12 +33,18 @@ public class MenuAdmin extends JPanel{
 	 * Aca se inicializan todos los atributos
 	 */
 	public void inicializar(){
-		btnIES=new JButton("Instituciones Educacion Superior");
-		btnProgramas=new JButton("Programas Academicos");
-		btnPreguntas=new JButton("Preguntas");
+		btnIES=new JButton();
+		btnIES.setIcon(new ImageIcon("images/btnIES.png"));
+		btnProgramas=new JButton();
+		btnProgramas.setIcon(new ImageIcon("images/btnProgramas.png"));
+		btnPreguntas=new JButton();
+		btnPreguntas.setIcon(new ImageIcon("images/btnPreguntas.png"));
 		btnListar=new JButton();
+		btnListar.setIcon(new ImageIcon("images/btnListar.png"));
 		btnCambiarContrasena=new JButton();
-		btnExit=new JButton("Cerrar Sesion");
+		btnIES.setIcon(new ImageIcon("images/btnCambiarContrasena.png"));
+		btnExit=new JButton();
+		btnIES.setIcon(new ImageIcon("images/btnExit.png"));
 	}
 	/**
 	 * Aca se agregan los elementos al panel
