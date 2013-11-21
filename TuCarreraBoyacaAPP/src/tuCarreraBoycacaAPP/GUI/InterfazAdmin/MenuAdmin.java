@@ -18,7 +18,7 @@ public class MenuAdmin extends JPanel{
 	private JButton btnPreguntas;
 	private JButton btnExit;
 	private JButton btnListar;
-	private JButton btnCambiarContraseña;
+	private JButton btnCambiarContrasena;
 //Building---------------------------
 	public MenuAdmin(){
 		this.setLayout(new GridLayout(3,2));
@@ -35,7 +35,7 @@ public class MenuAdmin extends JPanel{
 		btnProgramas=new JButton("Programas Academicos");
 		btnPreguntas=new JButton("Preguntas");
 		btnListar=new JButton();
-		btnCambiarContraseña=new JButton();
+		btnCambiarContrasena=new JButton();
 		btnExit=new JButton("Cerrar Sesion");
 	}
 	/**
@@ -45,7 +45,7 @@ public class MenuAdmin extends JPanel{
 		this.add(btnIES);
 		this.add(btnListar);
 		this.add(btnProgramas);
-		this.add(btnCambiarContraseña);
+		this.add(btnCambiarContrasena);
 		this.add(btnPreguntas);
 		this.add(btnExit);
 	}
@@ -85,9 +85,9 @@ public class MenuAdmin extends JPanel{
 	}
 
 	/**
-	 * @return the btnCambiarContraseña
+	 * @return the btnCambiarContrasena
 	 */
-	public JButton getBtnCambiarContraseña() {
-		return btnCambiarContraseña;
+	public JButton getBtnCambiarContrasena() {
+		return btnCambiarContrasena;
 	}
 }
