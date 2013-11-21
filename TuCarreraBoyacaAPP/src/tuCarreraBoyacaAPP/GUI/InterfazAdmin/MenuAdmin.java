@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 public class MenuAdmin extends JFrame {
 
 	private JPanel contentPane;
+
 	/**
 	 * Launch the application.
 	 */
@@ -35,64 +36,53 @@ public class MenuAdmin extends JFrame {
 			}
 		});
 	}
-	
+
 	/**
 	 * Create the frame.
 	 */
 	public MenuAdmin() {
-		setTitle("Men\u00FA Administrador");
+		setTitle("MENÚ ADMINISTRADOR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 458, 315);
+		setBounds(100, 100, 488, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(MenuAdmin.class.getResource("images/Logo_TCBAPP2.png")));
-		label.setBounds(10, 11, 107, 91);
+		label.setIcon(new ImageIcon(this.getClass().getResource("images/Logo_TCBAPP1.png")));
+		label.setBounds(10, 11, 157, 123);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("TU CARRERA EN BOYAC\u00C1 APP");
+		JLabel label_1 = new JLabel("TU CARRERA EN BOYACÁ APP");
 		label_1.setForeground(new Color(0, 0, 128));
 		label_1.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		label_1.setBounds(139, 31, 282, 40);
+		label_1.setBounds(189, 33, 274, 29);
 		contentPane.add(label_1);
 		
-		JLabel lblModuloAdministrador = new JLabel("Men\u00FA Administrador");
+		JLabel lblModuloAdministrador = new JLabel("Menú Administrador");
 		lblModuloAdministrador.setForeground(new Color(0, 0, 128));
 		lblModuloAdministrador.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		lblModuloAdministrador.setBounds(181, 53, 204, 40);
+		lblModuloAdministrador.setBounds(225, 65, 197, 29);
 		contentPane.add(lblModuloAdministrador);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("images/btnPreguntas.PNG")));
-		btnNewButton.setBackground(new Color(0, 102, 153));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(30, 226, 303, 40);
-		contentPane.add(btnNewButton);
 		
 		JButton button = new JButton("");
 		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
 		button.setIcon(new ImageIcon(this.getClass().getResource("images/btnIES.PNG")));
+		button.setBounds(35, 145, 303, 47);
+		contentPane.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				ModuloIntitucionesEducacionSuperior.main(null);
-				
+				ModuloInstitucionesEducacionSuperior.main(null);				
 			}
 		});
-		button.setBounds(30, 124, 303, 40);
-		contentPane.add(button);
 		
 		JButton button_1 = new JButton("");
 		button_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
 		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/btnProgramas.PNG")));
-		button_1.setBackground(new Color(0, 102, 153));
+		button_1.setBounds(35, 203, 303, 47);
+		contentPane.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -101,32 +91,43 @@ public class MenuAdmin extends JFrame {
 				ModuloProgramaAcademico.main(null);				
 			}
 		});
-		button_1.setBounds(30, 175, 303, 40);
-		contentPane.add(button_1);
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/reportes.png")));
-		button_2.setBounds(357, 100, 64, 64);
-		contentPane.add(button_2);
-		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.PNG")));
-		button_3.setBounds(357, 168, 64, 64);
-		contentPane.add(button_3);
-		
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/btnExit.PNG")));
-		button_4.setBounds(343, 233, 90, 33);
-		button_4.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Login.main(null);
 				
+		JButton button_2 = new JButton("");
+		button_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
+		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnPreguntas.PNG")));
+		button_2.setBounds(35, 261, 303, 47);
+		contentPane.add(button_2);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+			
+		
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/btn_Listar.png")));
+		button_3.setBounds(361, 105, 77, 73);
+		contentPane.add(button_3);
+				
+		JButton button_4 = new JButton("");
+		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.png")));
+		button_4.setBounds(361, 189, 77, 73);
 		contentPane.add(button_4);
+		
+		JButton button_5 = new JButton("");
+		button_5.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
+		button_5.setBounds(349, 277, 87, 41);
+		contentPane.add(button_5);
+		button_5.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					Login.main(null);
+					
+				}
+			});
+			contentPane.add(button_5);	
+			
 	}
 
 }
