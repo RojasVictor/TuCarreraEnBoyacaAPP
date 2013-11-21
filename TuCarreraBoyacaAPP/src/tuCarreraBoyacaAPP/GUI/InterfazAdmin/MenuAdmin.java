@@ -93,6 +93,14 @@ public class MenuAdmin extends JFrame {
 		button_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
 		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/btnProgramas.PNG")));
 		button_1.setBackground(new Color(0, 102, 153));
+		button_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ModuloProgramaAcademico.main(null);				
+			}
+		});
 		button_1.setBounds(30, 175, 303, 40);
 		contentPane.add(button_1);
 		

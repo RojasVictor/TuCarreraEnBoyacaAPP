@@ -120,7 +120,7 @@ public class ModuloIntitucionesEducacionSuperior extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				Login.main(null);				
+				MenuAdmin.main(null);				
 			}
 		});
 		contentPane.add(button_1);
