@@ -16,8 +16,8 @@ public class Conexion {
 	private Connection conexion;
 	private final String DRIVER="com.mysql.jdbc.Driver";
 	private final String URL="jdbc:mysql://localhost:3306/appTest";
-	private final String USER="root";
-	private final String PASSWORD="";
+	private final String USER="tucarrera";
+	private final String PASSWORD="1234";
 		
 //Building----------------------------------
 	public Conexion(){
