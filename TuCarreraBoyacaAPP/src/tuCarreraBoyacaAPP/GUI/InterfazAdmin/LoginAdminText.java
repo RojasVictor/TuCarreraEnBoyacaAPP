@@ -4,6 +4,8 @@
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +40,7 @@ public class LoginAdminText extends JPanel{
 		txtUser=new JTextField();
 		jpwPassword=new JPasswordField();
 	}
+	
 	/**
 	 * Aca se agregan los elementos al panel
 	 */
@@ -47,6 +50,7 @@ public class LoginAdminText extends JPanel{
 		this.add(lblPassword);
 		this.add(jpwPassword);
 	}
+	
 	/**
 	 * @return the lblUser
 	 */

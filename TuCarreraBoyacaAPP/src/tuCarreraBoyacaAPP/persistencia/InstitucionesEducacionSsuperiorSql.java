@@ -29,8 +29,6 @@ public class InstitucionesEducacionSsuperiorSql {
 	public String insertInstituciones (InstitucionEducacionSuperior educacionSuperior) {
 		return "INSERT INTO institucion_educacion_superior VALUES("
 				+Q+educacionSuperior.getNombre()+Q+","
-				+Q+educacionSuperior.getDireccion()+Q+","
-				+Q+educacionSuperior.getTelefono()+Q+","
 				+Q+educacionSuperior.getDireccionURL()+Q+")";		
 	}
 			
@@ -52,8 +50,6 @@ public class InstitucionesEducacionSsuperiorSql {
 	public String updateInstituciones (InstitucionEducacionSuperior educacionSuperior){
 		return "UPDATE FROM institucion_educacion_superior VALUES("
 				+Q+educacionSuperior.getNombre()+Q+","
-				+Q+educacionSuperior.getDireccion()+Q+","
-				+Q+educacionSuperior.getTelefono()+Q+","
 				+Q+educacionSuperior.getDireccionURL()+Q+") WHERE ID_INSTITUCION"+Q+educacionSuperior.getId()+Q+"";
 
 	}

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+
+import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 
 /**
  * @author JUDIT
@@ -124,7 +127,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 			}
 			});
 			contentPane.add(button);
-				
+
 		JButton button_1 = new JButton("");
 		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
 		button_1.setBounds(164, 279, 45, 41);
@@ -133,13 +136,13 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		JButton button_2 = new JButton("");
 		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
 		button_2.setBounds(251, 279, 45, 41);
-		contentPane.add(button_2);
+		contentPane.add(button_2);	
 		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
 		button_3.setBounds(336, 279, 45, 41);
 		contentPane.add(button_3);
-		
+			
 		JButton button_4 = new JButton("");
 		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
 		button_4.setBounds(418, 279, 45, 41);

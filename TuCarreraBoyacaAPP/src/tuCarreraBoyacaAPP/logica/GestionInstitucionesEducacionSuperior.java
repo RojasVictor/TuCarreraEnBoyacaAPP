@@ -74,7 +74,7 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return la institucion que posee el id del parametro, y en caso de no existir retorna null
 	 */
 	public InstitucionEducacionSuperior searchInstucionEducacionSuperior(int id){
-		InstitucionEducacionSuperior ies=new InstitucionEducacionSuperior();
+		InstitucionEducacionSuperior ies=new InstitucionEducacionSuperior(id, null, null);
 		for(int i=0;i<getSuperiors().size();i++){
 			ies=getSuperiors().get(i);
 			if(ies.getId()==id){

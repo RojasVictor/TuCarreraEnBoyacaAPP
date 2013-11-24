@@ -3,20 +3,21 @@ package tuCarreraBoyacaAPP.logica;
 public class InstitucionEducacionSuperior {
 
 	private  int id;
-	
 	private String nombre;
-	
 	private String direccionURL;
-	
-	private String direccion;
-	
-	private String telefono;
-	
-	public InstitucionEducacionSuperior(){
 		
+	/**
+	 * @param id
+	 * @param nombre
+	 * @param direccionURL
+	 */
+	public InstitucionEducacionSuperior(int id, String nombre,
+			String direccionURL) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.direccionURL = direccionURL;
 	}
-	
-	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -24,47 +25,8 @@ public class InstitucionEducacionSuperior {
 	@Override
 	public String toString() {
 		return "InstitucionEducacionSuperior [id=" + id + ", nombre=" + nombre
-				+ ", direccionURL=" + direccionURL + ", direccion=" + direccion
-				+ ", telefono=" + telefono + "]";
+				+ ", direccionURL=" + direccionURL + "]";
 	}
-
-
-
-	/**
-	 * @return the direccion
-	 */
-	public String getDireccion() {
-		return direccion;
-	}
-
-
-
-	/**
-	 * @param direccion the direccion to set
-	 */
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-
-
-	/**
-	 * @return the telefono
-	 */
-	public String getTelefono() {
-		return telefono;
-	}
-
-
-
-	/**
-	 * @param telefono the telefono to set
-	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-
 
 	public int getId() {
 		return id;
