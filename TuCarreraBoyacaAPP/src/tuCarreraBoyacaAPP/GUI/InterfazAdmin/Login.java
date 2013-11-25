@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
 import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
 import tuCarreraBoyacaAPP.logica.GestionProgramasAcademico;
+import javax.swing.SwingConstants;
 
 /**
  * @author harold_patino
@@ -36,8 +37,7 @@ public class Login extends JFrame{
 	public Login(){
 		this.setTitle("Tu Carrera en Boyaca APP");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setLayout(new BorderLayout());
-		this.setSize(450, 250);
+		this.setSize(485, 290);
 		inicializar();
 		agregar();
 	}
@@ -51,17 +51,24 @@ public class Login extends JFrame{
 		lblUserSesion=new JLabel();
 		lblPasswordSesion=new JLabel();
 		lblLogo=new JLabel();
+		lblLogo.setBounds(0, 0, 469, 92);
 		lblLogo.setIcon(new ImageIcon(getClass().getResource("images/logo.PNG")));
 		btnIngresar=new JButton();
+		btnIngresar.setBounds(79, 199, 265, 53);
 		btnIngresar.setIcon(new ImageIcon(getClass().getResource("images/btnIngresar.PNG")));
 		btnIngresar.setActionCommand(eventsAdmin.INGRESAR);
 		btnIngresar.addActionListener(eventsAdmin);
 		adminText=new LoginAdminText();
+		adminText.getLblUser().setText("Usuario");
+		adminText.getLblUser().setHorizontalAlignment(SwingConstants.CENTER);
+		adminText.getLblPassword().setHorizontalAlignment(SwingConstants.CENTER);
+		adminText.setBounds(0, 92, 469, 107);
 	}
 	public void agregar(){
-		this.add(lblLogo,BorderLayout.NORTH);
-		this.add(adminText,BorderLayout.CENTER);
-		this.add(btnIngresar,BorderLayout.SOUTH);
+		getContentPane().setLayout(null);
+		getContentPane().add(lblLogo);
+		getContentPane().add(adminText);
+		getContentPane().add(btnIngresar);
 	}
 	
 	/**
