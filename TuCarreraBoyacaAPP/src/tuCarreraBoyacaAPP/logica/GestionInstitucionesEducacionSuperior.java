@@ -49,23 +49,38 @@ public class GestionInstitucionesEducacionSuperior {
 	}
 	/**
 	 * 
-	 * @param id
-	 * @param nombre
-	 * @param url
+	 * @param id - identificador del elemento a actualizar
+	 * @param nombre - nuevo nombre a asignar en el elemento
+	 * @param url - nueva URL a asignar en el elemento
 	 * @return true si encontro la institucion y la logro actualizar correctamente
 	 */
 	public boolean updateInstitucionesEducacionSuperior(int id,String nombre,String url){
 		if(searchInstucionEducacionSuperior(id)!=null){
-			
+			for (int i=0; i<getSuperiors().size();i++){
+				if(getSuperiors().get(i).getId() == id){
+					getSuperiors().get(i).setNombre(nombre);
+					getSuperiors().get(i).setDireccionURL(url);
+					return true;
+				}
+			}
 		}
-		return true;
+		return false;
 	}
 	/**
 	 * 
-	 * @param id
-	 * @return
+	 * @param id - identificador del elemento a eliminar
+	 * @return true - si el elemento fue eliminado satisfactoriamente del ArrayList
 	 */
 	public boolean removeInstitucionEducacionSuperior(int id){
+		InstitucionEducacionSuperior elemento = searchInstucionEducacionSuperior(id);
+		InstitucionEducacionSuperior busqueda;
+		for(int i=0;i<getSuperiors().size();i++){
+			busqueda = getSuperiors().get(i);
+			if(busqueda.getId() == elemento.getId()){
+				superiors.remove(i);
+				return true;
+			}
+		}
 		return false;
 	}
 	/**

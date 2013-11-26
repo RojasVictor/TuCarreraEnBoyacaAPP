@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -57,6 +56,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 	 * Create the frame.
 	 */
 	public ModuloInstitucionesEducacionSuperior() {
+		gestionInstituciones = new GestionInstitucionesEducacionSuperior();
 		setTitle("MODULO INSTITUCIONES DE EDUCACIÓN SUPERIOR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 506, 368);
@@ -168,9 +168,9 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				}else{
 					nombre = textField_NombreInstitucion.getText();
 					url = textField_urlInstitucion.getText();
+					InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
+					gestionInstituciones.createInstitucionEducacionSuperior(institucion);
 				}				
-				InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
-				gestionInstituciones.createInstitucionEducacionSuperior(institucion);
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
 				textField_urlInstitucion.setText("");
@@ -184,12 +184,18 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				int identificador = 0;
 				try{	
 					identificador = Integer.parseInt(textField_idInstitucion.getText());
+					if(identificador!=0){
+						InstitucionEducacionSuperior institucion = gestionInstituciones.searchInstucionEducacionSuperior(identificador);
+						textField_NombreInstitucion.setText(institucion.getNombre());
+						textField_urlInstitucion.setText(institucion.getDireccionURL());
+						}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-				InstitucionEducacionSuperior institucion = gestionInstituciones.searchInstucionEducacionSuperior(identificador);
-				textField_NombreInstitucion.setText(institucion.getNombre());
-				textField_urlInstitucion.setText(institucion.getDireccionURL());
+					catch(NullPointerException e){
+						JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
+					}
+				
 			}
 		});
 		
@@ -211,7 +217,6 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 					nombre = textField_NombreInstitucion.getText();
 					url = textField_urlInstitucion.getText();
 				}				
-				InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
 				gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url);
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
@@ -226,10 +231,18 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				int identificador = 0;
 				try{	
 					identificador = Integer.parseInt(textField_idInstitucion.getText());
+					boolean respuesta = gestionInstituciones.removeInstitucionEducacionSuperior(identificador);
+					if(respuesta){
+						JOptionPane.showMessageDialog(null, "Se elimino satisfactoriamente");
+					}else{
+						JOptionPane.showMessageDialog(null, "No se elimino o no existe el elemento");
+					}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-				gestionInstituciones.removeInstitucionEducacionSuperior(identificador);
+					/**catch(NullPointerException e){
+					JOptionPane.showMessageDialog(null, "No se encuentra el elemento a eliminar");
+					}**/
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
 				textField_urlInstitucion.setText("");
