@@ -3,7 +3,9 @@
  */
 package tuCarreraBoyacaAPP.logica;
 
+
 import java.util.ArrayList;
+import tuCarreraBoyacaAPP.persistencia.InstitucionesEducacionSuperiorDao;
 
 /**
  * @author harold_patino
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class GestionInstitucionesEducacionSuperior {
 //Attributes---------------------------------------
 	private ArrayList<InstitucionEducacionSuperior> superiors;
+	private InstitucionesEducacionSuperiorDao daoSuperior;
 	
 //Building-----------------------------------------
 	public GestionInstitucionesEducacionSuperior(){
@@ -38,7 +41,9 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return true si la institucion fue creada correctamente
 	 */
 	public boolean createInstitucionEducacionSuperior(InstitucionEducacionSuperior iSuperior){
+		daoSuperior.insertInstitucion(iSuperior);
 		return getSuperiors().add(iSuperior);
+		
 	}
 	/**
 	 * 
@@ -55,9 +60,11 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return true si encontro la institucion y la logro actualizar correctamente
 	 */
 	public boolean updateInstitucionesEducacionSuperior(int id,String nombre,String url){
+		InstitucionEducacionSuperior actualizar = new InstitucionEducacionSuperior(id, nombre, url);
 		if(searchInstucionEducacionSuperior(id)!=null){
 			for (int i=0; i<getSuperiors().size();i++){
 				if(getSuperiors().get(i).getId() == id){
+					daoSuperior.updateInstitucion(actualizar);
 					getSuperiors().get(i).setNombre(nombre);
 					getSuperiors().get(i).setDireccionURL(url);
 					return true;
@@ -77,6 +84,7 @@ public class GestionInstitucionesEducacionSuperior {
 		for(int i=0;i<getSuperiors().size();i++){
 			busqueda = getSuperiors().get(i);
 			if(busqueda.getId() == elemento.getId()){
+				daoSuperior.deleteInstitucion(elemento.getId());
 				superiors.remove(i);
 				return true;
 			}

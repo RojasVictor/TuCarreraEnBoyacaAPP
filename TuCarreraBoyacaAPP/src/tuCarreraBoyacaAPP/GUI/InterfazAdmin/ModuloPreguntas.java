@@ -27,10 +27,10 @@ import javax.swing.JButton;
 public class ModuloPreguntas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textField_identificador;
+	private JTextField textField_descripcion;
+	private JTextField textField_programaAcademico;
+	private JTextField textField_puntaje;
 
 	/**
 	 * Launch the application.
@@ -97,30 +97,30 @@ public class ModuloPreguntas extends JFrame {
 		lblEstimacinPuntaje.setBounds(40, 234, 157, 14);
 		contentPane.add(lblEstimacinPuntaje);
 		
-		textField = new JTextField();
-		textField.setBounds(225, 157, 238, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_identificador = new JTextField();
+		textField_identificador.setBounds(225, 157, 238, 20);
+		contentPane.add(textField_identificador);
+		textField_identificador.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(225, 182, 238, 20);
-		contentPane.add(textField_1);
+		textField_descripcion = new JTextField();
+		textField_descripcion.setColumns(10);
+		textField_descripcion.setBounds(225, 182, 238, 20);
+		contentPane.add(textField_descripcion);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(225, 207, 238, 20);
-		contentPane.add(textField_2);
+		textField_programaAcademico = new JTextField();
+		textField_programaAcademico.setColumns(10);
+		textField_programaAcademico.setBounds(225, 207, 238, 20);
+		contentPane.add(textField_programaAcademico);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(225, 232, 238, 20);
-		contentPane.add(textField_3);
+		textField_puntaje = new JTextField();
+		textField_puntaje.setColumns(10);
+		textField_puntaje.setBounds(225, 232, 238, 20);
+		contentPane.add(textField_puntaje);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
-		button.setBounds(40, 279, 87, 41);
-		button.addActionListener(new ActionListener() {
+		JButton button_regresar = new JButton("");
+		button_regresar.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
+		button_regresar.setBounds(40, 279, 87, 41);
+		button_regresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -128,27 +128,27 @@ public class ModuloPreguntas extends JFrame {
 				MenuAdmin.main(null);				
 			}
 		});
-		contentPane.add(button);
+		contentPane.add(button_regresar);
 		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
-		button_1.setBounds(152, 279, 45, 41);
-		contentPane.add(button_1);
+		JButton button_agregar = new JButton("");
+		button_agregar.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
+		button_agregar.setBounds(152, 279, 45, 41);
+		contentPane.add(button_agregar);
 		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
-		button_2.setBounds(251, 279, 45, 41);
-		contentPane.add(button_2);
+		JButton button_buscarActualizar = new JButton("");
+		button_buscarActualizar.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
+		button_buscarActualizar.setBounds(251, 279, 45, 41);
+		contentPane.add(button_buscarActualizar);
 		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
-		button_3.setBounds(336, 279, 45, 41);
-		contentPane.add(button_3);
+		JButton button_guardar = new JButton("");
+		button_guardar.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
+		button_guardar.setBounds(336, 279, 45, 41);
+		contentPane.add(button_guardar);
 		
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
-		button_4.setBounds(418, 279, 45, 41);
-		contentPane.add(button_4);
+		JButton button_eliminar = new JButton("");
+		button_eliminar.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
+		button_eliminar.setBounds(418, 279, 45, 41);
+		contentPane.add(button_eliminar);
 		
 		
 	}

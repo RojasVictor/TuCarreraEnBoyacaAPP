@@ -239,10 +239,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 					}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-					}
-					/**catch(NullPointerException e){
-					JOptionPane.showMessageDialog(null, "No se encuentra el elemento a eliminar");
-					}**/
+					}					
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
 				textField_urlInstitucion.setText("");

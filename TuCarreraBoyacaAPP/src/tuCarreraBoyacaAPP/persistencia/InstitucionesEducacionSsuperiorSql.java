@@ -26,10 +26,8 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @param educacionSuperior - Objeto del cual se realizarán las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String insertInstituciones (InstitucionEducacionSuperior educacionSuperior) {
-		return "INSERT INTO institucion_educacion_superior VALUES("
-				+Q+educacionSuperior.getNombre()+Q+","
-				+Q+educacionSuperior.getDireccionURL()+Q+")";		
+	public String insertInstituciones (String nombre, String url) {
+		return "INSERT INTO institucion_educacion_superior VALUES("+nombre+","+url+");";		
 	}
 			
 	/**
@@ -38,7 +36,7 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deleteInstituciones (int id) {
-		return "DELETE FROM institucion_educacion_superior WHERE ID_INSTITUCION="+Q+id+Q+"";	
+		return "DELETE FROM institucion_educacion_superior WHERE ID_INSTITUCION="+id+";";	
 	
 	}
 		
@@ -49,8 +47,9 @@ public class InstitucionesEducacionSsuperiorSql {
 	 */
 	public String updateInstituciones (InstitucionEducacionSuperior educacionSuperior){
 		return "UPDATE FROM institucion_educacion_superior VALUES("
-				+Q+educacionSuperior.getNombre()+Q+","
-				+Q+educacionSuperior.getDireccionURL()+Q+") WHERE ID_INSTITUCION"+Q+educacionSuperior.getId()+Q+"";
+				+educacionSuperior.getNombre()+","
+				+educacionSuperior.getDireccionURL()+") WHERE ID_INSTITUCION ="
+				+educacionSuperior.getId()+";";
 
 	}
 	
