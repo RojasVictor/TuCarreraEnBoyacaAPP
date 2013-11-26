@@ -234,7 +234,6 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				textField_NombreInstitucion.setText("");
 				textField_urlInstitucion.setText("");
 			}
-		});
-		
+		});		
 		}
 }
