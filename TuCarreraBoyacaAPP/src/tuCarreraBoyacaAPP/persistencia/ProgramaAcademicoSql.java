@@ -26,7 +26,8 @@ public class ProgramaAcademicoSql {
 	public String insertPrograma (ProgramaAcademico programa) {
 		return "INSERT INTO programa_academico VALUES("
 				+Q+programa.getNombre()+Q+","
-				+Q+programa.getArea()+Q+");";
+				+Q+programa.getCategoria()
+				+Q+programa.getCosto()+Q+");";
 		
 	}
 	
@@ -48,7 +49,7 @@ public class ProgramaAcademicoSql {
 	public String updatePrograma (ProgramaAcademico programa) {
 		return  "UPDATE INTO programa_academico VALUES("
 				+Q+programa.getNombre()+Q+","
-				+Q+programa.getArea()+Q+") WHERE ID_PROGRAMA="+Q+programa.getId()+Q+";";
+				+Q+programa.getCategoria()+Q+") WHERE ID_PROGRAMA="+Q+programa.getId()+Q+";";
 
 	}
 	/**
