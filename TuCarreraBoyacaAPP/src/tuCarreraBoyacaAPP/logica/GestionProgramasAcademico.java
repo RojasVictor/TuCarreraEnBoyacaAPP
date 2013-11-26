@@ -5,6 +5,8 @@ package tuCarreraBoyacaAPP.logica;
 
 import java.util.ArrayList;
 
+import tuCarreraBoyacaAPP.persistencia.ProgramaAcademicoDao;
+
 /**
  * @author victor_rojas
  *
@@ -14,7 +16,7 @@ public class GestionProgramasAcademico {
 	//Attributes --------------------------------------------------------
 	
 	private ArrayList<ProgramaAcademico> academicos;
-	
+	private ProgramaAcademicoDao academicoDao;
 	//Building ----------------------------------------------------------
 	public GestionProgramasAcademico() {
 		academicos = new ArrayList<ProgramaAcademico>();
@@ -60,6 +62,13 @@ public class GestionProgramasAcademico {
 		return (ArrayList<ProgramaAcademico>) academicos.clone();
 	}
 	
+	/**
+	 * @return the academicoDao
+	 */
+	public ProgramaAcademicoDao getAcademicoDao() {
+		return academicoDao;
+	}
+
 	/**
 	 * 
 	 * @param id - identificador de elemento a actualizar

@@ -5,6 +5,8 @@ package tuCarreraBoyacaAPP.logica;
 
 import java.util.ArrayList;
 
+import tuCarreraBoyacaAPP.persistencia.PreguntaDao;
+
 /**
  * @author victor_rojas*
  */
@@ -13,7 +15,7 @@ public class GestionPreguntaTest {
 	//Attributes---------------------------------------
 	
 	private ArrayList<PreguntaTest> preguntas;
-	
+	private PreguntaDao preguntaDao;
 	//Building---------------------------------------
 	
 	public GestionPreguntaTest() {
@@ -50,6 +52,15 @@ public class GestionPreguntaTest {
 		return (ArrayList<PreguntaTest>) preguntas.clone();
 	}
 	
+	
+	
+	/**
+	 * @return the preguntaDao
+	 */
+	public PreguntaDao getPreguntaDao() {
+		return preguntaDao;
+	}
+
 	/**
 	 ** @return PreguntaTest - un objeto de tipo PreguntaTest de acuerdo al id de busqueda
 	 ** @param busqueda -- integer que es el criterio de busqueda en el ArrayList

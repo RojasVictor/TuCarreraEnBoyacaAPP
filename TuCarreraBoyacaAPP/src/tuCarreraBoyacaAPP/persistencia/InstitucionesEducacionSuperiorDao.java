@@ -48,7 +48,11 @@ public class InstitucionesEducacionSuperiorDao {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param idInstitucion
+	 * @return
+	 */
 	public int deleteInstitucion  (int idInstitucion) {
 		if(conexion.conectar()){
 			try{
@@ -60,7 +64,11 @@ public class InstitucionesEducacionSuperiorDao {
 		}
 		return -1;	
 	}
-	
+	/**
+	 * 
+	 * @param institucion
+	 * @return
+	 */
 	public int updateInstitucion  (InstitucionEducacionSuperior institucion) {
 		if(conexion.conectar()){
 			try{
@@ -72,7 +80,10 @@ public class InstitucionesEducacionSuperiorDao {
 		}
 		return -1;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ResultSet selectInstitucion () {
 		if(conexion.conectar()){
 			try{

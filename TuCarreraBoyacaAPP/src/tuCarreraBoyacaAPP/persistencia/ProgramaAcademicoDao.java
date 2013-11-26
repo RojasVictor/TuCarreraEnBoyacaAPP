@@ -4,9 +4,8 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
+import java.sql.SQLException;
+import java.sql.Statement;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 
 /**
@@ -14,27 +13,66 @@ import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
  *
  */
 public class ProgramaAcademicoDao {
+//Attributes----------------------------------
+	private ProgramaAcademicoSql academicoSql;
+	private Conexion conexion;
 	
-	ProgramaAcademico programa;
+//Building------------------------------------
+	public ProgramaAcademicoDao(){
+		academicoSql=new ProgramaAcademicoSql();
+		conexion=new Conexion();
+	}
 
-public static int insertPrograma(ProgramaAcademico programa){
-	return 0;
-}
+//Methods-------------------------------------
+	public int insertPrograma(ProgramaAcademico programa){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.insertPrograma(programa));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 
-public static int eletePrograma(int idPrograma){
-	return 0;
-}
+	public int deletePrograma(int idPrograma){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.deletePrograma(idPrograma));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 
-public static <Programa> int updatePrograma(Programa programa){
-	return 0;
-}
+	public int updatePrograma(ProgramaAcademico programa){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.updatePrograma(programa));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 
-public static ResultSet selectProgramas(){
-	return null;
-}
-
+	public ResultSet selectProgramas(){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeQuery(academicoSql.selectProgramas());
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return null;
+	}
 
 }

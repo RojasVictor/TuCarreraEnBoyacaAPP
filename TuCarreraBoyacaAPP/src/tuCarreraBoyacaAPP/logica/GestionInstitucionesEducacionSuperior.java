@@ -52,6 +52,14 @@ public class GestionInstitucionesEducacionSuperior {
 	public ArrayList<InstitucionEducacionSuperior> readInstitucionesEducacionSuperior(){
 		return (ArrayList<InstitucionEducacionSuperior>) superiors.clone();
 	}
+	
+	/**
+	 * @return the daoSuperior
+	 */
+	public InstitucionesEducacionSuperiorDao getDaoSuperior() {
+		return daoSuperior;
+	}
+
 	/**
 	 * 
 	 * @param id - identificador del elemento a actualizar

@@ -27,7 +27,7 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertInstituciones (InstitucionEducacionSuperior superior) {
-		return "INSERT INTO institucion_educacion_superior VALUES("+superior.getNombre()+","+superior.getDireccionURL()+");";		
+		return "INSERT INTO institucion_educacion_superior VALUES("+Q+superior.getNombre()+Q+","+Q+superior.getDireccionURL()+Q+");";		
 	}
 			
 	/**

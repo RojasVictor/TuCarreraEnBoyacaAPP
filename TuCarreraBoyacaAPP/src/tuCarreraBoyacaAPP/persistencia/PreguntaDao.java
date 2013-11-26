@@ -27,6 +27,12 @@ public class PreguntaDao {
 		conexion=new Conexion();
 	}
 	
+//Methods--------------------------------------
+	/**
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
 	public int insertPregunta (PreguntaTest pregunta) {
 		if(conexion.conectar()){
 			try{
@@ -38,8 +44,11 @@ public class PreguntaDao {
 		}
 		return -1;	
 	}
-	
-	
+	/**
+	 * 
+	 * @param idPreguta
+	 * @return
+	 */
 	public int deletePregunta (int idPreguta) {
 		if(conexion.conectar()){
 			try{
@@ -51,7 +60,11 @@ public class PreguntaDao {
 		}
 		return -1;	
 	}
-	
+	/**
+	 * 
+	 * @param pregunta
+	 * @return
+	 */
 	public int updatePregunta (PreguntaTest pregunta) {
 		if(conexion.conectar()){
 			try{
@@ -63,7 +76,10 @@ public class PreguntaDao {
 		}
 		return -1;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ResultSet selectPreguntas() {
 		if(conexion.conectar()){
 			try{
