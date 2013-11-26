@@ -16,6 +16,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -75,24 +77,12 @@ public class ModuloReportes extends JFrame{
 		lblModuloDeReportes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModuloDeReportes.setForeground(new Color(0, 0, 128));
 		lblModuloDeReportes.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		lblModuloDeReportes.setBounds(175, 41, 295, 40);
+		lblModuloDeReportes.setBounds(177, 47, 295, 40);
 		contentPane.add(lblModuloDeReportes);
 		
-		JRadioButton rdbtnListarInstitucionesSuperior = new JRadioButton("Listar Instituciones de Educacion Superior");
-		rdbtnListarInstitucionesSuperior.setBounds(40, 145, 225, 23);
-		contentPane.add(rdbtnListarInstitucionesSuperior);
-		
-		JRadioButton rdbtnListarProgramas = new JRadioButton("Listar Programas Academicos");
-		rdbtnListarProgramas.setBounds(285, 145, 174, 23);
-		contentPane.add(rdbtnListarProgramas);
-		
-		JRadioButton rdbtnListarPreguntas = new JRadioButton("Listar Preguntas");
-		rdbtnListarPreguntas.setBounds(200, 185, 109, 23);
-		contentPane.add(rdbtnListarPreguntas);
-		
 		JButton btnRegresar = new JButton("");
-		btnRegresar.setIcon(new ImageIcon(ModuloReportes.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/images/btnExit.PNG")));
-		btnRegresar.setBounds(40, 352, 88, 33);
+		btnRegresar.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
+		btnRegresar.setBounds(51, 349, 86, 39);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -103,13 +93,21 @@ public class ModuloReportes extends JFrame{
 		});
 		contentPane.add(btnRegresar);
 		
-		JButton btnGenerar = new JButton("");
-		btnGenerar.setIcon(new ImageIcon(ModuloReportes.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/images/btnGenerar.png")));
-		btnGenerar.setBounds(200, 362, 125, 23);
-		contentPane.add(btnGenerar);
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(this.getClass().getResource("images/genera.png")));
+		button.setBounds(329, 356, 114, 32);
+		contentPane.add(button);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(51, 223, 392, 115);
 		contentPane.add(textArea);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Listar Programas Academicos", "Listar Instituciones de Educacion Superior", "Listar Preguntas"}));
+		comboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 16));
+		comboBox.setToolTipText("");
+		comboBox.setBounds(51, 145, 392, 59);
+		contentPane.add(comboBox);
+		
 	}
 }
