@@ -53,7 +53,7 @@ public class ModuloReportes extends JFrame{
 	 * Create the application.
 	 */
 	public ModuloReportes() {
-		setTitle("MODULO PROGRAMA ACADÉMICO");
+		setTitle("MODULO REPORTES");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 486, 450);
 		contentPane = new JPanel();

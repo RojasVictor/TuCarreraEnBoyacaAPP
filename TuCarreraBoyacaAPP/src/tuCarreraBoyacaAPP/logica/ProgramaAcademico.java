@@ -6,9 +6,58 @@ public class ProgramaAcademico {
 	
 	private String nombre;
 	
-	private String area;
+	private String categoria;
 	
-	public ProgramaAcademico () {
+	InstitucionEducacionSuperior institucion;
+	
+	private int costo;
+		
+	/**
+	 * @param id
+	 * @param nombre
+	 * @param categoria
+	 * @param institucion
+	 * @param costo
+	 */
+	public ProgramaAcademico(int id, String nombre, String categoria,
+			InstitucionEducacionSuperior institucion, int costo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.institucion = institucion;
+		this.costo = costo;
+	}
+
+	/**
+	 * @return the categoria
+	 */
+	public String getCategoria() {
+		return categoria;
+	}
+
+	/**
+	 * @param categoria the categoria to set
+	 */
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	/**
+	 * @return the costo
+	 */
+	public int getCosto() {
+		return costo;
+	}
+
+	/**
+	 * @param costo the costo to set
+	 */
+	public void setCosto(int costo) {
+		this.costo = costo;
+	}
+
+	public ProgramaAcademico () { 
 		
 	}
 	
@@ -32,15 +81,6 @@ public class ProgramaAcademico {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-		
+	}		
 	
 }
