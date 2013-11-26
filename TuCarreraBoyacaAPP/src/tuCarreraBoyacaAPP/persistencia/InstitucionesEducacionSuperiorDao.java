@@ -4,6 +4,8 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 import tuCarreraBoyacaAPP.persistencia.InstitucionesEducacionSsuperiorSql;
@@ -17,12 +19,13 @@ public class InstitucionesEducacionSuperiorDao {
 
 	//Attributes --------------------------------------
 	private InstitucionesEducacionSsuperiorSql sqlInstitucion;
-	
+	private Conexion conexion;
 	
 	//Building -----------------------------------------
 	
 	public InstitucionesEducacionSuperiorDao() {		
-		InstitucionEducacionSuperior institucion;		
+		sqlInstitucion=new InstitucionesEducacionSsuperiorSql();
+		conexion=new Conexion();
 	}
 	
 	//Methods --------------------------------------------
@@ -32,27 +35,54 @@ public class InstitucionesEducacionSuperiorDao {
 	 * @param institucion
 	 * @return
 	 */
-	public boolean insertInstitucion  (InstitucionEducacionSuperior institucion) {
-		return true;
-	
+	public int insertInstitucion  (InstitucionEducacionSuperior institucion) {
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sqlInstitucion.insertInstituciones(institucion));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
 		
 	}
 	
 	
 	public int deleteInstitucion  (int idInstitucion) {
-		return idInstitucion ;	
-	
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sqlInstitucion.deleteInstituciones(idInstitucion));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;	
 	}
 	
 	public int updateInstitucion  (InstitucionEducacionSuperior institucion) {
-		return 0;
-		
-
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sqlInstitucion.updateInstituciones(institucion));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
 	}
 	
 	public ResultSet selectInstitucion () {
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeQuery(sqlInstitucion.selectInstituciones());
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
 		return null;
-
 	}
 
 }

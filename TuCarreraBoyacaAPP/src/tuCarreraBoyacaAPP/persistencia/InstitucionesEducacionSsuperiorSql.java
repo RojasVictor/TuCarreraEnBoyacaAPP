@@ -26,8 +26,8 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @param educacionSuperior - Objeto del cual se realizarán las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String insertInstituciones (String nombre, String url) {
-		return "INSERT INTO institucion_educacion_superior VALUES("+nombre+","+url+");";		
+	public String insertInstituciones (InstitucionEducacionSuperior superior) {
+		return "INSERT INTO institucion_educacion_superior VALUES("+superior.getNombre()+","+superior.getDireccionURL()+");";		
 	}
 			
 	/**
