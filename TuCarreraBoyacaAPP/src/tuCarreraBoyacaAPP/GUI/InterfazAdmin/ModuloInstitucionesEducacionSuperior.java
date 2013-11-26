@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
 
 /**
  * @author JUDIT
@@ -30,9 +32,10 @@ import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 public class ModuloInstitucionesEducacionSuperior extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textField_urlInstitucion;
+	private JTextField textField_NombreInstitucion;
+	private JTextField textField_idInstitucion;
+	private GestionInstitucionesEducacionSuperior gestionInstituciones;
 
 	/**
 	 * Launch the application.
@@ -100,25 +103,25 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		lblUrlInstitucionesDe.setBounds(27, 240, 256, 14);
 		contentPane.add(lblUrlInstitucionesDe);
 			
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(294, 238, 169, 20);
-		contentPane.add(textField_1);
+		textField_urlInstitucion = new JTextField();
+		textField_urlInstitucion.setColumns(10);
+		textField_urlInstitucion.setBounds(294, 238, 169, 20);
+		contentPane.add(textField_urlInstitucion);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(293, 196, 169, 20);
-		contentPane.add(textField_2);
+		textField_NombreInstitucion = new JTextField();
+		textField_NombreInstitucion.setColumns(10);
+		textField_NombreInstitucion.setBounds(293, 196, 169, 20);
+		contentPane.add(textField_NombreInstitucion);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(294, 155, 169, 20);
-		contentPane.add(textField_3);
+		textField_idInstitucion = new JTextField();
+		textField_idInstitucion.setColumns(10);
+		textField_idInstitucion.setBounds(294, 155, 169, 20);
+		contentPane.add(textField_idInstitucion);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
-		button.setBounds(40, 279, 87, 41);
-		button.addActionListener(new ActionListener(){
+		JButton button_Regresar = new JButton("");
+		button_Regresar.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
+		button_Regresar.setBounds(40, 279, 87, 41);
+		button_Regresar.addActionListener(new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -126,27 +129,112 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				MenuAdmin.main(null);				
 			}
 			});
-			contentPane.add(button);
+			contentPane.add(button_Regresar);
 
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
-		button_1.setBounds(164, 279, 45, 41);
-		contentPane.add(button_1);
+		JButton button_Agregar = new JButton("");
+		button_Agregar.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
+		button_Agregar.setBounds(164, 279, 45, 41);
+		contentPane.add(button_Agregar);
 		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
-		button_2.setBounds(251, 279, 45, 41);
-		contentPane.add(button_2);	
+		JButton button_ActualizarBuscar = new JButton("");
+		button_ActualizarBuscar.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
+		button_ActualizarBuscar.setBounds(251, 279, 45, 41);
+		contentPane.add(button_ActualizarBuscar);	
 		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
-		button_3.setBounds(336, 279, 45, 41);
-		contentPane.add(button_3);
+		JButton button_Guardar = new JButton("");
+		button_Guardar.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
+		button_Guardar.setBounds(336, 279, 45, 41);
+		contentPane.add(button_Guardar);
 			
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
-		button_4.setBounds(418, 279, 45, 41);
-		contentPane.add(button_4);
+		JButton button_Eliminar = new JButton("");
+		button_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
+		button_Eliminar.setBounds(418, 279, 45, 41);
+		contentPane.add(button_Eliminar);
+		
+		button_Agregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				String nombre = "";
+				String url= "";
+				try{	
+				identificador = Integer.parseInt(textField_idInstitucion.getText());
+				}catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				}
+				if (textField_NombreInstitucion.getText().equals("") || textField_urlInstitucion.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+				}else{
+					nombre = textField_NombreInstitucion.getText();
+					url = textField_urlInstitucion.getText();
+				}				
+				InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
+				gestionInstituciones.createInstitucionEducacionSuperior(institucion);
+				textField_idInstitucion.setText("");
+				textField_NombreInstitucion.setText("");
+				textField_urlInstitucion.setText("");
+			}	
+		});
+		
+		button_ActualizarBuscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				try{	
+					identificador = Integer.parseInt(textField_idInstitucion.getText());
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}
+				InstitucionEducacionSuperior institucion = gestionInstituciones.searchInstucionEducacionSuperior(identificador);
+				textField_NombreInstitucion.setText(institucion.getNombre());
+				textField_urlInstitucion.setText(institucion.getDireccionURL());
+			}
+		});
+		
+		button_Guardar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				String nombre = "";
+				String url= "";
+				try{	
+				identificador = Integer.parseInt(textField_idInstitucion.getText());
+				}catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				}
+				if (textField_NombreInstitucion.getText().equals("") || textField_urlInstitucion.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+				}else{
+					nombre = textField_NombreInstitucion.getText();
+					url = textField_urlInstitucion.getText();
+				}				
+				InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
+				gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url);
+				textField_idInstitucion.setText("");
+				textField_NombreInstitucion.setText("");
+				textField_urlInstitucion.setText("");
+			}	
+		});
+		
+		button_Eliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				try{	
+					identificador = Integer.parseInt(textField_idInstitucion.getText());
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}
+				gestionInstituciones.removeInstitucionEducacionSuperior(identificador);
+				textField_idInstitucion.setText("");
+				textField_NombreInstitucion.setText("");
+				textField_urlInstitucion.setText("");
+			}
+		});
 		
 		}
 }
