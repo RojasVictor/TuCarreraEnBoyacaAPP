@@ -4,6 +4,8 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import tuCarreraBoyacaAPP.logica.PreguntaTest;
 
@@ -12,37 +14,66 @@ import tuCarreraBoyacaAPP.logica.PreguntaTest;
  *
  */
 public class PreguntaDao {
-
+//Attributes-----------------------------------
+	private PreguntaSql sql;
+	private Conexion conexion;
 	/**
 	 * 
 	 */
+
+//Building-------------------------------------
 	public PreguntaDao() {
-		
-		PreguntaTest pregunta;
-		
+		sql=new PreguntaSql();
+		conexion=new Conexion();
 	}
 	
 	public int insertPregunta (PreguntaTest pregunta) {
-		return 0;
-	
-		
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sql.insertPregunta(pregunta));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;	
 	}
 	
 	
 	public int deletePregunta (int idPreguta) {
-		return idPreguta;	
-	
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sql.deletePregunta(idPreguta));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;	
 	}
 	
 	public int updatePregunta (PreguntaTest pregunta) {
-		return 0;
-		
-
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sql.updatePregunta(pregunta));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
 	}
 	
 	public ResultSet selectPreguntas() {
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeQuery(sql.selectPreguntas());
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
 		return null;
-
 	}
 
 }
