@@ -19,6 +19,7 @@ public class GestionInstitucionesEducacionSuperior {
 //Building-----------------------------------------
 	public GestionInstitucionesEducacionSuperior(){
 		superiors=new ArrayList<>();
+		daoSuperior = new InstitucionesEducacionSuperiorDao();
 	}
 
 //Methods------------------------------------------

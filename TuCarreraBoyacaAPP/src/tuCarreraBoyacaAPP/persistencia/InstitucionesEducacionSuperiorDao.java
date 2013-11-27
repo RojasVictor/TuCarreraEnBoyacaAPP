@@ -38,7 +38,7 @@ public class InstitucionesEducacionSuperiorDao {
 	public int insertInstitucion  (InstitucionEducacionSuperior institucion) {
 		if(conexion.conectar()){
 			try{
-				Statement sentencia=conexion.getConexion().createStatement();
+				Statement sentencia = conexion.getConexion().createStatement();
 				return sentencia.executeUpdate(sqlInstitucion.insertInstituciones(institucion));
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
@@ -53,7 +53,7 @@ public class InstitucionesEducacionSuperiorDao {
 	 * @param idInstitucion
 	 * @return
 	 */
-	public int deleteInstitucion  (int idInstitucion) {
+	public int deleteInstitucion (int idInstitucion) {
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
@@ -69,7 +69,7 @@ public class InstitucionesEducacionSuperiorDao {
 	 * @param institucion
 	 * @return
 	 */
-	public int updateInstitucion  (InstitucionEducacionSuperior institucion) {
+	public int updateInstitucion (InstitucionEducacionSuperior institucion) {
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();

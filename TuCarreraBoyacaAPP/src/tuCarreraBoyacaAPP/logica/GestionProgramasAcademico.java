@@ -20,7 +20,7 @@ public class GestionProgramasAcademico {
 	//Building ----------------------------------------------------------
 	public GestionProgramasAcademico() {
 		academicos = new ArrayList<ProgramaAcademico>();
-		
+		academicoDao = new ProgramaAcademicoDao();
 	}
 	
 	//Methods ------------------------------------------------------------

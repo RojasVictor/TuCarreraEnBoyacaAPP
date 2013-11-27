@@ -60,6 +60,7 @@ public class ModuloProgramaAcademico  extends JFrame {
 	 * Create the frame.
 	 */
 	public ModuloProgramaAcademico() {
+		gestionProgramas = new GestionProgramasAcademico();
 		setTitle("MODULO PROGRAMA ACADEMICO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 486, 379);
