@@ -75,6 +75,14 @@ public class Conexion {
 		try{
 			Class.forName(DRIVER).newInstance();
 			conexion=DriverManager.getConnection(URL,USER,PASSWORD);
+			
+			if(getConexion() != null){
+                System.out.println("Conexion Exitosa!");
+            }else{
+                System.out.println("Conexion Fallida!");                
+            }
+			
+			
 		}catch(SQLException e){
 			System.out.println(e.getMessage());
 		}catch (ClassNotFoundException e) {
