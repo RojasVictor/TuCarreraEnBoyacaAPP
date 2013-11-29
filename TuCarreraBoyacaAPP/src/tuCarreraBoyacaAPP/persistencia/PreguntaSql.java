@@ -12,11 +12,11 @@ import tuCarreraBoyacaAPP.logica.PreguntaTest;
 public class PreguntaSql {
 	
 	//Attributes -----------------------------------------------	
-		private static final String Q="\'";
+	private Conexion conexion;
 		
 	//Building -----------------------------------------
 	public  PreguntaSql(){
-		
+		conexion = new Conexion();
 	}
 	
 	/**
@@ -25,13 +25,13 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertPregunta (PreguntaTest pregunta) {
-		return "INSERT INTO pregunta_test VALUES("
-				+Q+pregunta.getDescripcion()+Q+","
-				+Q+pregunta.getRespuesta1()+Q+","
-				+Q+pregunta.getRespuesta2()+Q+","
-				+Q+pregunta.getRespuesta3()+Q+","
-				+Q+pregunta.getRespuesta4()+Q+","
-				+Q+pregunta.getRespuestaCorrecta()+Q+")";
+		return "INSERT INTO pregunta_test VALUES('"
+				+pregunta.getDescripcion()+"','"
+				+pregunta.getRespuesta1()+"','"
+				+pregunta.getRespuesta2()+"','"
+				+pregunta.getRespuesta3()+"','"
+				+pregunta.getRespuesta4()+"','"
+				+pregunta.getRespuestaCorrecta()+"')";
 		
 	}
 	
@@ -41,7 +41,7 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePregunta (int id) {
-		return "DELETE FROM pregunta_test WHERE ID_PREGUNTA="+Q+id+Q+"";	
+		return "DELETE FROM pregunta_test WHERE ID_PREGUNTA="+id+";";	
 		
 	}
 	
@@ -51,13 +51,16 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updatePregunta (PreguntaTest pregunta) {
-		return "UPDATE FROM pregunta_test VALUES("
-				+Q+pregunta.getDescripcion()+Q+","
-				+Q+pregunta.getRespuesta1()+Q+","
-				+Q+pregunta.getRespuesta2()+Q+","
-				+Q+pregunta.getRespuesta3()+Q+","
-				+Q+pregunta.getRespuesta4()+Q+","
-				+Q+pregunta.getRespuestaCorrecta()+Q+") WHERE ID_PREGUNTA="+Q+pregunta.getId()+Q+"";
+		String BaseDatos = conexion.getBaseDatos();
+		
+		return "UPDATE `"+BaseDatos+"`.`pregunta_test``DESCRIPCION_PREGUNTA` = '"
+				+pregunta.getDescripcion()+"',"
+				+"`RESPUESTA_1` = '"+pregunta.getRespuesta1()+"','"
+				+"`RESPUESTA_2` = '"+pregunta.getRespuesta2()+"','"
+				+"`RESPUESTA_3` = '"+pregunta.getRespuesta3()+"','"
+				+"`RESPUESTA_4` = '"+pregunta.getRespuesta4()+"','"
+				+"`RESPUESTA_CORRECTA` = '"+pregunta.getRespuestaCorrecta()
+				+"' WHERE `pregunta_test`.`ID_PREGUNTA` ="+pregunta.getId()+";";
 
 
 	}

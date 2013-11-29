@@ -83,7 +83,7 @@ public class InstitucionesEducacionSuperiorDao {
 	}
 	/**
 	 * 
-	 * @return datosulSet con todos los datos de la tabla instituciones_educacion_superior de la BD
+	 * @return ArrayList con todos los datos de la tabla instituciones_educacion_superior de la BD
 	 */
 	public ArrayList<InstitucionEducacionSuperior> selectInstitucion () {
 		ResultSet datos;

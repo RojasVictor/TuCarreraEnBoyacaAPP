@@ -16,14 +16,14 @@ public class PreguntaTest {
 
 	private int respuestaCorrecta;
 	
-	public PreguntaTest (){
-		id=0;
-		descripcion="";
-		respuesta1="";
-		respuesta2="";
-		respuesta3="";
-		respuesta4="";
-		respuestaCorrecta=0;
+	public PreguntaTest (int identificador, String descrip,String r1, String r2, String r3, String r4, int respuestaC){
+		id=identificador;
+		descripcion=descrip;
+		respuesta1=r1;
+		respuesta2=r2;
+		respuesta3=r3;
+		respuesta4=r4;
+		respuestaCorrecta=respuestaC;
 		
 	}
 	

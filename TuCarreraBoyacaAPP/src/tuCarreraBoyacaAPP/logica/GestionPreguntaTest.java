@@ -12,14 +12,16 @@ import tuCarreraBoyacaAPP.persistencia.PreguntaDao;
  */
 public class GestionPreguntaTest {
 
-	//Attributes---------------------------------------
-	
+	//Attributes---------------------------------------	
 	private ArrayList<PreguntaTest> preguntas;
 	private PreguntaDao preguntaDao;
+	
 	//Building---------------------------------------
 	
 	public GestionPreguntaTest() {
 		preguntas = new ArrayList<>();
+		preguntaDao = new PreguntaDao();
+		preguntas = readPreguntaTests();
 	}
 	
 	//Methods--------------------------------------------
@@ -39,17 +41,19 @@ public class GestionPreguntaTest {
 	
 	/**
 	 * @param pregunta -- objeto de tipo PreguntaTest para agregar en el ArrayList
-	 * @return true - si el objeto se agrego satisfactoriamente en el ArrayList
+	 * @return respuesta - int ---> -1 si la accion no fue exitosa
 	 ***/ 	
-	public boolean createPregunta (PreguntaTest pregunta) {
-		return getPreguntas().add(pregunta);
+	public int createPregunta (PreguntaTest pregunta) {
+		int respuesta = preguntaDao.insertPregunta(pregunta);
+		preguntas = readPreguntaTests();
+		return respuesta;
 	}
 	
 	/**
 	 ** @return ArrayList - un ArrayList de los objetos presentes
 	 ***/ 
 	public ArrayList<PreguntaTest> readPreguntaTests () {
-		return (ArrayList<PreguntaTest>) preguntas.clone();
+		return (ArrayList<PreguntaTest>) preguntaDao.selectPreguntas();
 	}
 	
 	
@@ -66,16 +70,19 @@ public class GestionPreguntaTest {
 	 ** @param busqueda -- integer que es el criterio de busqueda en el ArrayList
 	 ***/ 
 	public PreguntaTest searchPreguntaTest (int busqueda){
-		for (int i=0; i<preguntas.size();i++){
-			if(preguntas.get(i).getId() == busqueda){
-				return preguntas.get(i);
+		preguntas = readPreguntaTests();
+		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0);
+		for (int i=0; i<getPreguntas().size();i++){
+			pregunt = getPreguntas().get(i);
+			if(pregunt.getId() == busqueda){
+				return pregunt;
 			}
 		}
 		return null;
 	}
 	
 	/**
-	 ** @return true - si se actualizo el registro del arrayList correctamente
+	 ** @return true - si se actualizo el registro correctamente
 	 ** @param id -- integer  -- identificador de la pregunta a actualizar
 	 ** @param descripcion -- String -- enunciado de la pregunta
 	 ** @param respuesta1 -- String -- enunciado de la respuesta 1 a actualizar
@@ -87,17 +94,16 @@ public class GestionPreguntaTest {
 	public boolean updatePreguntaTest (int id, String descripcion, String respuesta1,
 			String respuesta2, String respuesta3, String respuesta4,
 			int respuestaCorrecta){
-		
-		for (int i=0; i<preguntas.size();i++){
-			if(preguntas.get(i).getId() == id){
-				preguntas.get(i).setDescripcion(descripcion);
-				preguntas.get(i).setRespuesta1(respuesta1);
-				preguntas.get(i).setRespuesta2(respuesta2);
-				preguntas.get(i).setRespuesta3(respuesta3);
-				preguntas.get(i).setRespuesta4(respuesta4);
-				preguntas.get(i).setRespuestaCorrecta(respuestaCorrecta);
-				return true;
-			}
+		preguntas = readPreguntaTests();
+		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
+		if(searchPreguntaTest(id)!= null){
+			for (int i=0; i<preguntas.size();i++){
+				if(preguntas.get(i).getId() == id){
+					preguntaDao.updatePregunta(actualizar);
+					preguntas = readPreguntaTests();
+					return true;
+				}
+			}		
 		}
 		return false;
 	}
@@ -107,12 +113,19 @@ public class GestionPreguntaTest {
 	 ** @return - true si el registro se elimina satisfactoriamente
 	 */
 	public boolean removePreguntaTest(int id){
-		for (int i=0; i<preguntas.size();i++){
-			if(preguntas.get(i).getId() == id){
-				preguntas.remove(i);
-				return true;
+		preguntas = readPreguntaTests();
+		PreguntaTest elemento = searchPreguntaTest(id);
+		PreguntaTest busqueda;
+		if(elemento!=null){
+			for (int i=0; i<getPreguntas().size();i++){
+				busqueda = getPreguntas().get(i);
+				if(busqueda.getId() == elemento.getId()){
+					preguntaDao.deletePregunta(elemento.getId());
+					preguntas = readPreguntaTests();
+					return true;
+				}
 			}
-		}
+		}		
 		return false;
 	}
 

@@ -42,8 +42,8 @@ public class GestionInstitucionesEducacionSuperior {
 	}
 	/**
 	 * 
-	 * @param preguntaTest
-	 * @return true si la institucion fue creada correctamente
+	 * @param iSuperior
+	 * @return respuesta - int ---> -1 si la accion no fue exitosa
 	 */
 	public int createInstitucionEducacionSuperior(InstitucionEducacionSuperior iSuperior){
 		int respuesta = daoSuperior.insertInstitucion(iSuperior);
