@@ -4,9 +4,12 @@
 package tuCarreraBoyacaAPP.logica;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import tuCarreraBoyacaAPP.persistencia.InstitucionesEducacionSuperiorDao;
 
+import tuCarreraBoyacaAPP.persistencia.InstitucionesEducacionSuperiorDao;
+import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 /**
  * @author harold_patino
  *
@@ -41,9 +44,10 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @param preguntaTest
 	 * @return true si la institucion fue creada correctamente
 	 */
-	public boolean createInstitucionEducacionSuperior(InstitucionEducacionSuperior iSuperior){
-		daoSuperior.insertInstitucion(iSuperior);
-		return getSuperiors().add(iSuperior);
+	public int createInstitucionEducacionSuperior(InstitucionEducacionSuperior iSuperior){
+		int respuesta = daoSuperior.insertInstitucion(iSuperior);
+		superiors = readInstitucionesEducacionSuperior();
+		return respuesta;
 		
 	}
 	/**
@@ -51,7 +55,8 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return preguntasTest.clone()
 	 */
 	public ArrayList<InstitucionEducacionSuperior> readInstitucionesEducacionSuperior(){
-		return (ArrayList<InstitucionEducacionSuperior>) superiors.clone();
+		
+		return (ArrayList<InstitucionEducacionSuperior>) daoSuperior.selectInstitucion();
 	}
 	
 	/**
@@ -69,13 +74,13 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return true si encontro la institucion y la logro actualizar correctamente
 	 */
 	public boolean updateInstitucionesEducacionSuperior(int id,String nombre,String url){
+		superiors = readInstitucionesEducacionSuperior();
 		InstitucionEducacionSuperior actualizar = new InstitucionEducacionSuperior(id, nombre, url);
 		if(searchInstucionEducacionSuperior(id)!=null){
 			for (int i=0; i<getSuperiors().size();i++){
 				if(getSuperiors().get(i).getId() == id){
 					daoSuperior.updateInstitucion(actualizar);
-					getSuperiors().get(i).setNombre(nombre);
-					getSuperiors().get(i).setDireccionURL(url);
+					superiors = readInstitucionesEducacionSuperior();
 					return true;
 				}
 			}
@@ -88,13 +93,14 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return true - si el elemento fue eliminado satisfactoriamente del ArrayList
 	 */
 	public boolean removeInstitucionEducacionSuperior(int id){
+		superiors = readInstitucionesEducacionSuperior();
 		InstitucionEducacionSuperior elemento = searchInstucionEducacionSuperior(id);
 		InstitucionEducacionSuperior busqueda;
 		for(int i=0;i<getSuperiors().size();i++){
 			busqueda = getSuperiors().get(i);
 			if(busqueda.getId() == elemento.getId()){
 				daoSuperior.deleteInstitucion(elemento.getId());
-				superiors.remove(i);
+				superiors = readInstitucionesEducacionSuperior();
 				return true;
 			}
 		}
@@ -106,6 +112,7 @@ public class GestionInstitucionesEducacionSuperior {
 	 * @return la institucion que posee el id del parametro, y en caso de no existir retorna null
 	 */
 	public InstitucionEducacionSuperior searchInstucionEducacionSuperior(int id){
+		superiors = readInstitucionesEducacionSuperior();
 		InstitucionEducacionSuperior ies=new InstitucionEducacionSuperior(id, null, null);
 		for(int i=0;i<getSuperiors().size();i++){
 			ies=getSuperiors().get(i);

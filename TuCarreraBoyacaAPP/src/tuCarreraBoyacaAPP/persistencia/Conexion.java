@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class Conexion {
 //Attributes--------------------------------
 	private Connection conexion;
+	private final String BaseDatos = "apptest";	
 	private final String DRIVER="com.mysql.jdbc.Driver";
 	private final String URL="jdbc:mysql://localhost:3306/apptest";
 	private final String USER="tucarrera";
@@ -25,6 +26,13 @@ public class Conexion {
 	}
 	
 //Methods-----------------------------------
+	/**
+	 * @return the baseDatos
+	 */
+	public String getBaseDatos() {
+		return BaseDatos;
+	}
+	
 	/**
 	 * @return the conexion
 	 */
@@ -77,7 +85,7 @@ public class Conexion {
 			conexion=DriverManager.getConnection(URL,USER,PASSWORD);
 			
 			if(getConexion() != null){
-                System.out.println("Conexion Exitosa!");
+                resp = true;
             }else{
                 System.out.println("Conexion Fallida!");                
             }
@@ -92,7 +100,6 @@ public class Conexion {
 		}catch (InstantiationException e) {
 			System.out.println(e.getMessage());
 		}
-		resp=true;
 		return resp;
 	}
 	public void close(){

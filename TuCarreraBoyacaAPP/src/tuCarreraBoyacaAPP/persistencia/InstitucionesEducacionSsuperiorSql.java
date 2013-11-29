@@ -4,7 +4,7 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
-
+import tuCarreraBoyacaAPP.persistencia.Conexion;
 /**
  * @author JUDIT
  * @author Victor_Rojas
@@ -13,11 +13,11 @@ import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 public class InstitucionesEducacionSsuperiorSql {
 	
 	//Attributes -----------------------------------------------	
-	private static final String Q="\'";
+	private Conexion conexion;
 	
 	//Building -----------------------------------------	
 	public InstitucionesEducacionSsuperiorSql() {
-		
+		conexion = new Conexion();
 	}
 	
 	//Methods --------------------------------------------	
@@ -46,9 +46,11 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updateInstituciones (InstitucionEducacionSuperior educacionSuperior){
-		return "UPDATE FROM institucion_educacion_superior VALUES("
-				+educacionSuperior.getNombre()+","
-				+educacionSuperior.getDireccionURL()+") WHERE ID_INSTITUCION ="
+		String BaseDatos = conexion.getBaseDatos();
+		
+		return "UPDATE `"+BaseDatos+"`.`institucion_educacion_superior` SET  `NOMBRE_INSTITUCION` = '"
+				+educacionSuperior.getNombre()+"', `URL_INSTITUCION` = '"
+				+educacionSuperior.getDireccionURL()+"' WHERE `institucion_educacion_superior`.`ID_INSTITUCION` ="
 				+educacionSuperior.getId()+";";
 
 	}

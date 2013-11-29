@@ -151,8 +151,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		button_Eliminar.setBounds(418, 279, 45, 41);
 		contentPane.add(button_Eliminar);
 		
-		button_Agregar.addActionListener(new ActionListener() {
-			
+		button_Agregar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int identificador = 0;
@@ -169,7 +168,12 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 					nombre = textField_NombreInstitucion.getText();
 					url = textField_urlInstitucion.getText();
 					InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
-					gestionInstituciones.createInstitucionEducacionSuperior(institucion);
+					int respuesta = gestionInstituciones.createInstitucionEducacionSuperior(institucion);
+					if (respuesta != -1){
+						JOptionPane.showMessageDialog(null, "Se agrego de forma exitosa");
+					}else{
+						JOptionPane.showMessageDialog(null, "No Se agrego el elemento, problema en base de datos");
+					}					
 				}				
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
