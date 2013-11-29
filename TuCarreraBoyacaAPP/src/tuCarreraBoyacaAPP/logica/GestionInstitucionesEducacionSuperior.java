@@ -23,6 +23,7 @@ public class GestionInstitucionesEducacionSuperior {
 	public GestionInstitucionesEducacionSuperior(){
 		superiors=new ArrayList<>();
 		daoSuperior = new InstitucionesEducacionSuperiorDao();
+		superiors = readInstitucionesEducacionSuperior();
 	}
 
 //Methods------------------------------------------
@@ -96,12 +97,14 @@ public class GestionInstitucionesEducacionSuperior {
 		superiors = readInstitucionesEducacionSuperior();
 		InstitucionEducacionSuperior elemento = searchInstucionEducacionSuperior(id);
 		InstitucionEducacionSuperior busqueda;
-		for(int i=0;i<getSuperiors().size();i++){
-			busqueda = getSuperiors().get(i);
-			if(busqueda.getId() == elemento.getId()){
-				daoSuperior.deleteInstitucion(elemento.getId());
-				superiors = readInstitucionesEducacionSuperior();
-				return true;
+		if(elemento != null){
+			for(int i=0;i<getSuperiors().size();i++){
+				busqueda = getSuperiors().get(i);
+				if(busqueda.getId() == elemento.getId()){
+					daoSuperior.deleteInstitucion(elemento.getId());
+					superiors = readInstitucionesEducacionSuperior();
+					return true;
+				}
 			}
 		}
 		return false;

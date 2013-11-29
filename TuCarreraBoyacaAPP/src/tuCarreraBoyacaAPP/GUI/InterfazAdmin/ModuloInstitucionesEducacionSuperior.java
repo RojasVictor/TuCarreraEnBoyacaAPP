@@ -221,7 +221,9 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 					nombre = textField_NombreInstitucion.getText();
 					url = textField_urlInstitucion.getText();
 				}				
-				gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url);
+				if(gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url)){
+					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
+				}
 				textField_idInstitucion.setText("");
 				textField_NombreInstitucion.setText("");
 				textField_urlInstitucion.setText("");
