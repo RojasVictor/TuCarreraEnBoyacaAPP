@@ -3,7 +3,6 @@
  */
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +15,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -150,7 +150,27 @@ public class ModuloPreguntas extends JFrame {
 		button_eliminar.setBounds(418, 279, 45, 41);
 		contentPane.add(button_eliminar);
 		
-		
+		button_agregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				String descripcion = "";
+				String respuesta1 = "";
+				String respuesta2 = "";
+				String respuesta3 = "";
+				String respuesta4 = "";
+				int respuestaCor = 0;
+				try{	
+					identificador = Integer.parseInt(textField_identificador.getText());
+				}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				}
+				//if (textField_descripcion.getText().equals("") || textField_.getText().equals("")){
+				//	JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+				//}
+			}
+		});
 	}
 }
 
