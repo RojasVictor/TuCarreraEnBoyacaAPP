@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SpinnerNumberModel;
 
 /**
  * @author JUDIT
@@ -249,6 +250,7 @@ public class ModuloPreguntas extends JFrame {
 		contentPane.add(lbl_RespuestaCorrecta);
 		
 		JSpinner spinner_RespuestaCorrecta = new JSpinner();
+		spinner_RespuestaCorrecta.setModel(new SpinnerNumberModel(1, 1, 4, 1));
 		spinner_RespuestaCorrecta.setToolTipText("1\r\n2\r\n3\r\n4");
 		spinner_RespuestaCorrecta.setBounds(204, 376, 272, 26);
 		contentPane.add(spinner_RespuestaCorrecta);
