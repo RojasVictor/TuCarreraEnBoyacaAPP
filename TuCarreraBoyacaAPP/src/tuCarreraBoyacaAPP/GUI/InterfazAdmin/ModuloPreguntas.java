@@ -12,10 +12,15 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,10 +32,8 @@ import javax.swing.JButton;
 public class ModuloPreguntas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_identificador;
-	private JTextField textField_descripcion;
-	private JTextField textField_programaAcademico;
-	private JTextField textField_puntaje;
+	private JTextField txt_Id_Pregunta;
+	private JTextField txt_EstimacionPuntaje;
 
 	/**
 	 * Launch the application.
@@ -53,104 +56,71 @@ public class ModuloPreguntas extends JFrame {
 	 */
 	public ModuloPreguntas() {
 		setTitle("MODULO PREGUNTAS");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modul_pregunta.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 507, 369);
+		setBounds(100, 100, 612, 703);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setResizable(false);
+		setLocationRelativeTo(null);
+		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("images/Logo_TCBAPP1.png")));
-		label.setBounds(10, 11, 157, 123);
+		label.setIcon(new ImageIcon(this.getClass().getResource("Images/LogoPrincipal_TCBAPP.png")));
+		label.setBounds(10, 11, 120, 88);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("TU CARRERA EN BOYACÁ APP");
-		lblNewLabel.setForeground(new Color(0, 0, 128));
-		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		lblNewLabel.setBounds(189, 33, 274, 29);
-		contentPane.add(lblNewLabel);
+		JLabel lbl_Id_Pregunta = new JLabel("Identificador Pregunta");
+		lbl_Id_Pregunta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_Id_Pregunta.setBounds(20, 110, 162, 26);
+		contentPane.add(lbl_Id_Pregunta);
 		
-		JLabel lblModuloPreuntas = new JLabel("Modulo Preuntas");
-		lblModuloPreuntas.setForeground(new Color(0, 0, 128));
-		lblModuloPreuntas.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		lblModuloPreuntas.setBounds(251, 73, 151, 29);
-		contentPane.add(lblModuloPreuntas);
+		txt_Id_Pregunta = new JTextField();
+		txt_Id_Pregunta.setColumns(10);
+		txt_Id_Pregunta.setBounds(204, 112, 273, 26);
+		contentPane.add(txt_Id_Pregunta);
 		
-		JLabel lblNewLabel_1 = new JLabel("Identificador Pregunta");
-		lblNewLabel_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(40, 159, 157, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lbl_DescripcionPregunta = new JLabel("Descripción Pregunta");
+		lbl_DescripcionPregunta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_DescripcionPregunta.setBounds(20, 159, 162, 26);
+		contentPane.add(lbl_DescripcionPregunta);
 		
-		JLabel lblDescipcin = new JLabel("Descipción");
-		lblDescipcin.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
-		lblDescipcin.setBounds(40, 184, 157, 14);
-		contentPane.add(lblDescipcin);
+		JLabel lbl_EstimacionPuntaje = new JLabel("Estimación Puntaje");
+		lbl_EstimacionPuntaje.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_EstimacionPuntaje.setBounds(20, 626, 152, 26);
+		contentPane.add(lbl_EstimacionPuntaje);
 		
-		JLabel lblProgramaAcadmico = new JLabel("Programa Académico");
-		lblProgramaAcadmico.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
-		lblProgramaAcadmico.setBounds(40, 209, 157, 14);
-		contentPane.add(lblProgramaAcadmico);
+		txt_EstimacionPuntaje = new JTextField();
+		txt_EstimacionPuntaje.setColumns(10);
+		txt_EstimacionPuntaje.setBounds(205, 626, 272, 26);
+		contentPane.add(txt_EstimacionPuntaje);
 		
-		JLabel lblEstimacinPuntaje = new JLabel("Estimación Puntaje");
-		lblEstimacinPuntaje.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
-		lblEstimacinPuntaje.setBounds(40, 234, 157, 14);
-		contentPane.add(lblEstimacinPuntaje);
+		JLabel lbl_ProgramasAcadmicos = new JLabel("Programas Académicos");
+		lbl_ProgramasAcadmicos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_ProgramasAcadmicos.setBounds(20, 527, 174, 25);
+		contentPane.add(lbl_ProgramasAcadmicos);
 		
-		textField_identificador = new JTextField();
-		textField_identificador.setBounds(225, 157, 238, 20);
-		contentPane.add(textField_identificador);
-		textField_identificador.setColumns(10);
-		
-		textField_descripcion = new JTextField();
-		textField_descripcion.setColumns(10);
-		textField_descripcion.setBounds(225, 182, 238, 20);
-		contentPane.add(textField_descripcion);
-		
-		textField_programaAcademico = new JTextField();
-		textField_programaAcademico.setColumns(10);
-		textField_programaAcademico.setBounds(225, 207, 238, 20);
-		contentPane.add(textField_programaAcademico);
-		
-		textField_puntaje = new JTextField();
-		textField_puntaje.setColumns(10);
-		textField_puntaje.setBounds(225, 232, 238, 20);
-		contentPane.add(textField_puntaje);
-		
-		JButton button_regresar = new JButton("");
-		button_regresar.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
-		button_regresar.setBounds(40, 279, 87, 41);
-		button_regresar.addActionListener(new ActionListener() {
+		JButton btn_Regresar = new JButton("");
+		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
+		btn_Regresar.setBounds(487, 608, 110, 45);
+		contentPane.add(btn_Regresar);
+		btn_Regresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				MenuAdmin.main(null);				
+				MenuAdmin.main(null);
+				
 			}
 		});
-		contentPane.add(button_regresar);
 		
-		JButton button_agregar = new JButton("");
-		button_agregar.setIcon(new ImageIcon(this.getClass().getResource("images/add.png")));
-		button_agregar.setBounds(152, 279, 45, 41);
-		contentPane.add(button_agregar);
-		
-		JButton button_buscarActualizar = new JButton("");
-		button_buscarActualizar.setIcon(new ImageIcon(this.getClass().getResource("images/reload.png")));
-		button_buscarActualizar.setBounds(251, 279, 45, 41);
-		contentPane.add(button_buscarActualizar);
-		
-		JButton button_guardar = new JButton("");
-		button_guardar.setIcon(new ImageIcon(this.getClass().getResource("images/save.png")));
-		button_guardar.setBounds(336, 279, 45, 41);
-		contentPane.add(button_guardar);
-		
-		JButton button_eliminar = new JButton("");
-		button_eliminar.setIcon(new ImageIcon(this.getClass().getResource("images/delete.png")));
-		button_eliminar.setBounds(418, 279, 45, 41);
-		contentPane.add(button_eliminar);
-		
-		button_agregar.addActionListener(new ActionListener() {
+		JButton btn_Agregar = new JButton("");
+		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
+		btn_Agregar.setBounds(519, 110, 73, 66);
+		contentPane.add(btn_Agregar);
+		btn_Agregar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -162,7 +132,7 @@ public class ModuloPreguntas extends JFrame {
 				String respuesta4 = "";
 				int respuestaCor = 0;
 				try{	
-					identificador = Integer.parseInt(textField_identificador.getText());
+					identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 				}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 				}
@@ -171,6 +141,116 @@ public class ModuloPreguntas extends JFrame {
 				//}
 			}
 		});
+	
+		
+		JButton btn_Guardar = new JButton("");
+		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
+		btn_Guardar.setBounds(519, 225, 73, 66);
+		contentPane.add(btn_Guardar);
+		
+		JButton btn_Buscar = new JButton("");
+		btn_Buscar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Busca.png")));
+		btn_Buscar.setBounds(519, 352, 73, 66);
+		contentPane.add(btn_Buscar);
+		
+		JButton btn_Eliminar = new JButton("");
+		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
+		btn_Eliminar.setBounds(519, 467, 73, 66);
+		contentPane.add(btn_Eliminar);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(460, 149, 17, 36);
+		contentPane.add(scrollBar);
+		
+		JTextArea txtArea_DescripcionPregunta = new JTextArea();
+		txtArea_DescripcionPregunta.setBounds(204, 151, 273, 34);
+		contentPane.add(txtArea_DescripcionPregunta);
+		
+		JLabel lbl_Titulo = new JLabel("TU CARRERA EN BOYACÁ APP");
+		lbl_Titulo.setForeground(new Color(25, 25, 112));
+		lbl_Titulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
+		lbl_Titulo.setBounds(169, 29, 298, 26);
+		contentPane.add(lbl_Titulo);
+		
+		JLabel lbl_SubTitulo = new JLabel("Modulo Preguntas");
+		lbl_SubTitulo.setForeground(new Color(25, 25, 112));
+		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
+		lbl_SubTitulo.setBounds(232, 73, 174, 26);
+		contentPane.add(lbl_SubTitulo);
+		
+		JComboBox cmbBox_ProgramaAcademico = new JComboBox();
+		cmbBox_ProgramaAcademico.setBounds(204, 528, 273, 26);
+		contentPane.add(cmbBox_ProgramaAcademico);
+		
+		JLabel lbl_CategoriaPA = new JLabel("Categoria Programas ");
+		lbl_CategoriaPA.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_CategoriaPA.setBounds(20, 429, 174, 25);
+		contentPane.add(lbl_CategoriaPA);
+		
+		JComboBox cmbBox_CategoriaPA = new JComboBox();
+		cmbBox_CategoriaPA.setBounds(204, 430, 273, 26);
+		contentPane.add(cmbBox_CategoriaPA);
+		
+		JLabel lbl_RespuestaCuatro = new JLabel("Respuesta Cuatro");
+		lbl_RespuestaCuatro.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_RespuestaCuatro.setBounds(19, 329, 174, 25);
+		contentPane.add(lbl_RespuestaCuatro);
+		
+		JScrollBar scrollBar_2 = new JScrollBar();
+		scrollBar_2.setBounds(460, 322, 17, 34);
+		contentPane.add(scrollBar_2);
+		
+		JLabel lbl_RespuestaUno = new JLabel("Respuesta Uno");
+		lbl_RespuestaUno.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_RespuestaUno.setBounds(18, 200, 174, 25);
+		contentPane.add(lbl_RespuestaUno);
+		
+		JScrollBar scrollBar_3 = new JScrollBar();
+		scrollBar_3.setBounds(460, 196, 17, 33);
+		contentPane.add(scrollBar_3);
+		
+		JLabel lbl_RespuestaDos = new JLabel("Respuesta Dos");
+		lbl_RespuestaDos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_RespuestaDos.setBounds(20, 246, 174, 25);
+		contentPane.add(lbl_RespuestaDos);
+		
+		JScrollBar scrollBar_4 = new JScrollBar();
+		scrollBar_4.setBounds(460, 240, 17, 31);
+		contentPane.add(scrollBar_4);
+		
+		JLabel lblRespuestaTres = new JLabel("Respuesta Tres");
+		lblRespuestaTres.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lblRespuestaTres.setBounds(19, 286, 174, 25);
+		contentPane.add(lblRespuestaTres);
+		
+		JScrollBar scrollBar_5 = new JScrollBar();
+		scrollBar_5.setBounds(460, 282, 17, 29);
+		contentPane.add(scrollBar_5);
+		
+		JTextArea txtArea_Respuesta2 = new JTextArea();
+		txtArea_Respuesta2.setBounds(204, 242, 273, 29);
+		contentPane.add(txtArea_Respuesta2);
+		
+		JTextArea txtArea_Respuesta4 = new JTextArea();
+		txtArea_Respuesta4.setBounds(204, 324, 273, 32);
+		contentPane.add(txtArea_Respuesta4);
+		
+		JTextArea txtArea_Respuesta3 = new JTextArea();
+		txtArea_Respuesta3.setBounds(204, 284, 273, 27);
+		contentPane.add(txtArea_Respuesta3);
+		
+		JTextArea txtArea_Respuesta1 = new JTextArea();
+		txtArea_Respuesta1.setBounds(204, 198, 273, 31);
+		contentPane.add(txtArea_Respuesta1);
+		
+		JLabel lbl_RespuestaCorrecta = new JLabel("Respuesta Correcta");
+		lbl_RespuestaCorrecta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_RespuestaCorrecta.setBounds(20, 375, 174, 25);
+		contentPane.add(lbl_RespuestaCorrecta);
+		
+		JSpinner spinner_RespuestaCorrecta = new JSpinner();
+		spinner_RespuestaCorrecta.setToolTipText("1\r\n2\r\n3\r\n4");
+		spinner_RespuestaCorrecta.setBounds(204, 376, 272, 26);
+		contentPane.add(spinner_RespuestaCorrecta);
 	}
 }
-
