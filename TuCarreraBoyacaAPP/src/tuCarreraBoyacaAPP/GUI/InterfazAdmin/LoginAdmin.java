@@ -1,23 +1,31 @@
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginAdmin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_Contrasena;
+	private JPasswordField txt_Contrasena;
 	private JTextField txt_Usuario;
 
 	/**
@@ -65,10 +73,11 @@ public class LoginAdmin extends JFrame {
 		lblContrasea.setBounds(52, 168, 127, 27);
 		contentPane.add(lblContrasea);
 		
-		txt_Contrasena = new JTextField();
+		txt_Contrasena = new JPasswordField();
 		txt_Contrasena.setBounds(205, 169, 193, 26);
 		contentPane.add(txt_Contrasena);
 		txt_Contrasena.setColumns(10);
+		
 		
 		txt_Usuario = new JTextField();
 		txt_Usuario.setBounds(205, 123, 193, 26);
@@ -96,5 +105,14 @@ public class LoginAdmin extends JFrame {
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
 		lbl_SubTitulo.setBounds(185, 66, 215, 26);
 		contentPane.add(lbl_SubTitulo);
+		
+		button_ingresar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				MenuAdmin.main(null);
+			}
+		});
 	}
 }
