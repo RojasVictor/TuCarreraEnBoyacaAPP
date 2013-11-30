@@ -151,36 +151,6 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 			}	
 		});
 		
-		JButton btn_Actualizar = new JButton("");
-		btn_Actualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_Actualizar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Actualiza.png")));
-		btn_Actualizar.setBounds(385, 275, 73, 66);
-		contentPane.add(btn_Actualizar);
-		btn_Actualizar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				int identificador = 0;
-				try{	
-					identificador = Integer.parseInt(txt_Id_IES.getText());
-					if(identificador!=0){
-						InstitucionEducacionSuperior institucion = gestionInstituciones.searchInstucionEducacionSuperior(identificador);
-						txt_Nombre_IES.setText(institucion.getNombre());
-						txt_Url_IES.setText(institucion.getDireccionURL());
-						}
-					}catch(NumberFormatException e){
-						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-					}
-					catch(NullPointerException e){
-						JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
-					}
-				
-			}
-		});
-		
 		JButton btn_Agregar = new JButton("");
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
 		btn_Agregar.setBounds(194, 275, 73, 66);
@@ -213,6 +183,33 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				txt_Nombre_IES.setText("");
 				txt_Url_IES.setText("");
 			}	
+		});
+		
+		
+		JButton btn_Buscar = new JButton("");
+		btn_Buscar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Busca.png")));
+		btn_Buscar.setBounds(386, 275, 73, 66);
+		contentPane.add(btn_Buscar);
+		btn_Buscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				try{	
+					identificador = Integer.parseInt(txt_Id_IES.getText());
+					if(identificador!=0){
+						InstitucionEducacionSuperior institucion = gestionInstituciones.searchInstucionEducacionSuperior(identificador);
+						txt_Nombre_IES.setText(institucion.getNombre());
+						txt_Url_IES.setText(institucion.getDireccionURL());
+						}
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}
+					catch(NullPointerException e){
+						JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
+					}
+				
+			}
 		});
 		
 		
@@ -252,5 +249,6 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
 		lbl_SubTitulo.setBounds(134, 73, 410, 26);
 		contentPane.add(lbl_SubTitulo);
+
 	}
 }
