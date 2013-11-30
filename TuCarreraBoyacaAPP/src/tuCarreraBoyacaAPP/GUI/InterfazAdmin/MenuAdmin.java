@@ -2,14 +2,19 @@
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,7 +23,7 @@ import java.awt.event.ActionEvent;
  *
  */
 public class MenuAdmin extends JFrame {
-
+	
 	private JPanel contentPane;
 
 	/**
@@ -41,49 +46,39 @@ public class MenuAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuAdmin() {
-		setTitle("MENÚ ADMINISTRADOR");
+		setTitle("Menú Administrador");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_admin.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 488, 369);
+		setBounds(100, 100, 587, 312);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setResizable(false);
+		setLocationRelativeTo(null);
+		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("images/Logo_TCBAPP1.png")));
-		label.setBounds(10, 11, 157, 123);
+		label.setIcon(new ImageIcon(this.getClass().getResource("Images/LogoPrincipal_TCBAPP.png")));
+		label.setBounds(10, 11, 120, 81);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("TU CARRERA EN BOYACÁ APP");
-		label_1.setForeground(new Color(0, 0, 128));
-		label_1.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		label_1.setBounds(189, 33, 274, 29);
-		contentPane.add(label_1);
-		
-		JLabel lblModuloAdministrador = new JLabel("Menú Administrador");
-		lblModuloAdministrador.setForeground(new Color(0, 0, 128));
-		lblModuloAdministrador.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
-		lblModuloAdministrador.setBounds(225, 65, 197, 29);
-		contentPane.add(lblModuloAdministrador);
-		
-		JButton button = new JButton("");
-		button.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		button.setIcon(new ImageIcon(this.getClass().getResource("images/btnIES.PNG")));
-		button.setBounds(35, 145, 303, 47);
-		contentPane.add(button);
-		button.addActionListener(new ActionListener() {
+		JButton btn_IES = new JButton("");
+		btn_IES.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_IES.png")));
+		btn_IES.setBounds(178, 115, 384, 42);
+		contentPane.add(btn_IES);
+		btn_IES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				ModuloInstitucionesEducacionSuperior.main(null);				
 			}
 		});
 		
-		JButton button_1 = new JButton("");
-		button_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/btnProgramas.PNG")));
-		button_1.setBounds(35, 203, 303, 47);
-		contentPane.add(button_1);
-		button_1.addActionListener(new ActionListener() {
+		JButton btn_ProgramasAcademicos = new JButton("");
+		btn_ProgramasAcademicos.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Programas.png")));
+		btn_ProgramasAcademicos.setBounds(178, 168, 384, 42);
+		contentPane.add(btn_ProgramasAcademicos);
+		btn_ProgramasAcademicos.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,13 +86,12 @@ public class MenuAdmin extends JFrame {
 				ModuloProgramaAcademico.main(null);				
 			}
 		});
-				
-		JButton button_2 = new JButton("");
-		button_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 10));
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/btnPreguntas.PNG")));
-		button_2.setBounds(35, 261, 303, 47);
-		contentPane.add(button_2);
-		button_2.addActionListener(new ActionListener() {
+		
+		JButton btn_Preguntas = new JButton("");
+		btn_Preguntas.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Preguntas.png")));
+		btn_Preguntas.setBounds(178, 221, 384, 41);
+		contentPane.add(btn_Preguntas);
+		btn_Preguntas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				ModuloPreguntas.main(null);
@@ -105,10 +99,34 @@ public class MenuAdmin extends JFrame {
 		});
 			
 		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/btn_Listar.png")));
-		button_3.setBounds(361, 105, 77, 73);
-		button_3.addActionListener(new ActionListener() {
+		JButton btn_Regresar = new JButton("");
+		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
+		btn_Regresar.setBounds(32, 221, 110, 41);
+		contentPane.add(btn_Regresar);
+		btn_Regresar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginAdmin.main(null);
+				
+			}
+		});
+		
+		JButton btn_CambioContrasena = new JButton("");
+		btn_CambioContrasena.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_CambioContrasena.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_CambiarContraseña.png")));
+		btn_CambioContrasena.setBounds(10, 123, 74, 81);
+		contentPane.add(btn_CambioContrasena);
+		
+		JButton btn_Reportes = new JButton("");
+		btn_Reportes.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Reporte.png")));
+		btn_Reportes.setBounds(92, 123, 68, 81);
+		contentPane.add(btn_Reportes);
+		btn_Reportes.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -116,28 +134,17 @@ public class MenuAdmin extends JFrame {
 				ModuloReportes.main(null);
 			}
 		});
-		contentPane.add(button_3);
-				
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(this.getClass().getResource("images/btnCambiarContrasena.png")));
-		button_4.setBounds(361, 189, 77, 73);
-		contentPane.add(button_4);
 		
-		JButton button_5 = new JButton("");
-		button_5.setIcon(new ImageIcon(this.getClass().getResource("images/regresar.png")));
-		button_5.setBounds(349, 277, 87, 41);
-		contentPane.add(button_5);
-		button_5.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					Login.main(null);
-					
-				}
-			});
-			contentPane.add(button_5);	
-			
+		JLabel lbl_Titulo = new JLabel("TU CARRERA EN BOYACÁ APP");
+		lbl_Titulo.setForeground(new Color(25, 25, 112));
+		lbl_Titulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
+		lbl_Titulo.setBounds(195, 22, 298, 26);
+		contentPane.add(lbl_Titulo);
+		
+		JLabel lbl_SubTitulo = new JLabel("Menú Administrador");
+		lbl_SubTitulo.setForeground(new Color(25, 25, 112));
+		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
+		lbl_SubTitulo.setBounds(241, 66, 215, 26);
+		contentPane.add(lbl_SubTitulo);
 	}
-
 }
