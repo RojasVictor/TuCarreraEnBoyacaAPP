@@ -47,7 +47,7 @@ public class Login extends JFrame{
 		preguntaTest=new GestionPreguntaTest();
 		proAcademico=new GestionProgramasAcademico();
 		educacionSuperior=new GestionInstitucionesEducacionSuperior();
-		eventsAdmin=new EventsAdmin(this);
+		//eventsAdmin=new EventsAdmin(this);
 		lblUserSesion=new JLabel();
 		lblPasswordSesion=new JLabel();
 		lblLogo=new JLabel();

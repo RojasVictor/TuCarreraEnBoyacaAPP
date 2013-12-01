@@ -36,18 +36,26 @@ public class EventsAdmin implements ActionListener{
 		ArrayList<String[]> conjuntoDatos = validar.lectura();		
 		if(login.isIniciar()){
 			String user=getLogin().getTxt_Usuario().getText();
-			String password = "";
+			String word = "";
+			float password;
+			float desencriptada;
 			char [] res = getLogin().getTxt_Contrasena().getPassword();
 			for(int j=0;j<res.length;j++){
-				password = password +res[j];
-			}			
-			if(user.length()!=0 && res.length!=0){
+				word = word +res[j];
+			}
+			if(word.equals("")){
+				password = 0;
+			}else{
+				password= Float.parseFloat(word);
+			}
+			if(user.length()!=0 && password!=0){
 				int conteo = 0;
 				for (conteo=0; conteo<conjuntoDatos.size();conteo++){
 					String [] dato  = conjuntoDatos.get(conteo);
 					String usuario = dato[0];
-					String pass = dato[1];
-					if(user.equals(usuario) && password.equals(pass)){
+					float pass = Float.parseFloat(dato[1]);
+					desencriptada = desencirptarContraseña(pass);
+					if(user.equals(usuario) && password==desencriptada){
 						login.dispose();
 						MenuAdmin.main(null);
 						break;
@@ -78,9 +86,27 @@ public class EventsAdmin implements ActionListener{
 	 */
 	public void setLogin(LoginAdmin login) {
 		this.login = login;
-		System.out.println("lo recibi");
 	}
 	
 	
+	/**
+	 * 
+	 * @param sinEncriptar - float - Contraseña extraida del campo de texto para codificar
+	 * @return encriptada - float - Contraseña que ya esta encriptada
+	 */
+	public static float encriptarContraseña(float sinEncriptar){
+		float encriptada = (sinEncriptar - 346) / 222;		
+		return encriptada;
+	}
+	
+	/**
+	 * 
+	 * @param encriptada -  Contraseña obtenida, para desencriptarla
+	 * @return desencriptada - float - Contraseña que ya esta desencriptada
+	 */
+	public static float desencirptarContraseña(float encriptada){
+		float desencriptada = (encriptada * 222) + 346;
+		return desencriptada;
+	}
 
 }

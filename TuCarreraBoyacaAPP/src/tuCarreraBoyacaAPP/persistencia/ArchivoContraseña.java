@@ -20,7 +20,7 @@ public class ArchivoContraseña {
 	
 	//Attributes --------------------------------------------
 	
-	private final File ARCHIVO = new File("datosImportantes.txt");
+	private final File ARCHIVO = new File("datosImportantes.tcb");
     private FileReader lectorArchivo;
     private BufferedReader buferLectura;
     private ArrayList<String[]> listaDatos;
@@ -80,17 +80,24 @@ public class ArchivoContraseña {
 	}
 
 
-	public void escribir(){
-	try{
+	public boolean escribir(ArrayList<String[]> datos){
 		
-		FileWriter escribir = new FileWriter(ARCHIVO,true);
+	try{
+		String [] elemento;
+		FileWriter escribir = new FileWriter(ARCHIVO);
 		BufferedWriter bufer = new BufferedWriter(escribir);
-		PrintWriter escritor = new PrintWriter(bufer);  
-		escritor.write("AÑADA:345");
-		escritor.append("\r\n");
+		PrintWriter escritor = new PrintWriter(bufer);
+		for(int i=0;i<datos.size();i++){
+			elemento = datos.get(i);
+			escritor.write(""+elemento[0]+":"+elemento[1]);
+			escritor.append("\r\n");
+		}
 		escritor.close();
 		bufer.close();
-		}catch(IOException e){};
+		return true;
+		}catch(IOException e){
+			return false;
+		}
 	 }
 	
 	public ArrayList<String[]> lectura(){
