@@ -4,8 +4,13 @@
 package tuCarreraBoyacaAPP.persistencia;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * @author Victor_Rojas
@@ -15,35 +20,22 @@ public class ArchivoContraseña {
 	
 	//Attributes --------------------------------------------
 	
-	private File archivo;
+	private final File ARCHIVO = new File("datosImportantes.txt");
     private FileReader lectorArchivo;
     private BufferedReader buferLectura;
+    private ArrayList<String[]> listaDatos;
 	
     //Building ---------------------------------------------
     
     public ArchivoContraseña(){
-    	archivo = null;
     	lectorArchivo = null;
     	buferLectura = null;
+    	listaDatos = null;
     	
     }
     
     
     //Methods ----------------------------------------------
-	/**
-	 * @return the archivo
-	 */
-	public File getArchivo() {
-		return archivo;
-	}
-
-	/**
-	 * @param archivo the archivo to set
-	 */
-	public void setArchivo(File archivo) {
-		this.archivo = archivo;
-	}
-
 	/**
 	 * @return the lectorArchivo
 	 */
@@ -72,6 +64,61 @@ public class ArchivoContraseña {
 		this.buferLectura = buferLectura;
 	}
 	
-	
+	/**
+	 * @return the listaDatos
+	 */
+	public ArrayList<String[]> getListaDatos() {
+		return listaDatos;
+	}
 
+
+	/**
+	 * @param listaDatos the listaDatos to set
+	 */
+	public void setListaDatos(ArrayList<String[]> listaDatos) {
+		this.listaDatos = listaDatos;
+	}
+
+
+	public void escribir(){
+	try{
+		
+		FileWriter escribir = new FileWriter(ARCHIVO,true);
+		BufferedWriter bufer = new BufferedWriter(escribir);
+		PrintWriter escritor = new PrintWriter(bufer);  
+		escritor.write("AÑADA:345");
+		escritor.append("\r\n");
+		escritor.close();
+		bufer.close();
+		}catch(IOException e){};
+	 }
+	
+	public void lectura(){
+		listaDatos = new ArrayList<String[]>();
+	      FileReader leer = null;
+	      BufferedReader buferLectura = null;
+	try {	
+        leer = new FileReader (ARCHIVO);
+        buferLectura = new BufferedReader(leer);
+        // Lectura del fichero
+        String linea;
+        while((linea=buferLectura.readLine())!=null){
+        	String[] dato = linea.split(":",2); 
+        	listaDatos.add(dato);
+        	System.out.println(""+dato[0]+" : "+dato[1]);
+        }
+           
+     }
+     catch(Exception e){
+        e.printStackTrace();
+     }finally{
+        try{                    
+           if( null != leer ){   
+              leer.close();     
+           }                  
+        }catch (Exception e2){ 
+           e2.printStackTrace();
+        }
+     }
+	}
 }

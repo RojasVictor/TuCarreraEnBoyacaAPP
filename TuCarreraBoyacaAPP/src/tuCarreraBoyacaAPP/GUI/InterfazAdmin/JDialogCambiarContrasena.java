@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import tuCarreraBoyacaAPP.persistencia.ArchivoContraseña;
+
 
 /**
  * @author FABIO
@@ -99,6 +101,11 @@ public class JDialogCambiarContrasena extends JDialog{
 				//EventsAdmin evento = new EventsAdmin();
 				String actual = textField_ContrasenaActual.getText();
 				String nueva = textField_ContrasenaNueva.getText();
+				
+				ArchivoContraseña guardaDato = new ArchivoContraseña();
+				guardaDato.escribir();
+				guardaDato.lectura();
+				
 				/*if(evento.cambiarContraseña(actual, nueva)){
 					lblRespuesta.setForeground(Color.GREEN);
 					lblRespuesta.setText("Contraseña Actualizada Correctamente");
