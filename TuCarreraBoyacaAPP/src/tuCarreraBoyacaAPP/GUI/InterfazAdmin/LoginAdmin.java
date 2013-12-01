@@ -24,9 +24,56 @@ import java.awt.event.ActionListener;
 
 public class LoginAdmin extends JFrame {
 
+	//Attributes ----------------------------------------------
+	
 	private JPanel contentPane;
 	private JPasswordField txt_Contrasena;
 	private JTextField txt_Usuario;
+	private EventsAdmin eventsAdmin;
+	private boolean iniciar = false;
+
+	//Methods ---------------------------------------------
+	/**
+	 * @return the eventsAdmin
+	 */
+	public EventsAdmin getEventsAdmin() {
+		return eventsAdmin;
+	}
+
+	/**
+	 * @return the txt_Contrasena
+	 */
+	public JPasswordField getTxt_Contrasena() {
+		return txt_Contrasena;
+	}
+
+	/**
+	 * @param txt_Contrasena the txt_Contrasena to set
+	 */
+	public void setTxt_Contrasena(JPasswordField txt_Contrasena) {
+		this.txt_Contrasena = txt_Contrasena;
+	}
+
+	/**
+	 * @return the txt_Usuario
+	 */
+	public JTextField getTxt_Usuario() {
+		return txt_Usuario;
+	}
+
+	/**
+	 * @param txt_Usuario the txt_Usuario to set
+	 */
+	public void setTxt_Usuario(JTextField txt_Usuario) {
+		this.txt_Usuario = txt_Usuario;
+	}
+	
+	/**
+	 * @return the iniciar
+	 */
+	public boolean isIniciar() {
+		return iniciar;
+	}
 
 	/**
 	 * Launch the application.
@@ -57,7 +104,6 @@ public class LoginAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
@@ -106,12 +152,15 @@ public class LoginAdmin extends JFrame {
 		lbl_SubTitulo.setBounds(185, 66, 215, 26);
 		contentPane.add(lbl_SubTitulo);
 		
+		eventsAdmin = new EventsAdmin();
+		eventsAdmin.setLogin(this);
+		
 		button_ingresar.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				MenuAdmin.main(null);
+			public void actionPerformed(ActionEvent e) {
+				iniciar = true;
+				eventsAdmin.actionPerformed(e);
 			}
 		});
 	}

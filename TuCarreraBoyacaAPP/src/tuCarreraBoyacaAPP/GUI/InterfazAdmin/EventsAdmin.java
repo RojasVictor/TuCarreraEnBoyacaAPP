@@ -3,9 +3,11 @@
  */
 package tuCarreraBoyacaAPP.GUI.InterfazAdmin;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import tuCarreraBoyacaAPP.persistencia.ArchivoContraseña;
 
 import javax.swing.JOptionPane;
 
@@ -17,11 +19,11 @@ public class EventsAdmin implements ActionListener{
 //Attributes-------------------------------------------
 	public static final String INGRESAR="Ingresar";
 	public static final String IES="Universidades";
-	private Login login;
+	private LoginAdmin login;
 	
 //Building---------------------------------------------
-	public EventsAdmin(Login login){
-		this.login=login;
+	public EventsAdmin(){
+		this.login=null;
 	}
 	
 //Methods----------------------------------------------
@@ -30,20 +32,32 @@ public class EventsAdmin implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(INGRESAR)){
-			String user=getLogin().getAdminText().getTxtUser().getText();
-			String password=getLogin().getAdminText().getTxtPassword().getText();
-			if(user.length()>0 && password.length()>0){
-				if(user.equals("admin01") && password.equals("12345")){
-					getLogin().getLblUserSesion().setText(user);
-					getLogin().getLblPasswordSesion().setText(password);
-					login.dispose();
-					MenuAdmin.main(null);
+		ArchivoContraseña validar = new ArchivoContraseña();
+		ArrayList<String[]> conjuntoDatos = validar.lectura();		
+		if(login.isIniciar()){
+			String user=getLogin().getTxt_Usuario().getText();
+			String password = "";
+			char [] res = getLogin().getTxt_Contrasena().getPassword();
+			for(int j=0;j<res.length;j++){
+				password = password +res[j];
+			}			
+			if(user.length()!=0 && res.length!=0){
+				int conteo = 0;
+				for (conteo=0; conteo<conjuntoDatos.size();conteo++){
+					String [] dato  = conjuntoDatos.get(conteo);
+					String usuario = dato[0];
+					String pass = dato[1];
+					if(user.equals(usuario) && password.equals(pass)){
+						login.dispose();
+						MenuAdmin.main(null);
+						break;
+					}					
 				}
-				else{
+				if(conteo == conjuntoDatos.size() ){
 					JOptionPane.showMessageDialog(login, "El nombre de usuario o la contrasena son incorrectos");
-					getLogin().getAdminText().getTxtPassword().setText("");
-				}
+					getLogin().getTxt_Contrasena().setText("");
+					getLogin().getTxt_Usuario().setText("");
+				}				
 			}
 			else{
 				JOptionPane.showMessageDialog(login, "Alguno de los campos solicitados ha quedado vacio");
@@ -55,9 +69,18 @@ public class EventsAdmin implements ActionListener{
 	/**
 	 * @return the login
 	 */
-	public Login getLogin() {
+	public LoginAdmin getLogin() {
 		return login;
 	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(LoginAdmin login) {
+		this.login = login;
+		System.out.println("lo recibi");
+	}
+	
 	
 
 }

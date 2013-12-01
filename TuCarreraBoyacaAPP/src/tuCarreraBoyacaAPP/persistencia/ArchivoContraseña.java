@@ -93,19 +93,17 @@ public class ArchivoContraseña {
 		}catch(IOException e){};
 	 }
 	
-	public void lectura(){
+	public ArrayList<String[]> lectura(){
 		listaDatos = new ArrayList<String[]>();
 	      FileReader leer = null;
 	      BufferedReader buferLectura = null;
 	try {	
         leer = new FileReader (ARCHIVO);
         buferLectura = new BufferedReader(leer);
-        // Lectura del fichero
         String linea;
         while((linea=buferLectura.readLine())!=null){
         	String[] dato = linea.split(":",2); 
         	listaDatos.add(dato);
-        	System.out.println(""+dato[0]+" : "+dato[1]);
         }
            
      }
@@ -119,6 +117,9 @@ public class ArchivoContraseña {
         }catch (Exception e2){ 
            e2.printStackTrace();
         }
+     }if(listaDatos.size()!=0){
+    	 return listaDatos;
      }
+	return null;
 	}
 }
