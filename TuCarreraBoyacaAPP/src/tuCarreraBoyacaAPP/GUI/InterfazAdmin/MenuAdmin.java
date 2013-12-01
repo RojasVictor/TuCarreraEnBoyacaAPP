@@ -116,6 +116,9 @@ public class MenuAdmin extends JFrame {
 		JButton btn_CambioContrasena = new JButton("");
 		btn_CambioContrasena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JDialogCambiarContrasena iniciar = new JDialogCambiarContrasena();
+				iniciar.setVisible(true);
+				
 			}
 		});
 		btn_CambioContrasena.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_CambiarContraseña.png")));
