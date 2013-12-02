@@ -63,8 +63,8 @@ public class JDialogCambiarContrasena extends JDialog{
 		getContentPane().add(lblContrasenaNueva);
 		
 		JButton btn_Regresar = new JButton("");
-		btn_Regresar.setBounds(64, 268, 104, 46);
-		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
+		btn_Regresar.setBounds(63, 268, 115, 45);
+		btn_Regresar.setIcon(new ImageIcon(JDialogCambiarContrasena.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Regresar.png")));
 		getContentPane().add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener(){
 			
