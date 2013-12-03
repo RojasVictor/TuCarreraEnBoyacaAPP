@@ -142,10 +142,10 @@ public class ModuloProgramaAcademico extends JFrame {
 		btn_Guardar.setBounds(296, 360, 64, 66);
 		contentPane.add(btn_Guardar);
 		
-		JButton btn_Actualizar = new JButton("");
-		btn_Actualizar.setIcon(new ImageIcon(ModuloProgramaAcademico.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
-		btn_Actualizar.setBounds(385, 360, 73, 66);
-		contentPane.add(btn_Actualizar);
+		JButton btn_Buscar = new JButton("");
+		btn_Buscar.setIcon(new ImageIcon(ModuloProgramaAcademico.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
+		btn_Buscar.setBounds(385, 360, 73, 66);
+		contentPane.add(btn_Buscar);
 		
 		JButton btn_Eliminar = new JButton("");
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
@@ -258,6 +258,79 @@ public class ModuloProgramaAcademico extends JFrame {
 				txt_Costo_PA.setText("");
 				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
 				comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
+				
+			}
+		});
+		
+		btn_Buscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				try{	
+					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+					if(identificador!=0){
+						ProgramaAcademico programa = gestionProgramas.searchProgramaAcademico(identificador);
+						txt_Nombre_PA.setText(programa.getNombre());
+						txt_Costo_PA.setText(programa.getCosto());
+						int area = programa.getIdArea();
+						int ins = programa.getIdInstitucion();
+						for (int z=0;z<listadoAreas.size();z++){
+							String [] aux = listadoAreas.get(z);
+							int aux1 = Integer.parseInt(aux[0]);
+							if(aux1 == area){
+								comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(z+1));
+							}
+						}
+						for (int t=0;t<listadoInstituciones.size();t++){
+							int insti = listadoInstituciones.get(t).getId();
+							if(insti == ins){
+								comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(t+1));
+							}
+						}
+						}
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}
+					catch(NullPointerException e){
+						JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
+					}
+				
+			}
+		});
+		
+		btn_Guardar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				String nombre = "";
+				String costo= "";
+				int idArea = 0;
+				int idInstitucion = 0;
+				
+				try{	
+				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+				}catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				}
+				if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
+						|| comboBox_AreaPrograma.getSelectedItem().toString().equals("SELECCIONAR") 
+								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){
+					
+					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+				}else{
+					
+					nombre = txt_Nombre_PA.getText();
+					costo = txt_Costo_PA.getText();
+					
+				}				
+				if(gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url)){
+					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
+				}
+				txt_Id_IES.setText("");
+				txt_Nombre_IES.setText("");
+				txt_Url_IES.setText("");
 				
 			}
 		});

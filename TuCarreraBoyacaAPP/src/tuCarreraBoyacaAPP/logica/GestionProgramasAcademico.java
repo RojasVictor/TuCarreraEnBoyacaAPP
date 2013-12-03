@@ -104,13 +104,15 @@ public class GestionProgramasAcademico {
 	 * @return true - si se actualiza exitosamente el elemento del ArrayList
 	 */
 	public boolean updateProgramasAcademicos(int id, int idArea, String nombre, String costo, int idInstitucion){
-		for(int i=0; i<academicos.size();i++){
-			if(academicos.get(i).getId() == id){
-				academicos.get(i).setNombre(nombre);
-				academicos.get(i).setIdArea(idArea);
-				academicos.get(i).setIdInstitucion(idInstitucion);
-				academicos.get(i).setCosto(costo);
-				return true;
+		academicos = readProgramasAcademico();
+		ProgramaAcademico actualizar = new ProgramaAcademico(id, idArea, nombre, costo, idInstitucion);
+		if (searchProgramaAcademico(id) != null){
+			for(int i=0; i<getAcademicos().size();i++){
+				if(getAcademicos().get(i).getId() == id){
+					academicoDao.updatePrograma(actualizar);
+					academicos = readProgramasAcademico();
+					return true;
+				}
 			}
 		}
 		return false;
