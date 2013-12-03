@@ -23,6 +23,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 /**
  * @author Victor_Rojas
@@ -31,6 +33,7 @@ import javax.swing.JTextArea;
 public class ModuloReportes extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -47,7 +50,6 @@ public class ModuloReportes extends JFrame {
 			}
 		});
 	}
-
 
 	/**
 	 * Create the application.
@@ -109,13 +111,13 @@ public class ModuloReportes extends JFrame {
 		cmbBox_Modulos.setBounds(51, 124, 392, 32);
 		contentPane.add(cmbBox_Modulos);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(426, 223, 17, 115);
-		contentPane.add(scrollBar);
+		table = new JTable();
 		
-		JTextArea txtArea_ListaReportes = new JTextArea();
-		txtArea_ListaReportes.setBounds(51, 223, 392, 115);
-		contentPane.add(txtArea_ListaReportes);
+		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setBounds(51, 167, 392, 183);
+		scrollPane.setViewportView(table);
+		
+		contentPane.add(scrollPane);
 		
 	}
 }
