@@ -71,7 +71,7 @@ public class GestionPreguntaTest {
 	 ***/ 
 	public PreguntaTest searchPreguntaTest (int busqueda){
 		preguntas = readPreguntaTests();
-		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0);
+		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0, 0, 0);
 		for (int i=0; i<getPreguntas().size();i++){
 			pregunt = getPreguntas().get(i);
 			if(pregunt.getId() == busqueda){
@@ -93,9 +93,9 @@ public class GestionPreguntaTest {
 	 ***/ 
 	public boolean updatePreguntaTest (int id, String descripcion, String respuesta1,
 			String respuesta2, String respuesta3, String respuesta4,
-			int respuestaCorrecta){
+			int respuestaCorrecta, int idPrograma, int puntaje){
 		preguntas = readPreguntaTests();
-		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
+		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta, idPrograma, puntaje);
 		if(searchPreguntaTest(id)!= null){
 			for (int i=0; i<preguntas.size();i++){
 				if(preguntas.get(i).getId() == id){
