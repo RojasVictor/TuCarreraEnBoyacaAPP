@@ -99,7 +99,9 @@ public class PreguntaDao {
 					String respuesta3 = datos.getString("RESPUESTA_3");
 					String respuesta4 = datos.getString("RESPUESTA_4");
 					int respuestaCorrecta = Integer.parseInt(datos.getString("RESPUESTA_CORRECTA"));
-					pregunta = new PreguntaTest(id,descripcion,respuesta1,respuesta2,respuesta3,respuesta4,respuestaCorrecta);
+					int idPrograma = Integer.parseInt(datos.getString("ID_PROGRAMA_ACADEMICO"));
+					int puntaje = Integer.parseInt(datos.getString("PUNTAJE"));
+					pregunta = new PreguntaTest(id,descripcion,respuesta1,respuesta2,respuesta3,respuesta4,respuestaCorrecta,idPrograma,puntaje);
 					preguntas.add(pregunta);
 				}
 				return preguntas;
