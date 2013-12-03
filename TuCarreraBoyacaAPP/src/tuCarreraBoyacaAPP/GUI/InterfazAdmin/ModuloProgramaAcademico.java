@@ -33,6 +33,7 @@ import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 
 /**
@@ -84,7 +85,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		setTitle("MODULO PROGRAMAS ACADEMICOS");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_programas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 475);
+		setBounds(100, 100, 573, 485);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,17 +101,17 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JLabel lbl_IdProgramasAcadmicos = new JLabel("ID Programas Académicos");
 		lbl_IdProgramasAcadmicos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_IdProgramasAcadmicos.setBounds(10, 141, 215, 26);
+		lbl_IdProgramasAcadmicos.setBounds(10, 125, 215, 26);
 		contentPane.add(lbl_IdProgramasAcadmicos);
 		
 		JLabel lbl_NombreProgramasAcadmicos = new JLabel("Nombre Programas Académicos");
 		lbl_NombreProgramasAcadmicos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_NombreProgramasAcadmicos.setBounds(10, 185, 237, 25);
+		lbl_NombreProgramasAcadmicos.setBounds(10, 163, 237, 25);
 		contentPane.add(lbl_NombreProgramasAcadmicos);
 		
 		JLabel lbl_IES = new JLabel("Inst. de Educación Superior");
 		lbl_IES.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_IES.setBounds(10, 274, 237, 22);
+		lbl_IES.setBounds(10, 236, 237, 22);
 		contentPane.add(lbl_IES);
 		
 		JButton btn_Regresar = new JButton("");
@@ -119,7 +120,7 @@ public class ModuloProgramaAcademico extends JFrame {
 			}
 		});
 		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
-		btn_Regresar.setBounds(40, 370, 110, 45);
+		btn_Regresar.setBounds(40, 375, 110, 45);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
 			
@@ -133,48 +134,48 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JButton btn_Agregar = new JButton("");
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
-		btn_Agregar.setBounds(194, 360, 73, 66);
+		btn_Agregar.setBounds(194, 367, 73, 66);
 		contentPane.add(btn_Agregar);
 		
 		
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
-		btn_Guardar.setBounds(296, 360, 64, 66);
+		btn_Guardar.setBounds(296, 367, 64, 66);
 		contentPane.add(btn_Guardar);
 		
 		JButton btn_Buscar = new JButton("");
 		btn_Buscar.setIcon(new ImageIcon(ModuloProgramaAcademico.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
-		btn_Buscar.setBounds(385, 360, 73, 66);
+		btn_Buscar.setBounds(385, 367, 73, 66);
 		contentPane.add(btn_Buscar);
 		
 		JButton btn_Eliminar = new JButton("");
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
-		btn_Eliminar.setBounds(480, 360, 64, 66);
+		btn_Eliminar.setBounds(480, 367, 64, 66);
 		contentPane.add(btn_Eliminar);
 		
 		txt_Nombre_PA = new JTextField();
 		txt_Nombre_PA.setColumns(10);
-		txt_Nombre_PA.setBounds(272, 184, 272, 26);
+		txt_Nombre_PA.setBounds(272, 162, 272, 26);
 		contentPane.add(txt_Nombre_PA);
 		
 		txt_Id_ProgramasAcademicos = new JTextField();
 		txt_Id_ProgramasAcademicos.setColumns(10);
-		txt_Id_ProgramasAcademicos.setBounds(271, 143, 273, 26);
+		txt_Id_ProgramasAcademicos.setBounds(271, 127, 273, 26);
 		contentPane.add(txt_Id_ProgramasAcademicos);
 		
 		JLabel lbl_CategoriaPA = new JLabel("Categoria Programas Académicos");
 		lbl_CategoriaPA.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_CategoriaPA.setBounds(10, 226, 248, 25);
+		lbl_CategoriaPA.setBounds(10, 199, 248, 25);
 		contentPane.add(lbl_CategoriaPA);
 		
 		JLabel lbl_Costo_ProgramaAcadmico = new JLabel("Costo Programa Académico");
 		lbl_Costo_ProgramaAcadmico.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_Costo_ProgramaAcadmico.setBounds(10, 316, 237, 22);
+		lbl_Costo_ProgramaAcadmico.setBounds(10, 278, 237, 22);
 		contentPane.add(lbl_Costo_ProgramaAcadmico);
 		
 		txt_Costo_PA = new JTextField();
 		txt_Costo_PA.setColumns(10);
-		txt_Costo_PA.setBounds(272, 316, 272, 26);
+		txt_Costo_PA.setBounds(272, 278, 272, 26);
 		contentPane.add(txt_Costo_PA);
 		
 		JLabel lbl_Titulo = new JLabel("TU CARRERA EN BOYACÁ APP");
@@ -190,7 +191,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		contentPane.add(lbl_SubTitulo);
 		
 		comboBox_AreaPrograma = new JComboBox();
-		comboBox_AreaPrograma.setBounds(272, 226, 272, 28);
+		comboBox_AreaPrograma.setBounds(272, 199, 272, 28);
 		String [] dato;
 		comboBox_AreaPrograma.addItem("SELECCIONAR");
 		for (int i=0;i<listadoAreas.size();i++){
@@ -200,13 +201,18 @@ public class ModuloProgramaAcademico extends JFrame {
 		contentPane.add(comboBox_AreaPrograma);
 		
 		comboBox_Instituciones = new JComboBox();
-		comboBox_Instituciones.setBounds(272, 273, 274, 28);
+		comboBox_Instituciones.setBounds(272, 235, 274, 28);
 		comboBox_Instituciones.addItem("SELECCIONAR");
 		for(int i=0;i<listadoInstituciones.size();i++){
 			comboBox_Instituciones.addItem(listadoInstituciones.get(i).getNombre());			
 		}
 		
 		contentPane.add(comboBox_Instituciones);
+		
+		JCheckBox chckboxRelacion = new JCheckBox("Estoy agregando una relacion nueva entre un Programa y una Institucion");
+		chckboxRelacion.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+		chckboxRelacion.setBounds(10, 320, 534, 26);
+		contentPane.add(chckboxRelacion);
 		
 		btn_Agregar.addActionListener(new ActionListener() {
 			
