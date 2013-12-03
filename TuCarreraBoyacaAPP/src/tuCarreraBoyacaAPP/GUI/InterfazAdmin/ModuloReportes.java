@@ -168,39 +168,49 @@ public class ModuloReportes extends JFrame {
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<ProgramaAcademico> programas = gesProgramas.readProgramasAcademico();
+					if(programas.size()!=0){
 					datos.addColumn("ID PROGRAMA");
 					datos.addColumn("ID AREA");
 					datos.addColumn("NOMBRE PROGRAMA");
 					datos.addColumn("COSTO PROGRAMA");
 					datos.addColumn("ID INSTITUCION");
-					for (int j=0;j<programas.size();j++){
-						Vector<String> lista = new Vector<String>();
-						lista.add(Integer.toString(programas.get(j).getId()));
-						lista.add(Integer.toString(programas.get(j).getIdArea()));
-						lista.add(programas.get(j).getNombre());
-						lista.add(programas.get(j).getCosto());
-						lista.add(Integer.toString(programas.get(j).getIdInstitucion()));
-						datos.addRow(lista);
+						for (int j=0;j<programas.size();j++){
+							Vector<String> lista = new Vector<String>();
+							lista.add(Integer.toString(programas.get(j).getId()));
+							lista.add(Integer.toString(programas.get(j).getIdArea()));
+							lista.add(programas.get(j).getNombre());
+							lista.add(programas.get(j).getCosto());
+							lista.add(Integer.toString(programas.get(j).getIdInstitucion()));
+							datos.addRow(lista);
+						}	
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "No hay programas para generar reporte");
 					}
 				}else if(seleccion.equals(dato2)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<InstitucionEducacionSuperior> instituciones = gesInstituciones.readInstitucionesEducacionSuperior();
+					if (instituciones.size() !=0){
 					datos.addColumn("ID INSTITUCION");
 					datos.addColumn("NOMBRE INSTITUCION");
 					datos.addColumn("URL INSTITUCION");
-					for (int j=0; j<instituciones.size();j++){
-						Vector<String> lista = new Vector<String>();
-						lista.add(Integer.toString(instituciones.get(j).getId()));
-						lista.add(instituciones.get(j).getNombre());
-						lista.add(instituciones.get(j).getDireccionURL());
-						datos.addRow(lista);
+						for (int j=0; j<instituciones.size();j++){
+							Vector<String> lista = new Vector<String>();
+							lista.add(Integer.toString(instituciones.get(j).getId()));
+							lista.add(instituciones.get(j).getNombre());
+							lista.add(instituciones.get(j).getDireccionURL());
+							datos.addRow(lista);
+						}
 					}
-					
+					else{
+						JOptionPane.showMessageDialog(null, "No hay instituciones para generar reporte");
+					}					
 				}else if(seleccion.equals(dato3)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<PreguntaTest> preguntas = gesPreguntas.readPreguntaTests();
+					if(preguntas.size() !=0){
 					datos.addColumn("ID PREGUNTA");
 					datos.addColumn("DESCRIPCION PREGUNTA");
 					datos.addColumn("RESPUESTA 1");
@@ -210,20 +220,23 @@ public class ModuloReportes extends JFrame {
 					datos.addColumn("RESPUESTA CORRECTA");
 					datos.addColumn("ID PROGRAMA");
 					datos.addColumn("PUNTAJE");
-					for (int j=0; j<preguntas.size();j++){
-						Vector<String> lista = new Vector<String>();
-						lista.add(Integer.toString(preguntas.get(j).getId()));
-						lista.add(preguntas.get(j).getDescripcion());
-						lista.add(preguntas.get(j).getRespuesta1());
-						lista.add(preguntas.get(j).getRespuesta2());
-						lista.add(preguntas.get(j).getRespuesta3());
-						lista.add(preguntas.get(j).getRespuesta4());
-						lista.add(Integer.toString(preguntas.get(j).getRespuestaCorrecta()));
-						lista.add(Integer.toString(preguntas.get(j).getIdPrograma()));
-						lista.add(Integer.toString(preguntas.get(j).getPuntaje()));
-						datos.addRow(lista);
+						for (int j=0; j<preguntas.size();j++){
+							Vector<String> lista = new Vector<String>();
+							lista.add(Integer.toString(preguntas.get(j).getId()));
+							lista.add(preguntas.get(j).getDescripcion());
+							lista.add(preguntas.get(j).getRespuesta1());
+							lista.add(preguntas.get(j).getRespuesta2());
+							lista.add(preguntas.get(j).getRespuesta3());
+							lista.add(preguntas.get(j).getRespuesta4());
+							lista.add(Integer.toString(preguntas.get(j).getRespuestaCorrecta()));
+							lista.add(Integer.toString(preguntas.get(j).getIdPrograma()));
+							lista.add(Integer.toString(preguntas.get(j).getPuntaje()));
+							datos.addRow(lista);
+						}
 					}
-					
+					else{
+						JOptionPane.showMessageDialog(null, "No hay preguntas para generar reporte");
+					}
 				}else{
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
