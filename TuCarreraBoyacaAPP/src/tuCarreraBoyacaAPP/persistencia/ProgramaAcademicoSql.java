@@ -40,8 +40,7 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePrograma (int id) {
-		return "DELETE FROM programa_academico WHERE ID_PROGRAMA="+id+";";	
-	
+		return "DELETE FROM programa_academico WHERE ID_PROGRAMA="+id+";";		
 	}
 	
 	/**
@@ -51,12 +50,17 @@ public class ProgramaAcademicoSql {
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
 			
-		return  "UPDATE  `apptest`.`programa_academico` SET  `ID_AREA` ="+"'"+programa.getIdArea()+"',"
-				+"`NOMBRE_PROGRAMA_ACADEMICO` = '"+programa.getNombre()+"',"
-				+"`COSTO_PROGRAMA` =  '"+programa.getCosto()+"'"
-				+"WHERE  `programa_academico`.`ID_PROGRAMA_ACADEMICO` ="+programa.getId()+";";
-
+		return  "START TRANSACTION;"
+				+"UPDATE programa_academico SET ID_AREA ="+ programa.getIdArea()+","
+				+"NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
+				+"COSTO_PROGRAMA = "+programa.getCosto()
+				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
+				+"UPDATE programa_academico_institucion_educacion_superior "
+				+"SET ID_INSTITUCION =" +programa.getIdInstitucion()
+				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
+				+"COMMIT;";
 	}
+	
 	/**
 	 * 
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
