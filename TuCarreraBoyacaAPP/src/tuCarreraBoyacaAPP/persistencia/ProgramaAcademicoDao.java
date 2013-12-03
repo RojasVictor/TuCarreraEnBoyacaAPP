@@ -43,6 +43,18 @@ public class ProgramaAcademicoDao {
 		}
 		return -1;
 	}
+	
+	public int insertRelacion(ProgramaAcademico programa){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 	/**
 	 * 

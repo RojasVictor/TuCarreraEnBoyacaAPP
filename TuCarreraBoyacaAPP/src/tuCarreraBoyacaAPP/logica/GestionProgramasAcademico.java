@@ -63,8 +63,12 @@ public class GestionProgramasAcademico {
 	 * @param programa -- objeto de tipo ProgramaAcademico para agregar en el ArrayList
 	 * @return true - si se crea exitosamente el elemento
 	 */
-	public boolean crearProgramaAcademico (ProgramaAcademico programa){
-		return academicos.add(programa);
+	public int crearProgramaAcademico (ProgramaAcademico programa){
+		return academicoDao.insertProgramaNuevo(programa);
+	}
+	
+	public int crearRelacion (ProgramaAcademico programa){
+		return academicoDao.insertRelacion(programa);
 	}
 	
 	/**

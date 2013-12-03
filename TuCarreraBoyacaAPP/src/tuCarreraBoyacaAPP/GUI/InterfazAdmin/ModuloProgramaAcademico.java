@@ -38,7 +38,7 @@ import javax.swing.JCheckBox;
 
 /**
  * @author JUDIT
- * @author Victor Rojas
+ * @author Victor_Rojas
  *
  */
 public class ModuloProgramaAcademico extends JFrame {
@@ -54,6 +54,7 @@ public class ModuloProgramaAcademico extends JFrame {
 	private ArrayList<String[]> listadoAreas;
 	private JComboBox comboBox_Instituciones;
 	private JComboBox comboBox_AreaPrograma;
+	private JCheckBox chckboxRelacion; 
 
 	/**
 	 * Launch the application.
@@ -205,11 +206,10 @@ public class ModuloProgramaAcademico extends JFrame {
 		comboBox_Instituciones.addItem("SELECCIONAR");
 		for(int i=0;i<listadoInstituciones.size();i++){
 			comboBox_Instituciones.addItem(listadoInstituciones.get(i).getNombre());			
-		}
-		
+		}		
 		contentPane.add(comboBox_Instituciones);
 		
-		JCheckBox chckboxRelacion = new JCheckBox("Estoy agregando una relacion nueva entre un Programa y una Institucion");
+		chckboxRelacion = new JCheckBox("Estoy agregando una relacion nueva entre un Programa y una Institucion");
 		chckboxRelacion.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		chckboxRelacion.setBounds(10, 320, 534, 26);
 		contentPane.add(chckboxRelacion);
@@ -221,25 +221,60 @@ public class ModuloProgramaAcademico extends JFrame {
 				
 				int identificador = 0;
 				String nombre = "";
-				String categoria = "";
-				//institucion
-				int costo = 0;
+				String costo = "";
+				int idArea = 0;
+				int idInstitucion = 0;
+				String auxIns = "";
+				String auxArea = "";	
 				try{	
 				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
 				}catch(NumberFormatException e){
 					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 				}
-
-				/*nombre = txt_Nombre_PA.getText();
-				categoria = comboBox_areaPrograma.getSelectedItem().toString();
-				ProgramaAcademico programa = new ProgramaAcademico(identificador, nombre, categoria, null, costo) ;
-				gestionProgramas.crearProgramaAcademico(programa);
-				*/
-				txt_Id_ProgramasAcademicos.setText("");
-				txt_Nombre_PA.setText("");
+				if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
+						|| comboBox_AreaPrograma.getSelectedItem().toString().equals("SELECCIONAR") 
+								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){					
+					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+				}else{					
+					nombre = txt_Nombre_PA.getText();
+					costo = txt_Costo_PA.getText();
+					auxIns = comboBox_Instituciones.getSelectedItem().toString();
+					auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
+					for (int z=0;z<listadoAreas.size();z++){
+						String [] aux = listadoAreas.get(z);
+						if(aux[1].equals(auxArea)){
+							idArea = Integer.parseInt(aux[0]);
+						}
+					}
+					for (int t=0;t<listadoInstituciones.size();t++){
+						String aux = listadoInstituciones.get(t).getNombre();
+						if(aux.equals(auxIns)){
+							idInstitucion = listadoInstituciones.get(t).getId();
+						}
+					}					
+				}	
+				ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre, costo, idInstitucion);
+				if(chckboxRelacion.isSelected()== false){					
+					if(gestionProgramas.crearProgramaAcademico(programa) == -1){
+						JOptionPane.showMessageDialog(null, "No se creo el registro");						
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Se creo de forma exitosa");
+					}
+				}else{
+					if(gestionProgramas.crearRelacion(programa) == -1){
+						JOptionPane.showMessageDialog(null, "No se creo la relacion entre Programa e Institucion");						
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Se creo la relacion entre Programa e Institucion exitosamente");
+					}
+				}
+					txt_Id_ProgramasAcademicos.setText("");
+					txt_Nombre_PA.setText("");
+					txt_Costo_PA.setText("");
+					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
+					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
 				
-				txt_Costo_PA.setText("");
-			
 			}	
 		});
 		
@@ -345,6 +380,9 @@ public class ModuloProgramaAcademico extends JFrame {
 				}				
 				if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
 					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "No se actualizo el registro");
 				}
 				txt_Id_ProgramasAcademicos.setText("");
 				txt_Nombre_PA.setText("");
