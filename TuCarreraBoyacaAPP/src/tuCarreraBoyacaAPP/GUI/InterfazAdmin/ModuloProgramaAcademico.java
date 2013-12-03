@@ -325,12 +325,12 @@ public class ModuloProgramaAcademico extends JFrame {
 					costo = txt_Costo_PA.getText();
 					
 				}				
-				if(gestionInstituciones.updateInstitucionesEducacionSuperior(identificador, nombre, url)){
+				if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
 					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
 				}
-				txt_Id_IES.setText("");
-				txt_Nombre_IES.setText("");
-				txt_Url_IES.setText("");
+				txt_Id_ProgramasAcademicos.setText("");
+				txt_Nombre_PA.setText("");
+				txt_Costo_PA.setText("");
 				
 			}
 		});
