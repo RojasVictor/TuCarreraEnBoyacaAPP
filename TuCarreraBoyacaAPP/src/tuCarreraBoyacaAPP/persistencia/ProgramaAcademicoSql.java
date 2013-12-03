@@ -9,10 +9,7 @@ import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
  *
  */
 public class ProgramaAcademicoSql {
-	
-	//Attributes -----------------------------------------------	
-	private static final String Q="\'";
-			
+				
 	//Building -----------------------------------------
 	public ProgramaAcademicoSql() {
 		
@@ -75,7 +72,6 @@ public class ProgramaAcademicoSql {
 				+"FROM programa_academico"
 				+"JOIN ( programa_academico_institucion_educacion_superior)"
 				+"ORDER BY ID_PROGRAMA_ACADEMICO";
-
 	}
 	
 	public String selectAreas(){
