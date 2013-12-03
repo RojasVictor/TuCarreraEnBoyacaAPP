@@ -70,7 +70,7 @@ public class MenuPrincipal extends JFrame {
 		getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 		
 		JLabel lbl_TituloPrincipal = new JLabel("");
-		lbl_TituloPrincipal.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/TituloPrincipal.png")));
+		lbl_TituloPrincipal.setIcon(new ImageIcon(this.getClass().getResource("Images/TituloPrincipal.png")));
 		lbl_TituloPrincipal.setBounds(0, 0, 295, 75);
 		contentPane.add(lbl_TituloPrincipal);
 		
@@ -87,12 +87,12 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(lbl_SubTitulo);
 		
 		JLabel lbl_Logo = new JLabel("");
-		lbl_Logo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/Logo_TCBAPP.png")));
+		lbl_Logo.setIcon(new ImageIcon(this.getClass().getResource("Images/Logo_TCBAPP.png")));
 		lbl_Logo.setBounds(61, 170, 154, 111);
 		contentPane.add(lbl_Logo);
 		
 		JButton btn_Salir = new JButton("");
-		btn_Salir.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/btn_salir.png")));
+		btn_Salir.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_salir.png")));
 		btn_Salir.setBounds(10, 435, 275, 41);
 		contentPane.add(btn_Salir);
 		btn_Salir.addActionListener(new ActionListener(){
@@ -106,7 +106,7 @@ public class MenuPrincipal extends JFrame {
 			contentPane.add(btn_Salir);
 		
 		JButton btn_Ingresar = new JButton("");
-		btn_Ingresar.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/btn_Ingresar.png")));
+		btn_Ingresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Ingresar.png")));
 		btn_Ingresar.setBounds(10, 383, 275, 41);
 		contentPane.add(btn_Ingresar);
 		btn_Ingresar.addActionListener(new ActionListener(){
@@ -120,27 +120,27 @@ public class MenuPrincipal extends JFrame {
 			contentPane.add(btn_Ingresar);
 			
 		JButton btn_ComoIniciar = new JButton("");
-		btn_ComoIniciar.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/btn_comoIniciar.png")));
+		btn_ComoIniciar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_comoIniciar.png")));
 		btn_ComoIniciar.setBounds(152, 297, 89, 75);
 		contentPane.add(btn_ComoIniciar);
 		
 		JButton btn_Sonido = new JButton("");
-		btn_Sonido.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/btn_Sonido.png")));
+		btn_Sonido.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Sonido.png")));
 		btn_Sonido.setBounds(53, 297, 89, 75);
 		contentPane.add(btn_Sonido);
 		
 		JLabel lbl_ImagenVocacional = new JLabel("");
-		lbl_ImagenVocacional.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/imagen_opcion.png")));
+		lbl_ImagenVocacional.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_opcion.png")));
 		lbl_ImagenVocacional.setBounds(237, 86, 46, 38);
 		contentPane.add(lbl_ImagenVocacional);
 		
 		JLabel lbl_ImagenNina = new JLabel("");
-		lbl_ImagenNina.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/imagen_estMujer.png")));
+		lbl_ImagenNina.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_estMujer.png")));
 		lbl_ImagenNina.setBounds(30, 172, 54, 32);
 		contentPane.add(lbl_ImagenNina);
 		
 		JLabel label_ImagenNino = new JLabel("");
-		label_ImagenNino.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazUsuario/Images/imagen_estHombre.png")));
+		label_ImagenNino.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_estHombre.png")));
 		label_ImagenNino.setBounds(196, 236, 54, 45);
 		contentPane.add(label_ImagenNino);
 
