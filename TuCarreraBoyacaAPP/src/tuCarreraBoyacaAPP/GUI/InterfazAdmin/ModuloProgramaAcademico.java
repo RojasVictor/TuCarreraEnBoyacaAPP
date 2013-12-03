@@ -77,11 +77,12 @@ public class ModuloProgramaAcademico extends JFrame {
 		listadoInstituciones = gestionInstituciones.readInstitucionesEducacionSuperior();
 		listadoProgramas = gestionProgramas.readProgramasAcademico();
 		listadoAreas = gestionProgramas.readAreas();
-		
+		listadoInstituciones = gestionInstituciones.readInstitucionesEducacionSuperior();
+				
 		setTitle("MODULO PROGRAMAS ACADEMICOS");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_programas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 520);
+		setBounds(100, 100, 573, 475);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -107,7 +108,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JLabel lbl_IES = new JLabel("Inst. de Educación Superior");
 		lbl_IES.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_IES.setBounds(10, 312, 237, 22);
+		lbl_IES.setBounds(10, 274, 237, 22);
 		contentPane.add(lbl_IES);
 		
 		JButton btn_Regresar = new JButton("");
@@ -116,7 +117,7 @@ public class ModuloProgramaAcademico extends JFrame {
 			}
 		});
 		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
-		btn_Regresar.setBounds(40, 395, 110, 45);
+		btn_Regresar.setBounds(40, 370, 110, 45);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
 			
@@ -130,23 +131,23 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JButton btn_Agregar = new JButton("");
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
-		btn_Agregar.setBounds(194, 395, 73, 66);
+		btn_Agregar.setBounds(194, 360, 73, 66);
 		contentPane.add(btn_Agregar);
 		
 		
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
-		btn_Guardar.setBounds(296, 395, 64, 66);
+		btn_Guardar.setBounds(296, 360, 64, 66);
 		contentPane.add(btn_Guardar);
 		
 		JButton btn_Actualizar = new JButton("");
-		btn_Actualizar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Actualiza.png")));
-		btn_Actualizar.setBounds(385, 395, 73, 66);
+		btn_Actualizar.setIcon(new ImageIcon(ModuloProgramaAcademico.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
+		btn_Actualizar.setBounds(385, 360, 73, 66);
 		contentPane.add(btn_Actualizar);
 		
 		JButton btn_Eliminar = new JButton("");
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
-		btn_Eliminar.setBounds(480, 395, 64, 66);
+		btn_Eliminar.setBounds(480, 360, 64, 66);
 		contentPane.add(btn_Eliminar);
 		
 		txt_Nombre_PA = new JTextField();
@@ -166,12 +167,12 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JLabel lbl_Costo_ProgramaAcadmico = new JLabel("Costo Programa Académico");
 		lbl_Costo_ProgramaAcadmico.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_Costo_ProgramaAcadmico.setBounds(10, 269, 237, 22);
+		lbl_Costo_ProgramaAcadmico.setBounds(10, 316, 237, 22);
 		contentPane.add(lbl_Costo_ProgramaAcadmico);
 		
 		txt_Costo_PA = new JTextField();
 		txt_Costo_PA.setColumns(10);
-		txt_Costo_PA.setBounds(272, 269, 272, 26);
+		txt_Costo_PA.setBounds(272, 316, 272, 26);
 		contentPane.add(txt_Costo_PA);
 		
 		JLabel lbl_Titulo = new JLabel("TU CARRERA EN BOYACÁ APP");
@@ -186,19 +187,6 @@ public class ModuloProgramaAcademico extends JFrame {
 		lbl_SubTitulo.setBounds(194, 73, 298, 26);
 		contentPane.add(lbl_SubTitulo);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(272, 316, 272, 58);
-		contentPane.add(scrollPane);
-		listadoInstituciones = gestionInstituciones.readInstitucionesEducacionSuperior();
-		String[] nombreInst = new String[listadoInstituciones.size()];
-		for(int i=0;i<listadoInstituciones.size();i++){
-			nombreInst[i] = listadoInstituciones.get(i).getNombre();			
-		}
-		JList list = new JList(nombreInst);
-		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);	
-		
-		scrollPane.setViewportView(list);
-		
 		JComboBox comboBox_areaPrograma = new JComboBox();
 		comboBox_areaPrograma.setBounds(272, 226, 272, 28);
 		String [] dato;
@@ -208,6 +196,15 @@ public class ModuloProgramaAcademico extends JFrame {
 			comboBox_areaPrograma.addItem(""+dato[1]);			
 		}		
 		contentPane.add(comboBox_areaPrograma);
+		
+		JComboBox comboBox_Instituciones = new JComboBox();
+		comboBox_Instituciones.setBounds(272, 273, 274, 28);
+		comboBox_Instituciones.addItem("SELECCIONAR");
+		for(int i=0;i<listadoInstituciones.size();i++){
+			comboBox_Instituciones.addItem(listadoInstituciones.get(i).getNombre());			
+		}
+		
+		contentPane.add(comboBox_Instituciones);
 		
 		btn_Agregar.addActionListener(new ActionListener() {
 			

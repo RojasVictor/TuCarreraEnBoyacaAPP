@@ -20,7 +20,7 @@ public class ProgramaAcademicoSql {
 	 * @param programa - Objeto del cual se realizarán las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String insertPrograma (ProgramaAcademico programa) {
+	public String insertProgramaNuevo (ProgramaAcademico programa) {
 		return "START TRANSACTION; INSERT INTO programa_academico VALUES ("
 				+programa.getId()+","
 				+programa.getIdArea()+",'"
@@ -30,6 +30,13 @@ public class ProgramaAcademicoSql {
 				+programa.getIdInstitucion()+","
 				+programa.getId()+","
 				+programa.getCosto()+");COMMIT;";		
+	}
+	
+	public String insertarRelacionPrograma (ProgramaAcademico programa){
+		return "INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
+				+programa.getIdInstitucion()+","
+				+programa.getId()+","
+				+programa.getCosto()+");";
 	}
 	
 	/**
@@ -72,7 +79,8 @@ public class ProgramaAcademicoSql {
 				+"ID_AREA, NOMBRE_PROGRAMA_ACADEMICO, COSTO_PROGRAMA, ID_INSTITUCION"
 				+"FROM programa_academico"
 				+"JOIN ( programa_academico_institucion_educacion_superior)"
-				+"ORDER BY ID_PROGRAMA_ACADEMICO";
+				+" WHERE programa_academico.ID_PROGRAMA_ACADEMICO = programa_academico_institucion_educacion_superior.ID_PROGRAMA_ACADEMICO"
+				+" ORDER BY ID_PROGRAMA_ACADEMICO";
 	}
 	
 	public String selectAreas(){

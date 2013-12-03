@@ -32,11 +32,11 @@ public class ProgramaAcademicoDao {
 	 * @param programa
 	 * @return -1 si el comando sql no se ejecuta correctamente
 	 */
-	public int insertPrograma(ProgramaAcademico programa){
+	public int insertProgramaNuevo(ProgramaAcademico programa){
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
-				return sentencia.executeUpdate(academicoSql.insertPrograma(programa));
+				return sentencia.executeUpdate(academicoSql.insertProgramaNuevo(programa));
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}
