@@ -71,10 +71,12 @@ public class GestionProgramasAcademico {
 	 * @param busqueda -- integer -- id del elemento a buscar en el ArrayList
 	 * @return Objeto de tipo Programa Academico que se encuentra en el ArrayList**/
 	public ProgramaAcademico searchProgramaAcademico (int busqueda){
-		
+		academicos = readProgramasAcademico();
+		ProgramaAcademico programa =new ProgramaAcademico(busqueda, 0, null, null, 0);
 		for(int i=0; i<academicos.size();i++){
-			if(academicos.get(i).getId()==busqueda){
-				return academicos.get(i);
+			programa = getAcademicos().get(i);
+			if(programa.getId()==busqueda){
+				return programa;
 			}
 		}
 		return null;

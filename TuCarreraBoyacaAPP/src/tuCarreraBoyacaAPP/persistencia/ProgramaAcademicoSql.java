@@ -45,11 +45,8 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePrograma (int id) {
-		return "START TRANSACTION;"
-				+" DELETE FROM programa_academico_institucion_educacion_superior"
-				+" WHERE ID_PROGRAMA_ACADEMICO ="+ id+";"
-				+"DELETE FROM programa_academico WHERE ID_PROGRAMA_ACADEMICO = "+ id+";"
-				+"COMMIT;";	
+		return "DELETE FROM programa_academico WHERE ID_PROGRAMA_ACADEMICO ="+id+";";
+				
 	}
 	
 	/**

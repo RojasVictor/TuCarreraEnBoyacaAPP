@@ -213,7 +213,6 @@ public class ModuloProgramaAcademico extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
 				int identificador = 0;
 				String nombre = "";
 				String categoria = "";
@@ -245,7 +244,7 @@ public class ModuloProgramaAcademico extends JFrame {
 				int identificador = 0;
 				try{	
 					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
-					boolean respuesta = gestionInstituciones.removeInstitucionEducacionSuperior(identificador);
+					boolean respuesta = gestionProgramas.removeProgramasAcademicos(identificador);
 					if(respuesta){
 						JOptionPane.showMessageDialog(null, "Se elimino satisfactoriamente");
 					}else{
