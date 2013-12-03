@@ -24,11 +24,12 @@ public class ProgramaAcademicoSql {
 		return "START TRANSACTION; INSERT INTO programa_academico VALUES ("
 				+programa.getId()+","
 				+programa.getIdArea()+",'"
-				+programa.getNombre()+"',"
-				+programa.getCosto()+");"
+				+programa.getNombre()+"'"
+				+");"
 				+"INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
 				+programa.getIdInstitucion()+","
-				+programa.getId()+");COMMIT;";		
+				+programa.getId()+","
+				+programa.getCosto()+");COMMIT;";		
 	}
 	
 	/**
@@ -40,7 +41,7 @@ public class ProgramaAcademicoSql {
 		return "START TRANSACTION;"
 				+" DELETE FROM programa_academico_institucion_educacion_superior"
 				+" WHERE ID_PROGRAMA_ACADEMICO ="+ id+";"
-				+"DELETE FROM programa_academico WHERE ID_PROGRAMA_ACADEMICO = "+ 90+";"
+				+"DELETE FROM programa_academico WHERE ID_PROGRAMA_ACADEMICO = "+ id+";"
 				+"COMMIT;";	
 	}
 	
@@ -53,11 +54,11 @@ public class ProgramaAcademicoSql {
 			
 		return  "START TRANSACTION;"
 				+"UPDATE programa_academico SET ID_AREA ="+ programa.getIdArea()+","
-				+"NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
-				+"COSTO_PROGRAMA = "+programa.getCosto()
+				+"NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"'"				
 				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
 				+"UPDATE programa_academico_institucion_educacion_superior "
-				+"SET ID_INSTITUCION =" +programa.getIdInstitucion()
+				+"SET ID_INSTITUCION =" +programa.getIdInstitucion()+","
+				+"COSTO_PROGRAMA = "+programa.getCosto()
 				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
 				+"COMMIT;";
 	}
