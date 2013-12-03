@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import tuCarreraBoyacaAPP.persistencia.ArchivoContraseña;
+import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 
 
 /**
@@ -115,10 +115,10 @@ public class JDialogCambiarContrasena extends JDialog{
 				String usuCambiar = textField_Usuario.getText();
 				float actual = Float.parseFloat(textField_ContrasenaActual.getText());
 				float nueva = Float.parseFloat(textField_ContrasenaNueva.getText());
-				ArchivoContraseña guardaDato = new ArchivoContraseña();
+				ArchivoContrasena guardaDato = new ArchivoContrasena();
 				ArrayList<String[]> listado = guardaDato.lectura();
-				actual = EventsAdmin.encriptarContraseña(actual);
-				nueva = EventsAdmin.encriptarContraseña(nueva);
+				actual = EventsAdmin.encriptarContrasena(actual);
+				nueva = EventsAdmin.encriptarContrasena(nueva);
 				for (int i=0;i <listado.size();i++){
 					String[] dato = listado.get(i);
 					
@@ -131,7 +131,7 @@ public class JDialogCambiarContrasena extends JDialog{
 				respuesta = guardaDato.escribir(listado);
 				if(resaux && respuesta){
 					lblRespuesta.setForeground(Color.GREEN);
-					lblRespuesta.setText("Contraseña Actualizada Correctamente");
+					lblRespuesta.setText("Contrasena Actualizada Correctamente");
 					textField_Usuario.setText("");
 					textField_ContrasenaActual.setText("");
 					textField_ContrasenaNueva.setText("");

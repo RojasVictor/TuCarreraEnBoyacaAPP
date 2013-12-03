@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import tuCarreraBoyacaAPP.persistencia.ArchivoContraseña;
+import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 
 import javax.swing.JOptionPane;
 
@@ -32,7 +32,7 @@ public class EventsAdmin implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ArchivoContraseña validar = new ArchivoContraseña();
+		ArchivoContrasena validar = new ArchivoContrasena();
 		ArrayList<String[]> conjuntoDatos = validar.lectura();		
 		if(login.isIniciar()){
 			String user=getLogin().getTxt_Usuario().getText();
@@ -54,7 +54,7 @@ public class EventsAdmin implements ActionListener{
 					String [] dato  = conjuntoDatos.get(conteo);
 					String usuario = dato[0];
 					float pass = Float.parseFloat(dato[1]);
-					desencriptada = desencirptarContraseña(pass);
+					desencriptada = desencirptarContrasena(pass);
 					if(user.equals(usuario) && password==desencriptada){
 						login.dispose();
 						MenuAdmin.main(null);
@@ -91,10 +91,10 @@ public class EventsAdmin implements ActionListener{
 	
 	/**
 	 * 
-	 * @param sinEncriptar - float - Contraseña extraida del campo de texto para codificar
-	 * @return encriptada - float - Contraseña que ya esta encriptada
+	 * @param sinEncriptar - float - Contraseï¿½a extraida del campo de texto para codificar
+	 * @return encriptada - float - Contraseï¿½a que ya esta encriptada
 	 */
-	public static float encriptarContraseña(float sinEncriptar){
+	public static float encriptarContrasena(float sinEncriptar){
 		float encriptada = (sinEncriptar - 346) / 222;		
 		return encriptada;
 		
@@ -102,10 +102,10 @@ public class EventsAdmin implements ActionListener{
 	
 	/**
 	 * 
-	 * @param encriptada -  Contraseña obtenida, para desencriptarla
-	 * @return desencriptada - float - Contraseña que ya esta desencriptada
+	 * @param encriptada -  Contraseï¿½a obtenida, para desencriptarla
+	 * @return desencriptada - float - Contraseï¿½a que ya esta desencriptada
 	 */
-	public static float desencirptarContraseña(float encriptada){
+	public static float desencirptarContrasena(float encriptada){
 		float desencriptada = (encriptada * 222) + 346;
 		return desencriptada;
 	}
