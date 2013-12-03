@@ -51,6 +51,8 @@ public class ModuloProgramaAcademico extends JFrame {
 	private ArrayList<InstitucionEducacionSuperior> listadoInstituciones;
 	private ArrayList<ProgramaAcademico> listadoProgramas;
 	private ArrayList<String[]> listadoAreas;
+	private JComboBox comboBox_Instituciones;
+	private JComboBox comboBox_AreaPrograma;
 
 	/**
 	 * Launch the application.
@@ -187,17 +189,17 @@ public class ModuloProgramaAcademico extends JFrame {
 		lbl_SubTitulo.setBounds(194, 73, 298, 26);
 		contentPane.add(lbl_SubTitulo);
 		
-		JComboBox comboBox_areaPrograma = new JComboBox();
-		comboBox_areaPrograma.setBounds(272, 226, 272, 28);
+		comboBox_AreaPrograma = new JComboBox();
+		comboBox_AreaPrograma.setBounds(272, 226, 272, 28);
 		String [] dato;
-		comboBox_areaPrograma.addItem("SELECCIONAR");
+		comboBox_AreaPrograma.addItem("SELECCIONAR");
 		for (int i=0;i<listadoAreas.size();i++){
 			dato = listadoAreas.get(i);
-			comboBox_areaPrograma.addItem(""+dato[1]);			
+			comboBox_AreaPrograma.addItem(""+dato[1]);			
 		}		
-		contentPane.add(comboBox_areaPrograma);
+		contentPane.add(comboBox_AreaPrograma);
 		
-		JComboBox comboBox_Instituciones = new JComboBox();
+		comboBox_Instituciones = new JComboBox();
 		comboBox_Instituciones.setBounds(272, 273, 274, 28);
 		comboBox_Instituciones.addItem("SELECCIONAR");
 		for(int i=0;i<listadoInstituciones.size();i++){
@@ -234,6 +236,31 @@ public class ModuloProgramaAcademico extends JFrame {
 				txt_Costo_PA.setText("");
 			
 			}	
+		});
+		
+		btn_Eliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int identificador = 0;
+				try{	
+					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+					boolean respuesta = gestionInstituciones.removeInstitucionEducacionSuperior(identificador);
+					if(respuesta){
+						JOptionPane.showMessageDialog(null, "Se elimino satisfactoriamente");
+					}else{
+						JOptionPane.showMessageDialog(null, "No se elimino o no existe el elemento");
+					}
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}					
+				txt_Id_ProgramasAcademicos.setText("");
+				txt_Nombre_PA.setText("");
+				txt_Costo_PA.setText("");
+				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
+				comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
+				
+			}
 		});
 		
 	}
