@@ -56,15 +56,12 @@ public class ProgramaAcademicoSql {
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
 			
-		return  "START TRANSACTION;"
-				+"UPDATE programa_academico SET ID_AREA ="+ programa.getIdArea()+","
-				+"NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"'"				
-				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
-				+"UPDATE programa_academico_institucion_educacion_superior "
-				+"SET ID_INSTITUCION =" +programa.getIdInstitucion()+","
-				+"COSTO_PROGRAMA = "+programa.getCosto()
-				+" WHERE ID_PROGRAMA_ACADEMICO = "+programa.getId()+";"
-				+"COMMIT;";
+		return  "UPDATE programa_academico AS a1, programa_academico_institucion_educacion_superior as a2 "
+				+"SET a1.ID_AREA =" +programa.getIdArea() +","
+				+" a1.NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
+				+" a2.ID_INSTITUCION="+programa.getIdInstitucion()+","
+				+"a2.COSTO_PROGRAMA='"+programa.getCosto()+"'"
+				+" WHERE a1.ID_PROGRAMA_ACADEMICO=a2.ID_PROGRAMA_ACADEMICO;";				
 	}
 	
 	/**
