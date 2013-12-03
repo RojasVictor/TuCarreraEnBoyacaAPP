@@ -26,6 +26,7 @@ import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
@@ -39,6 +40,7 @@ import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
 import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
 import tuCarreraBoyacaAPP.logica.GestionProgramasAcademico;
 import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
+import tuCarreraBoyacaAPP.logica.PreguntaTest;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 
 /**
@@ -81,7 +83,7 @@ public class ModuloReportes extends JFrame {
 	public ModuloReportes() {
 		
 		gesInstituciones = new GestionInstitucionesEducacionSuperior();
-		//gesPreguntas = new GestionPreguntaTest();
+		gesPreguntas = new GestionPreguntaTest();
 		gesProgramas = new GestionProgramasAcademico();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_reportes.png")));
@@ -196,9 +198,36 @@ public class ModuloReportes extends JFrame {
 					}
 					
 				}else if(seleccion.equals(dato3)){
+					datos.setColumnCount(0);
+					datos.setNumRows(0);
+					ArrayList<PreguntaTest> preguntas = gesPreguntas.readPreguntaTests();
+					datos.addColumn("ID PREGUNTA");
+					datos.addColumn("DESCRIPCION PREGUNTA");
+					datos.addColumn("RESPUESTA 1");
+					datos.addColumn("RESPUESTA 2");
+					datos.addColumn("RESPUESTA 3");
+					datos.addColumn("RESPUESTA 4");
+					datos.addColumn("RESPUESTA CORRECTA");
+					datos.addColumn("ID PROGRAMA");
+					datos.addColumn("PUNTAJE");
+					for (int j=0; j<preguntas.size();j++){
+						Vector<String> lista = new Vector<String>();
+						lista.add(Integer.toString(preguntas.get(j).getId()));
+						lista.add(preguntas.get(j).getDescripcion());
+						lista.add(preguntas.get(j).getRespuesta1());
+						lista.add(preguntas.get(j).getRespuesta2());
+						lista.add(preguntas.get(j).getRespuesta3());
+						lista.add(preguntas.get(j).getRespuesta4());
+						lista.add(Integer.toString(preguntas.get(j).getRespuestaCorrecta()));
+						lista.add(Integer.toString(preguntas.get(j).getIdPrograma()));
+						lista.add(Integer.toString(preguntas.get(j).getPuntaje()));
+						datos.addRow(lista);
+					}
 					
 				}else{
-					
+					datos.setColumnCount(0);
+					datos.setNumRows(0);
+					JOptionPane.showMessageDialog(null, "Por favor seleccione una opción");
 				}
 				
 			}
