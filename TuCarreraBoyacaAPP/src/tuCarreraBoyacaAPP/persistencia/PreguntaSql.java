@@ -70,7 +70,13 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectPreguntas() {
-		return "SLECT * FROM pregunta_test";
+		return "SELECT pregunta_test.ID_PREGUNTA, "
+				+"DESCRIPCION_PREGUNTA, RESPUESTA_1,"
+				+"RESPUESTA_2, RESPUESTA_3, RESPUESTA_4,"
+				+"RESPUESTA_CORRECTA, ID_PROGRAMA_ACADEMICO, PUNTAJE"
+				+"FROM pregunta_test JOIN (progacademico_pregtest)" 
+				+" WHERE progacademico_pregtest.ID_PREGUNTA = pregunta_test.ID_PREGUNTA"
+				+" ORDER BY pregunta_test.ID_PREGUNTA";
 
 	}
 
