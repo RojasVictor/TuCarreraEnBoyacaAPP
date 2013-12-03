@@ -53,7 +53,7 @@ public class GestionPreguntaTest {
 	 ** @return ArrayList - un ArrayList de los objetos presentes
 	 ***/ 
 	public ArrayList<PreguntaTest> readPreguntaTests () {
-		return (ArrayList<PreguntaTest>) preguntaDao.selectPreguntas();
+		return preguntaDao.selectPreguntas();
 	}
 	
 	
