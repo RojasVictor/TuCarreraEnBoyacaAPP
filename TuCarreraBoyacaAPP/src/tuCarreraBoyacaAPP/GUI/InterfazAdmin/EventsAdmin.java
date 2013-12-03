@@ -97,6 +97,7 @@ public class EventsAdmin implements ActionListener{
 	public static float encriptarContraseña(float sinEncriptar){
 		float encriptada = (sinEncriptar - 346) / 222;		
 		return encriptada;
+		
 	}
 	
 	/**
