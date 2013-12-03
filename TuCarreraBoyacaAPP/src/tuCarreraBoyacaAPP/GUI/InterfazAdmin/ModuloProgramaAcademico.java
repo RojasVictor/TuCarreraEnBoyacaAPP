@@ -326,7 +326,7 @@ public class ModuloProgramaAcademico extends JFrame {
 					auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
 					for (int z=0;z<listadoAreas.size();z++){
 						String [] aux = listadoAreas.get(z);
-						if(aux[0].equals(auxArea)){
+						if(aux[1].equals(auxArea)){
 							idArea = Integer.parseInt(aux[0]);
 						}
 					}
@@ -343,7 +343,8 @@ public class ModuloProgramaAcademico extends JFrame {
 				txt_Id_ProgramasAcademicos.setText("");
 				txt_Nombre_PA.setText("");
 				txt_Costo_PA.setText("");
-				
+				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
+				comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
 			}
 		});
 		
