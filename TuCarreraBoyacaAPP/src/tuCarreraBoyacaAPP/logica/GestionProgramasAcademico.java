@@ -84,7 +84,7 @@ public class GestionProgramasAcademico {
 	 * @return ArrayList de programas academicos existentes
 	 */
 	public ArrayList<ProgramaAcademico> readProgramasAcademico (){
-		return (ArrayList<ProgramaAcademico>) academicos.clone();
+		return academicoDao.selectProgramas();
 	}
 	
 	/**

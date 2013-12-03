@@ -77,8 +77,8 @@ public class ProgramaAcademicoSql {
 	public String selectProgramas() {
 		return "SELECT programa_academico.ID_PROGRAMA_ACADEMICO,"
 				+"ID_AREA, NOMBRE_PROGRAMA_ACADEMICO, COSTO_PROGRAMA, ID_INSTITUCION"
-				+"FROM programa_academico"
-				+"JOIN ( programa_academico_institucion_educacion_superior)"
+				+" FROM programa_academico"
+				+" JOIN (programa_academico_institucion_educacion_superior)"
 				+" WHERE programa_academico.ID_PROGRAMA_ACADEMICO = programa_academico_institucion_educacion_superior.ID_PROGRAMA_ACADEMICO"
 				+" ORDER BY ID_PROGRAMA_ACADEMICO";
 	}

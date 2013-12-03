@@ -98,8 +98,8 @@ public class ProgramaAcademicoDao {
 					String costo = datos.getString("COSTO_PROGRAMA");
 					int idInstitucion = Integer.parseInt(datos.getString("ID_INSTITUCION"));
 					programa = new ProgramaAcademico(id, idArea, nombre, costo, idInstitucion);
-					
-				}
+					academicos.add(programa);					
+				}				
 				return academicos;
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
