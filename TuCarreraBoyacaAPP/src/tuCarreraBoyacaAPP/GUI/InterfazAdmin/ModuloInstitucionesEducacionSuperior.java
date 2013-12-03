@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -36,7 +38,21 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 	private JTextField txt_Nombre_IES;
 	private JTextField txt_Url_IES;
 	private GestionInstitucionesEducacionSuperior gestionInstituciones;
-
+	/**
+	 * 
+	 * @param url del sitio web de la institucion de educacion superior
+	 * @return true en caso de que el campo ingresado si sea considerado URL
+	 */
+	private boolean validateUrl(String url){
+		String regex = "\\b(www).[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|].(edu.co)";
+		try {
+            Pattern patt = Pattern.compile(regex);
+            Matcher matcher = patt.matcher(url);
+            return matcher.matches();
+        } catch (RuntimeException e) {
+        return false;
+        }
+	}
 	/**
 	 * Launch the application.
 	 */
