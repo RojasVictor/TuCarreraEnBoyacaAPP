@@ -120,11 +120,20 @@ public class GestionProgramasAcademico {
 	 * @return true - si se elimino el elemento correctamente 
 	 */
 	public boolean removeProgramasAcademicos(int id){
-		for(int i=0; i<academicos.size();i++){
-			if(academicos.get(i).getId() == id){
-				return academicos.remove(academicos.get(i));
+		academicos = readProgramasAcademico();
+		ProgramaAcademico elemento = searchProgramaAcademico(id);
+		ProgramaAcademico busqueda;
+		if(elemento != null){
+			for(int i=0; i<academicos.size();i++){
+				busqueda = getAcademicos().get(i);
+				if(academicos.get(i).getId() == id){
+					academicoDao.deletePrograma(elemento.getId());
+					academicos = readProgramasAcademico();
+					return true;
+				}
 			}
 		}
+		
 		return false;
 	}
 }
