@@ -24,6 +24,11 @@ public class ProgramaAcademicoDao {
 	}
 
 //Methods-------------------------------------
+	/**
+	 * 
+	 * @param programa
+	 * @return -1 si el comando sql no se ejecuta correctamente
+	 */
 	public int insertPrograma(ProgramaAcademico programa){
 		if(conexion.conectar()){
 			try{
@@ -36,7 +41,11 @@ public class ProgramaAcademicoDao {
 		return -1;
 	}
 
-
+	/**
+	 * 
+	 * @param idPrograma
+	 * @return -1 si el comando sql no se ejecuta correctamente
+	 */
 	public int deletePrograma(int idPrograma){
 		if(conexion.conectar()){
 			try{
@@ -49,7 +58,11 @@ public class ProgramaAcademicoDao {
 		return -1;
 	}
 
-
+	/**
+	 * 
+	 * @param programa
+	 * @return -1 si el comando sql no se ejecuta correctamente
+	 */
 	public int updatePrograma(ProgramaAcademico programa){
 		if(conexion.conectar()){
 			try{
@@ -62,12 +75,32 @@ public class ProgramaAcademicoDao {
 		return -1;
 	}
 
-
+	/**
+	 * 
+	 * @return null - si no hay registros en la base de datos, y en caso contrario retorna objeto de tipo ResultSet con los datos de la base de datos
+	 * 
+	 */
 	public ResultSet selectProgramas(){
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
 				return sentencia.executeQuery(academicoSql.selectProgramas());
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return null - si no hay registros en la base de datos, y en caso contrario retorna objeto de tipo ResultSet con los datos de la base de datos
+	 */
+	public ResultSet selectAreas(){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeQuery(academicoSql.selectAreas());
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}
