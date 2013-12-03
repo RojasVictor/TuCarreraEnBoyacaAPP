@@ -308,7 +308,8 @@ public class ModuloProgramaAcademico extends JFrame {
 				String costo= "";
 				int idArea = 0;
 				int idInstitucion = 0;
-				
+				String auxIns = "";
+				String auxArea = "";				
 				try{	
 				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
 				}catch(NumberFormatException e){
@@ -316,14 +317,25 @@ public class ModuloProgramaAcademico extends JFrame {
 				}
 				if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
 						|| comboBox_AreaPrograma.getSelectedItem().toString().equals("SELECCIONAR") 
-								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){
-					
+								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){					
 					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
-				}else{
-					
+				}else{					
 					nombre = txt_Nombre_PA.getText();
 					costo = txt_Costo_PA.getText();
-					
+					auxIns = comboBox_Instituciones.getSelectedItem().toString();
+					auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
+					for (int z=0;z<listadoAreas.size();z++){
+						String [] aux = listadoAreas.get(z);
+						if(aux[0].equals(auxArea)){
+							idArea = Integer.parseInt(aux[0]);
+						}
+					}
+					for (int t=0;t<listadoInstituciones.size();t++){
+						String aux = listadoInstituciones.get(t).getNombre();
+						if(aux.equals(auxIns)){
+							idInstitucion = listadoInstituciones.get(t).getId();
+						}
+					}					
 				}				
 				if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
 					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
