@@ -17,10 +17,14 @@ public class GestionProgramasAcademico {
 	
 	private ArrayList<ProgramaAcademico> academicos;
 	private ProgramaAcademicoDao academicoDao;
+	private ArrayList<String []> areas; 
+	
 	//Building ----------------------------------------------------------
 	public GestionProgramasAcademico() {
 		academicos = new ArrayList<ProgramaAcademico>();
 		academicoDao = new ProgramaAcademicoDao();
+		academicos = readProgramasAcademico();
+		areas = readAreas();
 	}
 	
 	//Methods ------------------------------------------------------------
@@ -76,11 +80,12 @@ public class GestionProgramasAcademico {
 	 * @param area - nombre del area que queda actualizado en el elemento
 	 * @return true - si se actualiza exitosamente el elemento del ArrayList
 	 */
-	public boolean updateProgramasAcademicos(int id, String nombre, String categoria, int costo){
+	public boolean updateProgramasAcademicos(int id, int idArea, String nombre, String costo, int idInstitucion){
 		for(int i=0; i<academicos.size();i++){
 			if(academicos.get(i).getId() == id){
 				academicos.get(i).setNombre(nombre);
-				academicos.get(i).setCategoria(categoria);
+				academicos.get(i).setIdArea(idArea);
+				academicos.get(i).setIdInstitucion(idInstitucion);
 				academicos.get(i).setCosto(costo);
 				return true;
 			}
