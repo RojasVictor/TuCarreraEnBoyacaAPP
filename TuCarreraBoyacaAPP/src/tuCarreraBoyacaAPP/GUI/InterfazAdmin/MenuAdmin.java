@@ -100,8 +100,8 @@ public class MenuAdmin extends JFrame {
 			
 		
 		JButton btn_Regresar = new JButton("");
-		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
-		btn_Regresar.setBounds(32, 221, 110, 41);
+		btn_Regresar.setIcon(new ImageIcon(MenuAdmin.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_CerrearSesion.png")));
+		btn_Regresar.setBounds(10, 221, 158, 41);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
 			
