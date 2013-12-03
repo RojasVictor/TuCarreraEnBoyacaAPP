@@ -44,7 +44,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 	 * @return true en caso de que el campo ingresado si sea considerado URL
 	 */
 	private boolean validateUrl(String url){
-		String regex = "\\b(www).[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|].(edu.co)";
+		String regex = "^(www).[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[edu.co]";
 		try {
             Pattern patt = Pattern.compile(regex);
             Matcher matcher = patt.matcher(url);
@@ -187,13 +187,18 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 				}else{
 					nombre = txt_Nombre_IES.getText();
 					url = txt_Url_IES.getText();
-					InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
-					int respuesta = gestionInstituciones.createInstitucionEducacionSuperior(institucion);
-					if (respuesta != -1){
-						JOptionPane.showMessageDialog(null, "Se agrego de forma exitosa");
-					}else{
-						JOptionPane.showMessageDialog(null, "No Se agrego el elemento, problema en base de datos");
-					}					
+					if(validateUrl(url)){
+						InstitucionEducacionSuperior institucion = new InstitucionEducacionSuperior(identificador, nombre, url);
+						int respuesta = gestionInstituciones.createInstitucionEducacionSuperior(institucion);
+						if (respuesta != -1){
+							JOptionPane.showMessageDialog(null, "Se agrego de forma exitosa");
+						}else{
+							JOptionPane.showMessageDialog(null, "No Se agrego el elemento, problema en base de datos");
+						}
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "No Se agrego el elemento, la URL no es valida");
+					}
 				}				
 				txt_Id_IES.setText("");
 				txt_Nombre_IES.setText("");
