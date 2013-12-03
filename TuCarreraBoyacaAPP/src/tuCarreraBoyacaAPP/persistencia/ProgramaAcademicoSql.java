@@ -24,10 +24,11 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertPrograma (ProgramaAcademico programa) {
-		return "INSERT INTO programa_academico VALUES("
-				+Q+programa.getNombre()+Q+","
-				+Q+programa.getCategoria()
-				+Q+programa.getCosto()+Q+");";
+		return "INSERT INTO programa_academico VALUES('"
+				+programa.getId()+"','"
+				+programa.getIdArea()+"','"
+				+programa.getNombre()+"','"
+				+programa.getCosto()+"')";
 		
 	}
 	
@@ -37,7 +38,7 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePrograma (int id) {
-		return "DELETE FROM programa_academico WHERE ID_PROGRAMA="+Q+id+Q+";";	
+		return "DELETE FROM programa_academico WHERE ID_PROGRAMA="+id+";";	
 	
 	}
 	
@@ -47,9 +48,11 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
-		return  "UPDATE INTO programa_academico VALUES("
-				+Q+programa.getNombre()+Q+","
-				+Q+programa.getCategoria()+Q+") WHERE ID_PROGRAMA="+Q+programa.getId()+Q+";";
+			
+		return  "UPDATE  `apptest`.`programa_academico` SET  `ID_AREA` ="+"'"+programa.getIdArea()+"',"
+				+"`NOMBRE_PROGRAMA_ACADEMICO` = '"+programa.getNombre()+"',"
+				+"`COSTO_PROGRAMA` =  '"+programa.getCosto()+"'"
+				+"WHERE  `programa_academico`.`ID_PROGRAMA_ACADEMICO` ="+programa.getId()+";";
 
 	}
 	/**
@@ -59,6 +62,10 @@ public class ProgramaAcademicoSql {
 	public String selectProgramas() {
 		return "SELECT * FROM programa_academico;";
 
+	}
+	
+	public String selectAreas(){
+		return "SELECT * FROM area;";
 	}
 
 }
