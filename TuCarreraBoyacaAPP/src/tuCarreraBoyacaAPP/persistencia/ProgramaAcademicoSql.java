@@ -60,7 +60,11 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectProgramas() {
-		return "SELECT * FROM programa_academico;";
+		return "SELECT programa_academico.ID_PROGRAMA_ACADEMICO,"
+				+"ID_AREA, NOMBRE_PROGRAMA_ACADEMICO, COSTO_PROGRAMA, ID_INSTITUCION"
+				+"FROM programa_academico"
+				+"JOIN ( programa_academico_institucion_educacion_superior)"
+				+"ORDER BY ID_PROGRAMA_ACADEMICO";
 
 	}
 	
