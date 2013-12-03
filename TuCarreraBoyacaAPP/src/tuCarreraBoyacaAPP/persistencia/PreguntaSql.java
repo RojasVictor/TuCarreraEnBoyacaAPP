@@ -74,7 +74,7 @@ public class PreguntaSql {
 				+"DESCRIPCION_PREGUNTA, RESPUESTA_1,"
 				+"RESPUESTA_2, RESPUESTA_3, RESPUESTA_4,"
 				+"RESPUESTA_CORRECTA, ID_PROGRAMA_ACADEMICO, PUNTAJE"
-				+"FROM pregunta_test JOIN (progacademico_pregtest)" 
+				+" FROM pregunta_test JOIN (progacademico_pregtest)" 
 				+" WHERE progacademico_pregtest.ID_PREGUNTA = pregunta_test.ID_PREGUNTA"
 				+" ORDER BY pregunta_test.ID_PREGUNTA";
 
