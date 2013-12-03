@@ -32,6 +32,7 @@ import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 
 import javax.swing.JList;
+import javax.swing.JComboBox;
 
 
 /**
@@ -42,12 +43,14 @@ import javax.swing.JList;
 public class ModuloProgramaAcademico extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_CategoriaPA;
 	private JTextField txt_Nombre_PA;
 	private JTextField txt_Id_ProgramasAcademicos;
 	private JTextField txt_Costo_PA;
 	private GestionProgramasAcademico gestionProgramas;
 	private GestionInstitucionesEducacionSuperior gestionInstituciones;
+	private ArrayList<InstitucionEducacionSuperior> listadoInstituciones;
+	private ArrayList<ProgramaAcademico> listadoProgramas;
+	private ArrayList<String[]> listadoAreas;
 
 	/**
 	 * Launch the application.
@@ -71,7 +74,10 @@ public class ModuloProgramaAcademico extends JFrame {
 	public ModuloProgramaAcademico() {
 		gestionInstituciones = new GestionInstitucionesEducacionSuperior();
 		gestionProgramas = new GestionProgramasAcademico();
-		ArrayList<InstitucionEducacionSuperior> listadoInstituciones;
+		listadoInstituciones = gestionInstituciones.readInstitucionesEducacionSuperior();
+		listadoProgramas = gestionProgramas.readProgramasAcademico();
+		listadoAreas = gestionProgramas.readAreas();
+		
 		setTitle("MODULO PROGRAMAS ACADEMICOS");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_programas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,33 +132,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
 		btn_Agregar.setBounds(194, 395, 73, 66);
 		contentPane.add(btn_Agregar);
-		btn_Agregar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				int identificador = 0;
-				String nombre = "";
-				String categoria = "";
-				//institucion
-				int costo = 0;
-				try{	
-				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
-				}catch(NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-				}
-
-				nombre = txt_Nombre_PA.getText();
-				categoria = txt_CategoriaPA.getText();
-				ProgramaAcademico programa = new ProgramaAcademico(identificador, nombre, categoria, null, costo) ;
-				gestionProgramas.crearProgramaAcademico(programa);
-				
-				txt_Id_ProgramasAcademicos.setText("");
-				txt_Nombre_PA.setText("");
-				txt_CategoriaPA.setText("");
-				txt_Costo_PA.setText("");
-			
-			}	
-		});
+		
 		
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
@@ -168,11 +148,6 @@ public class ModuloProgramaAcademico extends JFrame {
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
 		btn_Eliminar.setBounds(480, 395, 64, 66);
 		contentPane.add(btn_Eliminar);
-		
-		txt_CategoriaPA = new JTextField();
-		txt_CategoriaPA.setColumns(10);
-		txt_CategoriaPA.setBounds(272, 227, 272, 26);
-		contentPane.add(txt_CategoriaPA);
 		
 		txt_Nombre_PA = new JTextField();
 		txt_Nombre_PA.setColumns(10);
@@ -223,6 +198,46 @@ public class ModuloProgramaAcademico extends JFrame {
 		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);	
 		
 		scrollPane.setViewportView(list);
+		
+		JComboBox comboBox_areaPrograma = new JComboBox();
+		comboBox_areaPrograma.setBounds(272, 226, 272, 28);
+		String [] dato;
+		comboBox_areaPrograma.addItem("SELECCIONAR");
+		for (int i=0;i<listadoAreas.size();i++){
+			dato = listadoAreas.get(i);
+			comboBox_areaPrograma.addItem(""+dato[1]);			
+		}		
+		contentPane.add(comboBox_areaPrograma);
+		
+		btn_Agregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				int identificador = 0;
+				String nombre = "";
+				String categoria = "";
+				//institucion
+				int costo = 0;
+				try{	
+				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+				}catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				}
+
+				/*nombre = txt_Nombre_PA.getText();
+				categoria = comboBox_areaPrograma.getSelectedItem().toString();
+				ProgramaAcademico programa = new ProgramaAcademico(identificador, nombre, categoria, null, costo) ;
+				gestionProgramas.crearProgramaAcademico(programa);
+				*/
+				txt_Id_ProgramasAcademicos.setText("");
+				txt_Nombre_PA.setText("");
+				
+				txt_Costo_PA.setText("");
+			
+			}	
+		});
 		
 	}
 }

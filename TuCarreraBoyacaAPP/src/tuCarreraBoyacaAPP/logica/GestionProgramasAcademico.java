@@ -33,7 +33,7 @@ public class GestionProgramasAcademico {
 	 * 
 	 * @return ArrayList<String[]> con los datos de la tabla area
 	 */
-	private ArrayList<String[]> readAreas() {
+	public ArrayList<String[]> readAreas() {
 		return academicoDao.selectAreas();
 	}
 		
@@ -49,13 +49,6 @@ public class GestionProgramasAcademico {
 	 */
 	public void setAcademicos(ArrayList<ProgramaAcademico> academicos) {
 		this.academicos = academicos;
-	}
-
-	/**
-	 * @return the areas
-	 */
-	public ArrayList<String[]> getAreas() {
-		return areas;
 	}
 
 	/**
