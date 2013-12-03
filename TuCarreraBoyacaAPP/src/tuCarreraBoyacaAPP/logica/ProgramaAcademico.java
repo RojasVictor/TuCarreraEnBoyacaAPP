@@ -2,16 +2,12 @@ package tuCarreraBoyacaAPP.logica;
 
 public class ProgramaAcademico {
 
-	private int id;
-	
-	private String nombre;
-	
-	private String categoria;
-	
-	InstitucionEducacionSuperior institucion;
-	
+	private int id;	
+	private String nombre;	
+	private String categoria;	
+	private InstitucionEducacionSuperior institucion;
 	private int costo;
-		
+	private int idArea;	
 	/**
 	 * @param id
 	 * @param nombre
@@ -81,6 +77,22 @@ public class ProgramaAcademico {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/**
+	 * @return
+	 */	
+	public int getIdArea() {
+		return idArea;
+	}
+
+	/**
+	 * @param idArea the idArea to set
+	 */
+	public void setIdArea(int idArea) {
+		this.idArea = idArea;
 	}		
+	
+	
 	
 }
