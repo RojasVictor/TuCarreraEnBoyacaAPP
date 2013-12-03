@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author Victor_Rojas
  *
  */
-public class ArchivoContraseña {
+public class ArchivoContrasena {
 	
 	//Attributes --------------------------------------------
 	
@@ -27,7 +27,7 @@ public class ArchivoContraseña {
 	
     //Building ---------------------------------------------
     
-    public ArchivoContraseña(){
+    public ArchivoContrasena(){
     	lectorArchivo = null;
     	buferLectura = null;
     	listaDatos = null;
