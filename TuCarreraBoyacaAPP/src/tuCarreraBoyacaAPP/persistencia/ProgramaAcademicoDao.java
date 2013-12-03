@@ -112,20 +112,24 @@ public class ProgramaAcademicoDao {
 	 * 
 	 * @return null - si no hay registros en la base de datos, y en caso contrario retorna objeto de tipo ResultSet con los datos de la base de datos
 	 */
-	public ResultSet selectAreas(){
+	public ArrayList<String []> selectAreas(){
+		ResultSet datos;
+		ArrayList<String []> resultado = new ArrayList<String []>();
+		String [] aux = new String[2];
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
-				return sentencia.executeQuery(academicoSql.selectAreas());
+				datos = sentencia.executeQuery(academicoSql.selectAreas());
+				while (datos.next()){
+					aux[0] = datos.getString("ID_AREA");
+					aux[1] = datos.getString("NOMBRE_AREA");
+					resultado.add(aux);
+				}
+				
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}
 		}
 		return null;
 	}
-	
-	public ArrayList<String []> readAreas(){
-		return null;
-	}
-
 }

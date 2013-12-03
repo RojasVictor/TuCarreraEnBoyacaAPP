@@ -29,14 +29,42 @@ public class GestionProgramasAcademico {
 	
 	//Methods ------------------------------------------------------------
 	
+	/**
+	 * 
+	 * @return ArrayList<String[]> con los datos de la tabla area
+	 */
+	private ArrayList<String[]> readAreas() {
+		return academicoDao.selectAreas();
+	}
+		
+	/**
+	 * @return the academicos
+	 */
 	public ArrayList<ProgramaAcademico> getAcademicos() {
 		return academicos;
 	}
 
+	/**
+	 * @param academicos the academicos to set
+	 */
 	public void setAcademicos(ArrayList<ProgramaAcademico> academicos) {
 		this.academicos = academicos;
 	}
-	
+
+	/**
+	 * @return the areas
+	 */
+	public ArrayList<String[]> getAreas() {
+		return areas;
+	}
+
+	/**
+	 * @param areas the areas to set
+	 */
+	public void setAreas(ArrayList<String[]> areas) {
+		this.areas = areas;
+	}
+
 	/**
 	 * 
 	 * @param programa -- objeto de tipo ProgramaAcademico para agregar en el ArrayList
@@ -106,5 +134,4 @@ public class GestionProgramasAcademico {
 		}
 		return false;
 	}
-
 }
