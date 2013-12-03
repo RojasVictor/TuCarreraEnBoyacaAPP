@@ -24,12 +24,14 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertPrograma (ProgramaAcademico programa) {
-		return "INSERT INTO programa_academico VALUES('"
-				+programa.getId()+"','"
-				+programa.getIdArea()+"','"
-				+programa.getNombre()+"','"
-				+programa.getCosto()+"')";
-		
+		return "START TRANSACTION; INSERT INTO programa_academico VALUES ("
+				+programa.getId()+","
+				+programa.getIdArea()+",'"
+				+programa.getNombre()+"',"
+				+programa.getCosto()+");"
+				+"INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
+				+programa.getIdInstitucion()+","
+				+programa.getId()+");COMMIT;";		
 	}
 	
 	/**
