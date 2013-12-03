@@ -33,6 +33,7 @@ import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
 
 public class MenuPrincipal extends JFrame {
 
+
 	private JPanel contentPane;
 
 	/**
@@ -58,80 +59,43 @@ public class MenuPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 295, 487);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setUndecorated(true);
 		getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 		
-		JLabel lblTest = new JLabel("TEST  VOCACIONAL");
-		lblTest.setForeground(new Color(0, 0, 139));
-		lblTest.setFont(new Font("Berlin Sans FB", Font.BOLD, 16));
-		lblTest.setBounds(72, 69, 156, 29);
-		contentPane.add(lblTest);
+		JLabel lbl_TituloPrincipal = new JLabel("");
+		lbl_TituloPrincipal.setIcon(new ImageIcon(this.getClass().getResource("Images/TituloPrincipal.png")));
+		lbl_TituloPrincipal.setBounds(0, 0, 295, 75);
+		contentPane.add(lbl_TituloPrincipal);
 		
-		JLabel lblMenPrincipal = new JLabel("Menú Principal");
-		lblMenPrincipal.setForeground(new Color(0, 0, 139));
-		lblMenPrincipal.setFont(new Font("Berlin Sans FB", Font.BOLD, 16));
-		lblMenPrincipal.setBounds(80, 90, 123, 29);
-		contentPane.add(lblMenPrincipal);
+		JLabel lbl_Titulo = new JLabel("TEST VOCACIONAL");
+		lbl_Titulo.setForeground(new Color(25, 25, 112));
+		lbl_Titulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
+		lbl_Titulo.setBounds(62, 86, 165, 14);
+		contentPane.add(lbl_Titulo);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(this.getClass().getResource("images/titprincipal.png")));
-		label_2.setBounds(0, 0, 295, 42);
-		contentPane.add(label_2);
+		JLabel lbl_SubTitulo = new JLabel("Men\u00FA Principal");
+		lbl_SubTitulo.setForeground(new Color(25, 25, 112));
+		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
+		lbl_SubTitulo.setBounds(82, 110, 133, 14);
+		contentPane.add(lbl_SubTitulo);
 		
-		JLabel label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(this.getClass().getResource("images/nina.png")));
-		label_6.setBounds(32, 225, 48, 42);
-		contentPane.add(label_6);
+		JLabel lbl_Logo = new JLabel("");
+		lbl_Logo.setIcon(new ImageIcon(this.getClass().getResource("Images/Logo_TCBAPP.png")));
+		lbl_Logo.setBounds(61, 170, 154, 111);
+		contentPane.add(lbl_Logo);
 		
-		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon(this.getClass().getResource("images/nino.png")));
-		label_7.setBounds(234, 100, 51, 37);
-		contentPane.add(label_7);
-		
-		JLabel label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon(this.getClass().getResource("images/estudiantes.png")));
-		label_8.setBounds(24, 334, 46, 42);
-		contentPane.add(label_8);
-		
-		JLabel label_10 = new JLabel("");
-		label_10.setIcon(new ImageIcon(this.getClass().getResource("images/Universidad.png")));
-		label_10.setBounds(221, 315, 46, 61);
-		contentPane.add(label_10);
-		
-		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(this.getClass().getResource("images/options.png")));
-		label_5.setBounds(0, 69, 46, 41);
-		contentPane.add(label_5);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("images/Logo_TCBAPP.png")));
-		label.setBounds(44, 130, 216, 186);
-		contentPane.add(label);
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(this.getClass().getResource("images/iniciar.png")));
-		button_2.setBounds(10, 387, 275, 42);
-		contentPane.add(button_2);
-		button_2.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				Inicio.main(null);				
-			}
-			});
-			contentPane.add(button_2);
-		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(this.getClass().getResource("images/salir.png")));
-		button_3.setBounds(10, 434, 275, 42);
-		contentPane.add(button_3);
-		button_3.addActionListener(new ActionListener(){
+		JButton btn_Salir = new JButton("");
+		btn_Salir.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_salir.png")));
+		btn_Salir.setBounds(10, 435, 275, 41);
+		contentPane.add(btn_Salir);
+		btn_Salir.addActionListener(new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -139,18 +103,46 @@ public class MenuPrincipal extends JFrame {
 				System.exit (0);			
 			}
 			});
-			contentPane.add(button_3);
-				
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(this.getClass().getResource("images/help.png")));
-		button.setBounds(91, 321, 51, 55);
-		contentPane.add(button);
+			contentPane.add(btn_Salir);
 		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(this.getClass().getResource("images/sonido.png")));
-		button_1.setBounds(152, 321, 51, 55);
-		contentPane.add(button_1);
+		JButton btn_Ingresar = new JButton("");
+		btn_Ingresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Ingresar.png")));
+		btn_Ingresar.setBounds(10, 383, 275, 41);
+		contentPane.add(btn_Ingresar);
+		btn_Ingresar.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				InicioTest.main(null);				
+			}
+			});
+			contentPane.add(btn_Ingresar);
+			
+		JButton btn_ComoIniciar = new JButton("");
+		btn_ComoIniciar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_comoIniciar.png")));
+		btn_ComoIniciar.setBounds(152, 297, 89, 75);
+		contentPane.add(btn_ComoIniciar);
 		
+		JButton btn_Sonido = new JButton("");
+		btn_Sonido.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Sonido.png")));
+		btn_Sonido.setBounds(53, 297, 89, 75);
+		contentPane.add(btn_Sonido);
+		
+		JLabel lbl_ImagenVocacional = new JLabel("");
+		lbl_ImagenVocacional.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_opcion.png")));
+		lbl_ImagenVocacional.setBounds(237, 86, 46, 38);
+		contentPane.add(lbl_ImagenVocacional);
+		
+		JLabel lbl_ImagenNina = new JLabel("");
+		lbl_ImagenNina.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_estMujer.png")));
+		lbl_ImagenNina.setBounds(30, 172, 54, 32);
+		contentPane.add(lbl_ImagenNina);
+		
+		JLabel label_ImagenNino = new JLabel("");
+		label_ImagenNino.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_estHombre.png")));
+		label_ImagenNino.setBounds(196, 236, 54, 45);
+		contentPane.add(label_ImagenNino);
+
 	}
 }
-
