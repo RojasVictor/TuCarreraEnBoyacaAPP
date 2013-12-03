@@ -4,17 +4,17 @@
 /*==============================================================*/
 
 
+drop table if exists PROGRAMA_ACADEMICO;
+
+drop table if exists PROGACADEMICO_PREGTEST;
+
+drop table if exists PROGRAMA_ACADEMICO_INSTITUCION_EDUCACION_SUPERIOR;
+
 drop table if exists AREA;
 
 drop table if exists INSTITUCION_EDUCACION_SUPERIOR;
 
 drop table if exists PREGUNTA_TEST;
-
-drop table if exists PROGACADEMICO_PREGTEST;
-
-drop table if exists PROGRAMA_ACADEMICO;
-
-drop table if exists PROGRAMA_ACADEMICO_INSTITUCION_EDUCACION_SUPERIOR;
 
 /*==============================================================*/
 /* Table: AREA                                                  */
@@ -86,17 +86,17 @@ create table PROGRAMA_ACADEMICO_INSTITUCION_EDUCACION_SUPERIOR
 );
 
 alter table PROGACADEMICO_PREGTEST add constraint FK_R1_PROGRAMA_PREGUNTA foreign key (ID_PROGRAMA_ACADEMICO)
-      references PROGRAMA_ACADEMICO (ID_PROGRAMA_ACADEMICO) on delete restrict on update restrict;
+      references PROGRAMA_ACADEMICO (ID_PROGRAMA_ACADEMICO) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table PROGACADEMICO_PREGTEST add constraint FK_R2_PREGUNTA_PROGRAMA foreign key (ID_PREGUNTA)
-      references PREGUNTA_TEST (ID_PREGUNTA) on delete restrict on update restrict;
+      references PREGUNTA_TEST (ID_PREGUNTA) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table PROGRAMA_ACADEMICO add constraint FK_PROGRAMA_AREA foreign key (ID_AREA)
-      references AREA (ID_AREA) on delete restrict on update restrict;
+      references AREA (ID_AREA) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table PROGRAMA_ACADEMICO_INSTITUCION_EDUCACION_SUPERIOR add constraint FK_R3_PROGRAMA_INSTITUCION foreign key (ID_PROGRAMA_ACADEMICO)
-      references PROGRAMA_ACADEMICO (ID_PROGRAMA_ACADEMICO) on delete restrict on update restrict;
+      references PROGRAMA_ACADEMICO (ID_PROGRAMA_ACADEMICO) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table PROGRAMA_ACADEMICO_INSTITUCION_EDUCACION_SUPERIOR add constraint FK_R4_INSTITUCION_PROGRAMA foreign key (ID_INSTITUCION)
-      references INSTITUCION_EDUCACION_SUPERIOR (ID_INSTITUCION) on delete restrict on update restrict;
+      references INSTITUCION_EDUCACION_SUPERIOR (ID_INSTITUCION) ON DELETE CASCADE ON UPDATE CASCADE;
 
