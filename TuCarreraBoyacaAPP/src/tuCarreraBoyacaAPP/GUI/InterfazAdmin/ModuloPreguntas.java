@@ -143,14 +143,13 @@ public class ModuloPreguntas extends JFrame {
 			}
 		});
 	
-		
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
 		btn_Guardar.setBounds(519, 225, 73, 66);
 		contentPane.add(btn_Guardar);
 		
 		JButton btn_Buscar = new JButton("");
-		btn_Buscar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Busca.png")));
+		btn_Buscar.setIcon(new ImageIcon(ModuloPreguntas.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
 		btn_Buscar.setBounds(519, 352, 73, 66);
 		contentPane.add(btn_Buscar);
 		
@@ -159,9 +158,9 @@ public class ModuloPreguntas extends JFrame {
 		btn_Eliminar.setBounds(519, 467, 73, 66);
 		contentPane.add(btn_Eliminar);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(460, 149, 17, 36);
-		contentPane.add(scrollBar);
+		JScrollBar scrollBar_DescripcionPregunta = new JScrollBar();
+		scrollBar_DescripcionPregunta.setBounds(460, 149, 17, 36);
+		contentPane.add(scrollBar_DescripcionPregunta);
 		
 		JTextArea txtArea_DescripcionPregunta = new JTextArea();
 		txtArea_DescripcionPregunta.setBounds(204, 151, 273, 34);
@@ -197,36 +196,36 @@ public class ModuloPreguntas extends JFrame {
 		lbl_RespuestaCuatro.setBounds(19, 329, 174, 25);
 		contentPane.add(lbl_RespuestaCuatro);
 		
-		JScrollBar scrollBar_2 = new JScrollBar();
-		scrollBar_2.setBounds(460, 322, 17, 34);
-		contentPane.add(scrollBar_2);
+		JScrollBar scrollBar_Respuesta4 = new JScrollBar();
+		scrollBar_Respuesta4.setBounds(460, 322, 17, 34);
+		contentPane.add(scrollBar_Respuesta4);
 		
 		JLabel lbl_RespuestaUno = new JLabel("Respuesta Uno");
 		lbl_RespuestaUno.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
 		lbl_RespuestaUno.setBounds(18, 200, 174, 25);
 		contentPane.add(lbl_RespuestaUno);
 		
-		JScrollBar scrollBar_3 = new JScrollBar();
-		scrollBar_3.setBounds(460, 196, 17, 33);
-		contentPane.add(scrollBar_3);
+		JScrollBar scrollBar_Respuesta1 = new JScrollBar();
+		scrollBar_Respuesta1.setBounds(460, 196, 17, 33);
+		contentPane.add(scrollBar_Respuesta1);
 		
 		JLabel lbl_RespuestaDos = new JLabel("Respuesta Dos");
 		lbl_RespuestaDos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
 		lbl_RespuestaDos.setBounds(20, 246, 174, 25);
 		contentPane.add(lbl_RespuestaDos);
 		
-		JScrollBar scrollBar_4 = new JScrollBar();
-		scrollBar_4.setBounds(460, 240, 17, 31);
-		contentPane.add(scrollBar_4);
+		JScrollBar scrollBar_Respuesta2 = new JScrollBar();
+		scrollBar_Respuesta2.setBounds(460, 240, 17, 31);
+		contentPane.add(scrollBar_Respuesta2);
 		
 		JLabel lblRespuestaTres = new JLabel("Respuesta Tres");
 		lblRespuestaTres.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
 		lblRespuestaTres.setBounds(19, 286, 174, 25);
 		contentPane.add(lblRespuestaTres);
 		
-		JScrollBar scrollBar_5 = new JScrollBar();
-		scrollBar_5.setBounds(460, 282, 17, 29);
-		contentPane.add(scrollBar_5);
+		JScrollBar scrollBar_Respuesta3 = new JScrollBar();
+		scrollBar_Respuesta3.setBounds(460, 282, 17, 29);
+		contentPane.add(scrollBar_Respuesta3);
 		
 		JTextArea txtArea_Respuesta2 = new JTextArea();
 		txtArea_Respuesta2.setBounds(204, 242, 273, 29);
