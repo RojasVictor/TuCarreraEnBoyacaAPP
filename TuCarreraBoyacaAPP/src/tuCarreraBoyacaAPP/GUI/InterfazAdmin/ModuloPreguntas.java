@@ -49,6 +49,11 @@ public class ModuloPreguntas extends JFrame {
 	private JTextArea textAreaRespuesta2;
 	private JTextArea textAreaRespuesta3;
 	private JTextArea textAreaRespuesta4;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JScrollPane scrollPane_2;
+	private JScrollPane scrollPane_3;
+	private JScrollPane scrollPane_4;
 	
 	/**
 	 * Launch the application.
@@ -248,40 +253,51 @@ public class ModuloPreguntas extends JFrame {
 		separator_1.setBounds(10, 171, 487, 2);
 		contentPane.add(separator_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(207, 232, 273, 36);
 		contentPane.add(scrollPane);
 		
 		textAreaDescripcion = new JTextArea();
 		scrollPane.setViewportView(textAreaDescripcion);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(207, 283, 273, 36);
 		contentPane.add(scrollPane_1);
 		
 		textAreaRespuesta1 = new JTextArea();
 		scrollPane_1.setViewportView(textAreaRespuesta1);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(207, 335, 273, 36);
 		contentPane.add(scrollPane_2);
 		
 		textAreaRespuesta2 = new JTextArea();
 		scrollPane_2.setViewportView(textAreaRespuesta2);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3 = new JScrollPane();
 		scrollPane_3.setBounds(207, 382, 273, 36);
 		contentPane.add(scrollPane_3);
 		
 		textAreaRespuesta3 = new JTextArea();
 		scrollPane_3.setViewportView(textAreaRespuesta3);
 		
-		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(207, 428, 273, 36);
 		contentPane.add(scrollPane_4);
 		
 		textAreaRespuesta4 = new JTextArea();
 		scrollPane_4.setViewportView(textAreaRespuesta4);
+		
+		txt_Id_Pregunta.setEnabled(false);
+		txt_EstimacionPuntaje.setEnabled(false);
+		spinner_RespuestaCorrecta.setEnabled(false);
+		cmbBox_CategoriaPA.setEnabled(false);
+		cmbBox_ProgramaAcademico.setEnabled(false);
+		textAreaDescripcion.setEnabled(false);
+		textAreaRespuesta1.setEnabled(false);
+		textAreaRespuesta2.setEnabled(false);
+		textAreaRespuesta3.setEnabled(false);
+		textAreaRespuesta4.setEnabled(false);
 		
 		comboBoxOpcionPrincipal.addActionListener(new ActionListener() {
 			
@@ -290,12 +306,44 @@ public class ModuloPreguntas extends JFrame {
 			String seleccion = comboBoxOpcionPrincipal.getSelectedItem().toString();
 				if (seleccion.equals(OPCION1)){
 					
+					txt_Id_Pregunta.setEnabled(false);
+					txt_EstimacionPuntaje.setEnabled(false);
+					spinner_RespuestaCorrecta.setEnabled(false);
+					cmbBox_CategoriaPA.setEnabled(false);
+					cmbBox_ProgramaAcademico.setEnabled(false);
+					textAreaDescripcion.setEnabled(false);
+					textAreaRespuesta1.setEnabled(false);
+					textAreaRespuesta2.setEnabled(false);
+					textAreaRespuesta3.setEnabled(false);
+					textAreaRespuesta4.setEnabled(false);
+					
 				}else if(seleccion.equals(OPCION2)){
+					txt_Id_Pregunta.setEnabled(true);
+					textAreaDescripcion.setEnabled(true);
+					textAreaRespuesta1.setEnabled(true);
+					textAreaRespuesta2.setEnabled(true);
+					textAreaRespuesta3.setEnabled(true);
+					textAreaRespuesta4.setEnabled(true);
+					spinner_RespuestaCorrecta.setEnabled(true);
+					txt_EstimacionPuntaje.setEnabled(false);
+					cmbBox_CategoriaPA.setEnabled(false);
+					cmbBox_ProgramaAcademico.setEnabled(false);
 					
 				}else if(seleccion.equals(OPCION3)){
-					
+					txt_EstimacionPuntaje.setEnabled(true);
+					cmbBox_CategoriaPA.setEnabled(true);
+					cmbBox_ProgramaAcademico.setEnabled(true);
+					txt_Id_Pregunta.setEnabled(false);
+					textAreaDescripcion.setEnabled(false);
+					textAreaRespuesta1.setEnabled(false);
+					textAreaRespuesta2.setEnabled(false);
+					textAreaRespuesta3.setEnabled(false);
+					textAreaRespuesta4.setEnabled(false);
+					spinner_RespuestaCorrecta.setEnabled(false);
 				}
 			}
 		});
+		
+		
 	}
 }
