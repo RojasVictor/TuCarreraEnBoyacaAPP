@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +33,7 @@ import tuCarreraBoyacaAPP.logica.GestionInstitucionesEducacionSuperior;
  *
  */
 
-public class ModuloInstitucionesEducacionSuperior extends JFrame {
+public class ModuloInstitucionesEducacionSuperior extends JFrame implements KeyListener{
 
 	private JPanel contentPane;
 	private JTextField txt_Id_IES;
@@ -112,6 +114,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		txt_Id_IES.setBounds(276, 139, 273, 26);
 		contentPane.add(txt_Id_IES);
 		txt_Id_IES.setColumns(10);
+		txt_Id_IES.addKeyListener(this);
 		
 		txt_Nombre_IES = new JTextField();
 		txt_Nombre_IES.setColumns(10);
@@ -270,6 +273,27 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame {
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
 		lbl_SubTitulo.setBounds(134, 73, 410, 26);
 		contentPane.add(lbl_SubTitulo);
+
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int k = (int) e.getKeyChar(); 
+		if (k >= 97 && k <= 122 || k >= 65 && k <= 90) { 
+
+		e.consume();
+		JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros!!!", "Datos Invalidos", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 
 	}
 }
