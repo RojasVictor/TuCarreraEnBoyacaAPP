@@ -31,8 +31,7 @@ public class PreguntaSql {
 				+pregunta.getRespuesta2()+"','"
 				+pregunta.getRespuesta3()+"','"
 				+pregunta.getRespuesta4()+"','"
-				+pregunta.getRespuestaCorrecta()+"')";
-		
+				+pregunta.getRespuestaCorrecta()+"')";		
 	}
 	
 	/**
@@ -41,8 +40,7 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePregunta (int id) {
-		return "DELETE FROM pregunta_test WHERE ID_PREGUNTA="+id+";";	
-		
+		return "DELETE FROM pregunta_test WHERE ID_PREGUNTA="+id+";";		
 	}
 	
 	/**
@@ -61,15 +59,13 @@ public class PreguntaSql {
 				+"`RESPUESTA_4` = '"+pregunta.getRespuesta4()+"','"
 				+"`RESPUESTA_CORRECTA` = '"+pregunta.getRespuestaCorrecta()
 				+"' WHERE `pregunta_test`.`ID_PREGUNTA` ="+pregunta.getId()+";";
-
-
 	}
 	
 	/**
 	 * 
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String selectPreguntas() {
+	public String selectPreguntasReporte() {
 		return "SELECT pregunta_test.ID_PREGUNTA, "
 				+"DESCRIPCION_PREGUNTA, RESPUESTA_1,"
 				+"RESPUESTA_2, RESPUESTA_3, RESPUESTA_4,"
@@ -78,6 +74,13 @@ public class PreguntaSql {
 				+" WHERE progacademico_pregtest.ID_PREGUNTA = pregunta_test.ID_PREGUNTA"
 				+" ORDER BY pregunta_test.ID_PREGUNTA";
 
+	}
+	 /**
+	  * 
+	  * @return String - Comando SQL para ejecutar sobre la base de datos
+	  */
+	public String selectPreguntas(){
+		return "SELECT * From pregunta_test;";
 	}
 
 }

@@ -83,6 +83,38 @@ public class PreguntaDao {
 	 * 
 	 * @return ArrayList con todos los datos de la tabla pregunta_test de la BD
 	 */
+	public ArrayList<String[]> selectPreguntasReportes() {
+		ResultSet datos;
+		
+		ArrayList<String[]> preguntas = new ArrayList<String[]>();
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				datos = sentencia.executeQuery(sqlPregunta.selectPreguntasReporte());
+				while (datos.next()) {
+					String[] pregunta = new String[9];
+					pregunta[0] = datos.getString("ID_PREGUNTA");
+					pregunta[1] = datos.getString("DESCRIPCION_PREGUNTA");
+					pregunta[2] = datos.getString("RESPUESTA_1");
+					pregunta[3] = datos.getString("RESPUESTA_2");
+					pregunta[4] = datos.getString("RESPUESTA_3");
+					pregunta[5] = datos.getString("RESPUESTA_4");
+					pregunta[6] = datos.getString("RESPUESTA_CORRECTA");
+					pregunta[7] = datos.getString("ID_PROGRAMA_ACADEMICO");
+					pregunta[8] = datos.getString("PUNTAJE");
+					preguntas.add(pregunta);
+				}
+				return preguntas;
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
 	public ArrayList<PreguntaTest> selectPreguntas() {
 		ResultSet datos;
 		PreguntaTest pregunta;
@@ -92,23 +124,21 @@ public class PreguntaDao {
 				Statement sentencia=conexion.getConexion().createStatement();
 				datos = sentencia.executeQuery(sqlPregunta.selectPreguntas());
 				while (datos.next()) {
-					int id = Integer.parseInt(datos.getString("ID_PREGUNTA"));
-					String descripcion = datos.getString("DESCRIPCION_PREGUNTA");
-					String respuesta1 = datos.getString("RESPUESTA_1");
-					String respuesta2 = datos.getString("RESPUESTA_2");
-					String respuesta3 = datos.getString("RESPUESTA_3");
-					String respuesta4 = datos.getString("RESPUESTA_4");
-					int respuestaCorrecta = Integer.parseInt(datos.getString("RESPUESTA_CORRECTA"));
-					int idPrograma = Integer.parseInt(datos.getString("ID_PROGRAMA_ACADEMICO"));
-					int puntaje = Integer.parseInt(datos.getString("PUNTAJE"));
-					pregunta = new PreguntaTest(id,descripcion,respuesta1,respuesta2,respuesta3,respuesta4,respuestaCorrecta,idPrograma,puntaje);
+					int identificador = Integer.parseInt(datos.getString("ID_PREGUNTA"));
+					String descrip = datos.getString("DESCRIPCION_PREGUNTA");
+					String r1 = datos.getString("RESPUESTA_1");
+					String r2 = datos.getString("RESPUESTA_2");
+					String r3 = datos.getString("RESPUESTA_3");
+					String r4 = datos.getString("RESPUESTA_4");
+					int respuestaC = Integer.parseInt(datos.getString("RESPUESTA_CORRECTA"));
+					pregunta = new PreguntaTest(identificador, descrip, r1, r2, r3, r4, respuestaC);
 					preguntas.add(pregunta);
 				}
 				return preguntas;
-			}catch (SQLException e){
-				System.out.println(e.getMessage());
+				}catch (SQLException e){
+					System.out.println(e.getMessage());
+				}
 			}
-		}
 		return null;
 	}
 
