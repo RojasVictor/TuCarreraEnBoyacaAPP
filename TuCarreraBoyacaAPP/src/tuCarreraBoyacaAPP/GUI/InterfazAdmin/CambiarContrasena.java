@@ -29,8 +29,8 @@ import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 public class CambiarContrasena extends JFrame{
 	
 	//Attributes ------------------------------------
-	private JTextField textField_ContrasenaActual;
-	private JTextField textField_ContrasenaNueva;
+	private JTextField JPasswordField_ContrasenaActual;
+	private JTextField JPasswordField_ContrasenaNueva;
 	private JLabel lblRespuesta; 
 	private JTextField textField_Usuario;
 	
@@ -90,15 +90,15 @@ public class CambiarContrasena extends JFrame{
 			});
 		getContentPane().add(btn_Regresar);
 		
-		textField_ContrasenaActual = new JTextField();
-		textField_ContrasenaActual.setBounds(178, 120, 135, 27);
-		getContentPane().add(textField_ContrasenaActual);
-		textField_ContrasenaActual.setColumns(10);
+		JPasswordField_ContrasenaActual = new JTextField();
+		JPasswordField_ContrasenaActual.setBounds(178, 120, 135, 27);
+		getContentPane().add(JPasswordField_ContrasenaActual);
+		JPasswordField_ContrasenaActual.setColumns(10);
 		
-		textField_ContrasenaNueva = new JTextField();
-		textField_ContrasenaNueva.setBounds(178, 162, 135, 27);
-		getContentPane().add(textField_ContrasenaNueva);
-		textField_ContrasenaNueva.setColumns(10);
+		JPasswordField_ContrasenaNueva = new JTextField();
+		JPasswordField_ContrasenaNueva.setBounds(178, 162, 135, 27);
+		getContentPane().add(JPasswordField_ContrasenaNueva);
+		JPasswordField_ContrasenaNueva.setColumns(10);
 		
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
@@ -128,8 +128,8 @@ public class CambiarContrasena extends JFrame{
 				boolean resaux = false;
 				boolean respuesta;
 				String usuCambiar = textField_Usuario.getText();
-				float actual = Float.parseFloat(textField_ContrasenaActual.getText());
-				float nueva = Float.parseFloat(textField_ContrasenaNueva.getText());
+				float actual = Float.parseFloat(JPasswordField_ContrasenaActual.getText());
+				float nueva = Float.parseFloat(JPasswordField_ContrasenaNueva.getText());
 				ArchivoContrasena guardaDato = new ArchivoContrasena();
 				ArrayList<String[]> listado = guardaDato.lectura();
 				actual = EventsAdmin.encriptarContrasena(actual);
@@ -148,15 +148,15 @@ public class CambiarContrasena extends JFrame{
 					lblRespuesta.setForeground(Color.GREEN);
 					lblRespuesta.setText("Contrasena Actualizada Correctamente");
 					textField_Usuario.setText("");
-					textField_ContrasenaActual.setText("");
-					textField_ContrasenaNueva.setText("");
+					JPasswordField_ContrasenaActual.setText("");
+					JPasswordField_ContrasenaNueva.setText("");
 															
 				}else{
 					lblRespuesta.setForeground(Color.RED);
 					lblRespuesta.setText("No se pueden actualizar los datos");
 					textField_Usuario.setText("");
-					textField_ContrasenaActual.setText("");
-					textField_ContrasenaNueva.setText("");
+					JPasswordField_ContrasenaActual.setText("");
+					JPasswordField_ContrasenaNueva.setText("");
 				}
 			}
 			});		
