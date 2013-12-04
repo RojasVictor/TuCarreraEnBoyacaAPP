@@ -194,10 +194,7 @@ public class ModuloProgramaAcademico extends JFrame {
 			comboBox_AreaPrograma.addItem(""+dato[1]);			
 		}		
 		contentPane.add(comboBox_AreaPrograma);
-		for(int i=0;i<listadoInstituciones.size();i++){
-			comboBox_Instituciones.addItem(listadoInstituciones.get(i).getNombre());			
-		}
-		
+				
 		JLabel lblOpcionPrincipal = new JLabel("Seleccione una Opci\u00F3n");
 		lblOpcionPrincipal.setBounds(20, 119, 235, 25);
 		lblOpcionPrincipal.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
@@ -215,11 +212,9 @@ public class ModuloProgramaAcademico extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
-					txt_Costo_PA.setEditable(true);
 					txt_Id_ProgramasAcademicos.setEditable(true);
 					txt_Nombre_PA.setEditable(true);
 					comboBox_AreaPrograma.setEnabled(true);
-					comboBox_Instituciones.setEnabled(true);	
 					comboBoxListadoProgramas.setEnabled(false);
 					comboBoxListInstituciones.setEnabled(false);
 					textFieldCostoRelacion.setEditable(false);
@@ -228,17 +223,13 @@ public class ModuloProgramaAcademico extends JFrame {
 						textFieldCostoRelacion.setEditable(true);
 						comboBoxListadoProgramas.setEnabled(true);
 						comboBoxListInstituciones.setEnabled(true);
-						txt_Costo_PA.setEditable(false);
 						txt_Id_ProgramasAcademicos.setEditable(false);
 						txt_Nombre_PA.setEditable(false);
 						comboBox_AreaPrograma.setEnabled(false);
-						comboBox_Instituciones.setEnabled(false);
-					}else{
-						txt_Costo_PA.setEditable(false);
+				}else{
 						txt_Id_ProgramasAcademicos.setEditable(false);
 						txt_Nombre_PA.setEditable(false);
 						comboBox_AreaPrograma.setEnabled(false);
-						comboBox_Instituciones.setEnabled(false);
 						comboBoxListadoProgramas.setEnabled(false);
 						comboBoxListInstituciones.setEnabled(false);
 						textFieldCostoRelacion.setEditable(false);
@@ -317,29 +308,19 @@ public class ModuloProgramaAcademico extends JFrame {
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
-							|| comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1) 
-									|| comboBox_Instituciones.getSelectedItem().toString().equals(OPCION1)){					
+					if (txt_Nombre_PA.getText().equals("") || comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1) ){					
 						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
 					}else{					
 						nombre = txt_Nombre_PA.getText();
-						costo = txt_Costo_PA.getText();
-						auxIns = comboBox_Instituciones.getSelectedItem().toString();
 						auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
 						for (int z=0;z<listadoAreas.size();z++){
 							String [] aux = listadoAreas.get(z);
 							if(aux[1].equals(auxArea)){
 								idArea = Integer.parseInt(aux[0]);
 							}
-						}
-						for (int t=0;t<listadoInstituciones.size();t++){
-							String aux = listadoInstituciones.get(t).getNombre();
-							if(aux.equals(auxIns)){
-								idInstitucion = listadoInstituciones.get(t).getId();
-							}
 						}					
 					}	
-					ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre, costo, idInstitucion);
+					ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre);
 					if(gestionProgramas.crearProgramaAcademico(programa) == -1){
 						JOptionPane.showMessageDialog(null, "No se creo el registro");						
 					}
@@ -347,16 +328,14 @@ public class ModuloProgramaAcademico extends JFrame {
 						JOptionPane.showMessageDialog(null, "Se creo de forma exitosa");
 					}
 					txt_Id_ProgramasAcademicos.setText("");
-					txt_Nombre_PA.setText("");
-					txt_Costo_PA.setText("");
-					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
-					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));					
+					txt_Nombre_PA.setText("");					
+					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));									
 				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
 					String eleIns = comboBoxListInstituciones.getSelectedItem().toString();
 					String eleProg = comboBoxListadoProgramas.getSelectedItem().toString();
 					String costo = textFieldCostoRelacion.getText();
 					InstitucionEducacionSuperior componente1 = new InstitucionEducacionSuperior(0, eleIns, null);
-					ProgramaAcademico componente2= new ProgramaAcademico(0, 0, eleProg, costo, 0);
+					ProgramaAcademico componente2= new ProgramaAcademico(0, 0, eleProg);
 					for (int i=0;i<listadoInstituciones.size();i++){
 						if (listadoInstituciones.get(i).getNombre().equals(eleIns)){
 							componente1 = listadoInstituciones.get(i);
@@ -365,18 +344,16 @@ public class ModuloProgramaAcademico extends JFrame {
 					for (int j=0; j<listadoProgramas.size();j++){
 						if (listadoProgramas.get(j).getNombre().equals(eleProg)){
 							componente2 = listadoProgramas.get(j);
-							componente2.setCosto(costo);
 						}
 					}
-					if(gestionProgramas.crearRelacion(componente2, componente1) != -1){
+					if(gestionProgramas.crearRelacion(componente2.getId(), componente1.getId(),costo) != -1){
 						JOptionPane.showMessageDialog(null, "Se creo la relacion correctamente");
 					}else{
 						JOptionPane.showMessageDialog(null, "No se creo la relacion");	
 					}
 					textFieldCostoRelacion.setText("");
 					comboBoxListadoProgramas.setSelectedItem(comboBoxListadoProgramas.getItemAt(0));
-					comboBoxListInstituciones.setSelectedItem(comboBoxListInstituciones.getItemAt(0));
-					
+					comboBoxListInstituciones.setSelectedItem(comboBoxListInstituciones.getItemAt(0));					
 				}
 			}	
 		});
@@ -399,9 +376,7 @@ public class ModuloProgramaAcademico extends JFrame {
 					}					
 				txt_Id_ProgramasAcademicos.setText("");
 				txt_Nombre_PA.setText("");
-				txt_Costo_PA.setText("");
-				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
-				comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));				
+				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));				
 			}
 		});
 		
@@ -414,23 +389,15 @@ public class ModuloProgramaAcademico extends JFrame {
 					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
 					if(identificador!=0){
 						ProgramaAcademico programa = gestionProgramas.searchProgramaAcademico(identificador);
-						txt_Nombre_PA.setText(programa.getNombre());
-						txt_Costo_PA.setText(programa.getCosto());
-						int area = programa.getIdArea();
-						int ins = programa.getIdInstitucion();
+						txt_Nombre_PA.setText(programa.getNombre());						
+						int area = programa.getIdArea();						
 						for (int z=0;z<listadoAreas.size();z++){
 							String [] aux = listadoAreas.get(z);
 							int aux1 = Integer.parseInt(aux[0]);
 							if(aux1 == area){
 								comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(z+1));
 							}
-						}
-						for (int t=0;t<listadoInstituciones.size();t++){
-							int insti = listadoInstituciones.get(t).getId();
-							if(insti == ins){
-								comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(t+1));
-							}
-						}
+						}						
 						}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
@@ -448,39 +415,26 @@ public class ModuloProgramaAcademico extends JFrame {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
 					int identificador = 0;
 					String nombre = "";
-					String costo= "";
 					int idArea = 0;
-					int idInstitucion = 0;
-					String auxIns = "";
 					String auxArea = "";				
 					try{	
 					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
-							|| comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1) 
-									|| comboBox_Instituciones.getSelectedItem().toString().equals(OPCION1)){					
+					if (txt_Nombre_PA.getText().equals("") || comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1)){					
 						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
 					}else{					
 						nombre = txt_Nombre_PA.getText();
-						costo = txt_Costo_PA.getText();
-						auxIns = comboBox_Instituciones.getSelectedItem().toString();
 						auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
 						for (int z=0;z<listadoAreas.size();z++){
 							String [] aux = listadoAreas.get(z);
 							if(aux[1].equals(auxArea)){
 								idArea = Integer.parseInt(aux[0]);
 							}
-						}
-						for (int t=0;t<listadoInstituciones.size();t++){
-							String aux = listadoInstituciones.get(t).getNombre();
-							if(aux.equals(auxIns)){
-								idInstitucion = listadoInstituciones.get(t).getId();
-							}
 						}					
 					}				
-					if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
+					if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre)){
 						JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
 					}
 					else{
@@ -488,13 +442,10 @@ public class ModuloProgramaAcademico extends JFrame {
 					}
 					txt_Id_ProgramasAcademicos.setText("");
 					txt_Nombre_PA.setText("");
-					txt_Costo_PA.setText("");
-					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
-					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
+					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));					
 				}else{
 					JOptionPane.showMessageDialog(null, "Operacion unicamente cuando se agrega un Programa Academico Nuevo");
-				}
-				
+				}				
 			}
 		});
 				

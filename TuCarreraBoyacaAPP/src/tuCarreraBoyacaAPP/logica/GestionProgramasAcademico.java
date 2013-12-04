@@ -67,8 +67,8 @@ public class GestionProgramasAcademico {
 		return academicoDao.insertProgramaNuevo(programa);
 	}
 	
-	public int crearRelacion (ProgramaAcademico programa,InstitucionEducacionSuperior institucion){
-		return academicoDao.insertRelacion(programa, institucion);
+	public int crearRelacion (int idPrograma, int idInstitucion, String costo){
+		return academicoDao.insertRelacion(idPrograma, idInstitucion, costo);
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class GestionProgramasAcademico {
 	 * @return Objeto de tipo Programa Academico que se encuentra en el ArrayList**/
 	public ProgramaAcademico searchProgramaAcademico (int busqueda){
 		academicos = readProgramasAcademico();
-		ProgramaAcademico programa =new ProgramaAcademico(busqueda, 0, null, null, 0);
+		ProgramaAcademico programa =new ProgramaAcademico(busqueda, 0, null);
 		for(int i=0; i<academicos.size();i++){
 			programa = getAcademicos().get(i);
 			if(programa.getId()==busqueda){
@@ -93,6 +93,10 @@ public class GestionProgramasAcademico {
 		return academicoDao.selectProgramas();
 	}
 	
+	public ArrayList<String[]> readProgramasAcademicoReporte(){
+		return academicoDao.selectProgramasReporte();
+	}
+	
 	/**
 	 * @return the academicoDao
 	 */
@@ -107,9 +111,9 @@ public class GestionProgramasAcademico {
 	 * @param area - nombre del area que queda actualizado en el elemento
 	 * @return true - si se actualiza exitosamente el elemento del ArrayList
 	 */
-	public boolean updateProgramasAcademicos(int id, int idArea, String nombre, String costo, int idInstitucion){
+	public boolean updateProgramasAcademicos(int id, int idArea, String nombre){
 		academicos = readProgramasAcademico();
-		ProgramaAcademico actualizar = new ProgramaAcademico(id, idArea, nombre, costo, idInstitucion);
+		ProgramaAcademico actualizar = new ProgramaAcademico(id, idArea, nombre);
 		if (searchProgramaAcademico(id) != null){
 			for(int i=0; i<getAcademicos().size();i++){
 				if(getAcademicos().get(i).getId() == id){

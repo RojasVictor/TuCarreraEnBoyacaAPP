@@ -35,11 +35,11 @@ public class ProgramaAcademicoSql {
 	 * @return Sentencia SQL para ser ejecutada por la base de datos
 	 */
 	
-	public String insertarRelacionPrograma (ProgramaAcademico programa, int idInstitucion){
+	public String insertarRelacionPrograma (int idPrograma, int idInstitucion, String Costo){
 		return "INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
 				+idInstitucion+","
-				+programa.getId()+","
-				+programa.getCosto()+");";
+				+idPrograma+","
+				+Costo+");";
 	}
 	
 	/**
@@ -59,25 +59,26 @@ public class ProgramaAcademicoSql {
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
 			
-		return  "UPDATE programa_academico AS a1, programa_academico_institucion_educacion_superior as a2 "
-				+"SET a1.ID_AREA =" +programa.getIdArea() +","
-				+" a1.NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
-				+" a2.ID_INSTITUCION="+programa.getIdInstitucion()+","
-				+"a2.COSTO_PROGRAMA='"+programa.getCosto()+"'"
-				+" WHERE a1.ID_PROGRAMA_ACADEMICO=a2.ID_PROGRAMA_ACADEMICO;";				
+		return  "UPDATE programa_academico SET ID_AREA =" +programa.getIdArea() +","
+				+" NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
+				+" WHERE ID_PROGRAMA_ACADEMICO="+programa.getId()+";";				
 	}
 	
 	/**
 	 * 
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String selectProgramas() {
+	public String selectProgramasReportes() {
 		return "SELECT programa_academico.ID_PROGRAMA_ACADEMICO,"
 				+"ID_AREA, NOMBRE_PROGRAMA_ACADEMICO, COSTO_PROGRAMA, ID_INSTITUCION"
 				+" FROM programa_academico"
 				+" JOIN (programa_academico_institucion_educacion_superior)"
 				+" WHERE programa_academico.ID_PROGRAMA_ACADEMICO = programa_academico_institucion_educacion_superior.ID_PROGRAMA_ACADEMICO"
 				+" ORDER BY ID_PROGRAMA_ACADEMICO";
+	}
+	
+	public String selectProgramas(){
+		return "SELECT * FROM programa_academico;";
 	}
 	
 	/**

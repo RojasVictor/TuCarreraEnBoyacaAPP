@@ -167,20 +167,24 @@ public class ModuloReportes extends JFrame {
 				if(seleccion.equals(dato1)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
-					ArrayList<ProgramaAcademico> programas = gesProgramas.readProgramasAcademico();
+					ArrayList<String[]> programas = new ArrayList<String[]>();
+					programas = gesProgramas.readProgramasAcademicoReporte();
 					if(programas.size()!=0){
 					datos.addColumn("ID PROGRAMA");
 					datos.addColumn("ID AREA");
 					datos.addColumn("NOMBRE PROGRAMA");
 					datos.addColumn("COSTO PROGRAMA");
 					datos.addColumn("ID INSTITUCION");
+					String [] aux = new String[5];
+					Vector<String> lista;
 						for (int j=0;j<programas.size();j++){
-							Vector<String> lista = new Vector<String>();
-							lista.add(Integer.toString(programas.get(j).getId()));
-							lista.add(Integer.toString(programas.get(j).getIdArea()));
-							lista.add(programas.get(j).getNombre());
-							lista.add(programas.get(j).getCosto());
-							lista.add(Integer.toString(programas.get(j).getIdInstitucion()));
+							 lista = new Vector<String>();
+							aux = programas.get(j);						
+							lista.add(aux[0]);
+							lista.add(aux[1]);
+							lista.add(aux[2]);
+							lista.add(aux[3]);
+							lista.add(aux[4]);							
 							datos.addRow(lista);
 						}	
 					}
@@ -244,8 +248,7 @@ public class ModuloReportes extends JFrame {
 				}
 				
 			}
-		});
-		
+		});		
 	}
 }
 
