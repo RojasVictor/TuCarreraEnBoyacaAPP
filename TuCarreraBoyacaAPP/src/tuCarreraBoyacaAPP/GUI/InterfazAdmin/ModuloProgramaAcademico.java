@@ -348,6 +348,8 @@ public class ModuloProgramaAcademico extends JFrame {
 					}					
 				}	
 				ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre, costo, idInstitucion);
+				
+				
 				/*if(chckboxRelacion.isSelected()== false){					
 					if(gestionProgramas.crearProgramaAcademico(programa) == -1){
 						JOptionPane.showMessageDialog(null, "No se creo el registro");						
