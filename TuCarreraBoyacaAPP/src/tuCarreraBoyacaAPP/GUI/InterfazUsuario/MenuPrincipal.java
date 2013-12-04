@@ -122,7 +122,7 @@ public class MenuPrincipal extends JFrame {
 		
 		JButton btn_Salir = new JButton("");
 		btn_Salir.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_salir.png")));
-		btn_Salir.setBounds(2, 454, 297, 41);
+		btn_Salir.setBounds(10, 454, 277, 41);
 		contentPane.add(btn_Salir);
 		btn_Salir.addActionListener(new ActionListener(){
 			
@@ -135,7 +135,7 @@ public class MenuPrincipal extends JFrame {
 		
 		JButton btn_Ingresar = new JButton("");
 		btn_Ingresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Ingresar.png")));
-		btn_Ingresar.setBounds(4, 407, 295, 41);
+		btn_Ingresar.setBounds(10, 407, 277, 41);
 		contentPane.add(btn_Ingresar);
 		btn_Ingresar.addActionListener(new ActionListener(){
 			
