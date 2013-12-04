@@ -7,19 +7,18 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JWindow;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import tuCarreraBoyacaAPP.GUI.InterfazUsuario.MenuPrincipal;
 import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 
 
@@ -27,7 +26,7 @@ import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
  * @author FABIO
  *
  */
-public class JDialogCambiarContrasena extends JDialog{
+public class CambiarContrasena extends JFrame{
 	
 	//Attributes ------------------------------------
 	private JTextField textField_ContrasenaActual;
@@ -35,8 +34,23 @@ public class JDialogCambiarContrasena extends JDialog{
 	private JLabel lblRespuesta; 
 	private JTextField textField_Usuario;
 	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CambiarContrasena frame = new CambiarContrasena();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
+	
 	//Building -----------------------------------------------------------------------
-	public JDialogCambiarContrasena (){
+	public CambiarContrasena (){
 		setTitle("Cambiar Contrase\u00F1a");
 		setSize(360, 380);
 		setResizable(false);
@@ -64,13 +78,14 @@ public class JDialogCambiarContrasena extends JDialog{
 		
 		JButton btn_Regresar = new JButton("");
 		btn_Regresar.setBounds(63, 268, 115, 45);
-		btn_Regresar.setIcon(new ImageIcon(JDialogCambiarContrasena.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Regresar.png")));
+		btn_Regresar.setIcon(new ImageIcon(CambiarContrasena.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Regresar.png")));
 		getContentPane().add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();				
+				dispose();		
+				MenuAdmin.main(null);
 			}
 			});
 		getContentPane().add(btn_Regresar);
