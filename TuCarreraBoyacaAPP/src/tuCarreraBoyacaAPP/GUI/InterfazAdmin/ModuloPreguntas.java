@@ -28,6 +28,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 
+import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
+import tuCarreraBoyacaAPP.logica.PreguntaTest;
+
 /**
  * @author JUDIT
  *
@@ -37,6 +40,7 @@ public class ModuloPreguntas extends JFrame {
 	private final String OPCION1 = "SELECCIONAR";
 	private final String OPCION2 = "AGREGAR NUEVA PREGUNTA";
 	private final String OPCION3 = "AGREGAR RELACIONES";
+	private GestionPreguntaTest gesPreguntas;
 	private JPanel contentPane;
 	private JTextField txt_Id_Pregunta;
 	private JTextField txt_EstimacionPuntaje;
@@ -144,18 +148,39 @@ public class ModuloPreguntas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int identificador = 0;
-				String descripcion = "";
-				String respuesta1 = "";
-				String respuesta2 = "";
-				String respuesta3 = "";
-				String respuesta4 = "";
-				int respuestaCor = 0;
-				try{	
-					identificador = Integer.parseInt(txt_Id_Pregunta.getText());
-				}catch(NumberFormatException e){
-						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+				String opcion = comboBoxOpcionPrincipal.getSelectedItem().toString();
+				if (opcion.equals(OPCION1)){
+					JOptionPane.showMessageDialog(null, "Debe seleccionar una opcion en la primera casilla");
+				}else if(opcion.equals(OPCION2)){
+					int identificador = 0;
+					String descripcion = textAreaDescripcion.getText();
+					String respuesta1 = textAreaRespuesta1.getText();
+					String respuesta2 = textAreaRespuesta2.getText();
+					String respuesta3 = textAreaRespuesta3.getText();
+					String respuesta4 = textAreaRespuesta4.getText();
+					int respuestaCor;
+					try{	
+						identificador = Integer.parseInt(txt_Id_Pregunta.getText());
+					}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
+					}
+					if (txt_Id_Pregunta.getText().equals("") || descripcion.equals("") 
+							|| respuesta1.equals("") || respuesta2.equals("") || respuesta3.equals("") 
+							|| respuesta4.equals("")){
+						JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+					}else{
+						respuestaCor = Integer.parseInt(spinner_RespuestaCorrecta.getValue().toString());
+						PreguntaTest pregunta = new PreguntaTest(identificador, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCor);
+						if(gesPreguntas.createPregunta(pregunta) == -1){
+							JOptionPane.showMessageDialog(null, "No se pudo agregar la pregunta");
+						}else {
+							JOptionPane.showMessageDialog(null, "Se agrego la pregunta correctamente");
+						}
+					}					
+				}else if(opcion.equals(OPCION3)){
+					
 				}
+				
 				//if (textField_descripcion.getText().equals("") || textField_.getText().equals("")){
 				//	JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
 				//}

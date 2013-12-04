@@ -83,4 +83,23 @@ public class PreguntaSql {
 		return "SELECT * From pregunta_test;";
 	}
 
+	/**
+	 * @param idPregunta identificador pregunta a relacionar
+	 * @param idPrograma identificador programa a relacionar
+	 * @param puntaje valor que tiene esa pregunta para ese programa
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
+	public String insertRelacion(int idPregunta, int idPrograma, int puntaje) {
+		return "INSERT INTO progacademico_pregtest VALUES("
+				+ idPregunta +", "+ idPrograma +", "+ puntaje +");";
+	}
+	
+	/**
+	 * 
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
+	public String selectRelaciones(){
+		return "SELECT * FROM progacademico_pregtest;";
+	}
+
 }

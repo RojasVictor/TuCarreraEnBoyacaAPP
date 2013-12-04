@@ -50,6 +50,18 @@ public class GestionPreguntaTest {
 	}
 	
 	/**
+	 * 
+	 * @param idPregunta - identificador pregunta a relacionar
+	 * @param idPrograma - identificador programa a relacionar
+	 * @param puntaje - puntaje asignado a esa relacion entre pregunta y programa
+	 * @return -1 si la accion no fue exitosa 
+	 */
+	public int createRelacion (int idPregunta, int idPrograma, int puntaje){
+		int respuesta = preguntaDao.insertRelacion(idPregunta, idPrograma, puntaje);
+		return respuesta;
+	}
+	
+	/**
 	 ** @return ArrayList - un ArrayList de los objetos presentes
 	 ***/ 
 	public ArrayList<String[]> readPreguntaTestsReporte () {
@@ -57,7 +69,15 @@ public class GestionPreguntaTest {
 	}
 	
 	/**
-	 * @return
+	 * 
+	 * @return ArrayList - un ArrayList con los objetos presentes en la tabla progacademico_pregtest de la BD
+	 */
+	public ArrayList<String[]> readRelaciones () {
+		return preguntaDao.selectRelaciones();
+	}
+	
+	/**
+	 * @return rrayList - un ArrayList con los objetos presentes en la tabla pregunta_test de la BD
 	 */
 	private ArrayList<PreguntaTest> readPreguntaTests() {
 		return preguntaDao.selectPreguntas();
