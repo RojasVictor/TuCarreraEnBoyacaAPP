@@ -393,13 +393,9 @@ public class ModuloProgramaAcademico extends JFrame {
 						}
 					}
 					gestionProgramas.crearRelacion(componente2, componente1);
-					/*ProgramaAcademico programa;
-					if(gestionProgramas.crearRelacion(programa) == -1){
-						JOptionPane.showMessageDialog(null, "No se creo la relacion entre Programa e Institucion");						
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Se creo la relacion entre Programa e Institucion exitosamente");
-					}*/
+					textFieldCostoRelacion.setText("");
+					comboBoxListadoProgramas.setSelectedItem(comboBoxListadoProgramas.getItemAt(0));
+					comboBoxListInstituciones.setSelectedItem(comboBoxListInstituciones.getItemAt(0));
 					
 				}
 			}	
