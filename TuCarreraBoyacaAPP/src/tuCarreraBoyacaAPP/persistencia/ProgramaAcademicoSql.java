@@ -58,9 +58,9 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deleteRelacion(String[] elemento){
-		return "DELETE FROM programa_academico_institicion_educacion_superior WHERE "
-				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[0])+" AND "
-				+ "ID_INSTITUCION = "+Integer.parseInt(elemento[1])+";";
+		return "DELETE FROM programa_academico_institucion_educacion_superior WHERE "
+				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[1])+" AND "
+				+ "ID_INSTITUCION = "+Integer.parseInt(elemento[0])+";";
 	}
 	
 	/**
@@ -110,6 +110,17 @@ public class ProgramaAcademicoSql {
 	 */
 	public String selectAreas(){
 		return "SELECT * FROM area;";
+	}
+	/**
+	 * @param idInstitucion
+	 * @param idPrograma
+	 * @param costo
+	 * @return
+	 */
+	public String updateRelacion(int idInstitucion, int idPrograma, String costo) {
+		return "UPDATE programa_academico_institucion_educacion_superior SET COSTO_PROGRAMA = '"
+				+ costo+"' WHERE ID_INSTITUCION = "+ idInstitucion + " AND "
+				+ " ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
 	}
 
 }

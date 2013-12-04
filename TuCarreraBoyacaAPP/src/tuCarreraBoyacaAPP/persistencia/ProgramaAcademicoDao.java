@@ -114,6 +114,19 @@ public class ProgramaAcademicoDao {
 		}
 		return -1;
 	}
+	
+	public int updateRelacion(int idInstitucion, int idPrograma, String costo){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.updateRelacion(idInstitucion,idPrograma,costo));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		return -1;
+	}
 
 	/**
 	 * 
@@ -161,7 +174,7 @@ public class ProgramaAcademicoDao {
 					String costo = datos.getString("COSTO_PROGRAMA");
 					String [] elemento = new String[3];
 					elemento[0] = idInstitucion;
-					elemento[1] = idPrograma;
+					elemento[1] = idPrograma;					
 					elemento[2] = costo;
 					resultado.add(elemento);
 				}

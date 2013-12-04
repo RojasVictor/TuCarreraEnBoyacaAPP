@@ -18,6 +18,7 @@ public class GestionProgramasAcademico {
 	private ArrayList<ProgramaAcademico> academicos;
 	private ProgramaAcademicoDao academicoDao;
 	private ArrayList<String []> areas; 
+	private ArrayList<String[]> listado;
 	
 	//Building ----------------------------------------------------------
 	public GestionProgramasAcademico() {
@@ -100,11 +101,11 @@ public class GestionProgramasAcademico {
 	 * @return elemento - string [] - Objeto que contiene los datos de la busqueda
 	 */
 	public String[] searchElementoRelacion(int idPrograma, int idInstitucion){
-		ArrayList<String[]> listado = readProgInstCosto();
+		listado = readProgInstCosto();
 		String[] elemento = new String[3];
 		for(int t=0; t<listado.size();t++){
 			elemento = listado.get(t);
-			if(Integer.parseInt(elemento[0]) == idPrograma && Integer.parseInt(elemento[1]) == idInstitucion){
+			if(Integer.parseInt(elemento[1]) == idPrograma && Integer.parseInt(elemento[0]) == idInstitucion){
 				return elemento;
 			}
 		}
@@ -164,6 +165,20 @@ public class GestionProgramasAcademico {
 		return false;
 	}
 	
+	public boolean updateRelacion(int idInstitucion, int idPrograma, String costo){
+		listado = readProgInstCosto();
+		if(searchElementoRelacion(idPrograma, idInstitucion) != null){
+			for(int i=0; i<getAcademicos().size();i++){
+				if(Integer.parseInt(listado.get(i)[0]) == idInstitucion && Integer.parseInt(listado.get(i)[1]) == idPrograma){
+					academicoDao.updateRelacion(idInstitucion, idPrograma, costo);
+					listado = readProgInstCosto();
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 * @param id - identificador de elemento a eliminar del ArrayList
@@ -199,7 +214,7 @@ public class GestionProgramasAcademico {
 		if(dato != null){
 			for(int i=0; i<elementos.size();i++){
 				busqueda = elementos.get(i);
-				if(Integer.parseInt(elementos.get(i)[0]) == idPrograma && Integer.parseInt(elementos.get(i)[1]) == idInstitucion){
+				if(Integer.parseInt(elementos.get(i)[0]) == idInstitucion && Integer.parseInt(elementos.get(i)[1]) == idPrograma){
 					academicoDao.deleteRelacion(elementos.get(i));
 					academicos = readProgramasAcademico();
 					return true;
