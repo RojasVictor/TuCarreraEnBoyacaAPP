@@ -67,8 +67,8 @@ public class GestionProgramasAcademico {
 		return academicoDao.insertProgramaNuevo(programa);
 	}
 	
-	public int crearRelacion (ProgramaAcademico programa){
-		return academicoDao.insertRelacion(programa);
+	public int crearRelacion (ProgramaAcademico programa,InstitucionEducacionSuperior institucion){
+		return academicoDao.insertRelacion(programa, institucion);
 	}
 	
 	/**

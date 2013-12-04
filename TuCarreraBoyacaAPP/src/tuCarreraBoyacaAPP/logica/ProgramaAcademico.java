@@ -7,25 +7,17 @@ public class ProgramaAcademico {
 	private int id;	
 	private int idArea;
 	private String nombre;	
-	private String costo;	
-	private int idInstitucion;	
-	
+		
 	//BUILDING -------------------------------------
 	/**
 	 * @param id
 	 * @param nombre
 	 * @param categoria
-	 * @param institucion
-	 * @param costo
 	 */
-	public ProgramaAcademico(int id, int idArea, String nombre, String costo,
-			int idInstitucion) {
+	public ProgramaAcademico(int id, int idArea, String nombre) {
 		this.id = id;
 		this.idArea = idArea;
-		this.nombre = nombre;
-		this.costo = costo;
-		this.idInstitucion = idInstitucion;
-		
+		this.nombre = nombre;		
 	}
 	
 	//METHODS -------------------------------
@@ -70,34 +62,6 @@ public class ProgramaAcademico {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the costo
-	 */
-	public String getCosto() {
-		return costo;
-	}
-
-	/**
-	 * @param costo the costo to set
-	 */
-	public void setCosto(String costo) {
-		this.costo = costo;
-	}
-
-	/**
-	 * @return the idInstitucion
-	 */
-	public int getIdInstitucion() {
-		return idInstitucion;
-	}
-
-	/**
-	 * @param idInstitucion the idInstitucion to set
-	 */
-	public void setIdInstitucion(int idInstitucion) {
-		this.idInstitucion = idInstitucion;
-	}
+	}	
 	
 }
