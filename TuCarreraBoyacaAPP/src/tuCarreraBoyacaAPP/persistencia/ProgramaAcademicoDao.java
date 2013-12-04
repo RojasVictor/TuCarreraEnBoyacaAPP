@@ -36,7 +36,11 @@ public class ProgramaAcademicoDao {
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
-				return sentencia.executeUpdate(academicoSql.insertProgramaNuevo(programa));
+				int s1 = sentencia.executeUpdate(academicoSql.insertProgramaNuevo(programa));
+				int s2 = sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa));
+				if(s1 != -1 && s2 != -1){
+					return s1;
+				}
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}

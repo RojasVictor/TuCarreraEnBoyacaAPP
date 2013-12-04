@@ -21,15 +21,9 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertProgramaNuevo (ProgramaAcademico programa) {
-		return "START TRANSACTION; INSERT INTO programa_academico VALUES ("
-				+programa.getId()+","
-				+programa.getIdArea()+",'"
-				+programa.getNombre()+"'"
-				+");"
-				+"INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
-				+programa.getIdInstitucion()+","
-				+programa.getId()+","
-				+programa.getCosto()+");COMMIT;";		
+		return "INSERT INTO `apptest`.`programa_academico` ( `ID_PROGRAMA_ACADEMICO` , `ID_AREA` ,"
+				+ "`NOMBRE_PROGRAMA_ACADEMICO`)VALUES('"
+				+ programa.getId()+"', '"+ programa.getIdArea()+"', '"+programa.getNombre()+"');";									
 	}
 	
 	public String insertarRelacionPrograma (ProgramaAcademico programa){
