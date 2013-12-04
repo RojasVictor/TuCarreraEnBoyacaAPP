@@ -59,6 +59,10 @@ public class ModuloProgramaAcademico extends JFrame {
 	private JComboBox comboBoxOpcionPrincipal;
 	private JComboBox comboBoxListInstituciones;
 	private JComboBox comboBoxListadoProgramas;
+	private JTextField textFieldCostoRelacion;
+	private final String OPCION1 = "SELECCIONAR";
+	private final String OPCION2 = "AGREGAR NUEVO PROGRAMA ACADEMICO";
+	private final String OPCION3 = "AGREGAR RELACIONES";
 	
 
 	/**
@@ -91,7 +95,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		setTitle("MODULO PROGRAMAS ACADEMICOS");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_programas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 582);
+		setBounds(100, 100, 573, 605);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -126,7 +130,7 @@ public class ModuloProgramaAcademico extends JFrame {
 			}
 		});
 		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
-		btn_Regresar.setBounds(45, 476, 110, 45);
+		btn_Regresar.setBounds(40, 500, 110, 45);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
 			
@@ -140,22 +144,22 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		JButton btn_Agregar = new JButton("");
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
-		btn_Agregar.setBounds(192, 465, 73, 66);
+		btn_Agregar.setBounds(192, 492, 73, 66);
 		contentPane.add(btn_Agregar);
 				
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
-		btn_Guardar.setBounds(294, 465, 64, 66);
+		btn_Guardar.setBounds(294, 492, 64, 66);
 		contentPane.add(btn_Guardar);
 		
 		JButton btn_Buscar = new JButton("");
 		btn_Buscar.setIcon(new ImageIcon(ModuloProgramaAcademico.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
-		btn_Buscar.setBounds(383, 465, 73, 66);
+		btn_Buscar.setBounds(383, 492, 73, 66);
 		contentPane.add(btn_Buscar);
 		
 		JButton btn_Eliminar = new JButton("");
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
-		btn_Eliminar.setBounds(478, 465, 64, 66);
+		btn_Eliminar.setBounds(478, 492, 64, 66);
 		contentPane.add(btn_Eliminar);
 		
 		txt_Nombre_PA = new JTextField();
@@ -202,7 +206,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		comboBox_AreaPrograma.setBounds(270, 240, 272, 28);
 		comboBox_AreaPrograma.setEnabled(false);
 		String [] dato;
-		comboBox_AreaPrograma.addItem("SELECCIONAR");
+		comboBox_AreaPrograma.addItem(OPCION1);
 		for (int i=0;i<listadoAreas.size();i++){
 			dato = listadoAreas.get(i);
 			comboBox_AreaPrograma.addItem(""+dato[1]);			
@@ -212,7 +216,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		comboBox_Instituciones = new JComboBox();
 		comboBox_Instituciones.setBounds(270, 276, 272, 28);
 		comboBox_Instituciones.setEnabled(false);
-		comboBox_Instituciones.addItem("SELECCIONAR");
+		comboBox_Instituciones.addItem(OPCION1);
 		for(int i=0;i<listadoInstituciones.size();i++){
 			comboBox_Instituciones.addItem(listadoInstituciones.get(i).getNombre());			
 		}		
@@ -225,16 +229,16 @@ public class ModuloProgramaAcademico extends JFrame {
 		
 		comboBoxOpcionPrincipal = new JComboBox();
 		comboBoxOpcionPrincipal.setBounds(270, 120, 272, 26);
-		comboBoxOpcionPrincipal.addItem("SELECCIONAR");
-		comboBoxOpcionPrincipal.addItem("AGREGAR NUEVO PROGRAMA ACADEMICO");
-		comboBoxOpcionPrincipal.addItem("AGREGAR RELACIONES");
+		comboBoxOpcionPrincipal.addItem(OPCION1);
+		comboBoxOpcionPrincipal.addItem(OPCION2);
+		comboBoxOpcionPrincipal.addItem(OPCION3);
 		contentPane.add(comboBoxOpcionPrincipal);
 		
 		comboBoxOpcionPrincipal.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals("AGREGAR NUEVO PROGRAMA ACADEMICO")){
+				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
 					txt_Costo_PA.setEditable(true);
 					txt_Id_ProgramasAcademicos.setEditable(true);
 					txt_Nombre_PA.setEditable(true);
@@ -242,9 +246,10 @@ public class ModuloProgramaAcademico extends JFrame {
 					comboBox_Instituciones.setEnabled(true);	
 					comboBoxListadoProgramas.setEnabled(false);
 					comboBoxListInstituciones.setEnabled(false);
+					textFieldCostoRelacion.setEditable(false);
 				}else{
-					if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals("AGREGAR RELACIONES")){
-						
+					if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
+						textFieldCostoRelacion.setEditable(true);
 						comboBoxListadoProgramas.setEnabled(true);
 						comboBoxListInstituciones.setEnabled(true);
 						txt_Costo_PA.setEditable(false);
@@ -260,6 +265,7 @@ public class ModuloProgramaAcademico extends JFrame {
 						comboBox_Instituciones.setEnabled(false);
 						comboBoxListadoProgramas.setEnabled(false);
 						comboBoxListInstituciones.setEnabled(false);
+						textFieldCostoRelacion.setEditable(false);
 					}
 				}
 				
@@ -282,7 +288,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		comboBoxListInstituciones = new JComboBox();
 		comboBoxListInstituciones.setBounds(270, 368, 272, 26);
 		comboBoxListInstituciones.setEnabled(false);
-		comboBoxListInstituciones.addItem("SELECCIONAR");
+		comboBoxListInstituciones.addItem(OPCION1);
 		for(int i=0;i<listadoInstituciones.size();i++){
 			comboBoxListInstituciones.addItem(listadoInstituciones.get(i).getNombre());			
 		}
@@ -296,7 +302,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		comboBoxListadoProgramas = new JComboBox();
 		comboBoxListadoProgramas.setBounds(270, 405, 272, 26);
 		comboBoxListadoProgramas.setEnabled(false);
-		comboBoxListadoProgramas.addItem("SELECCIONAR");
+		comboBoxListadoProgramas.addItem(OPCION1);
 		for (int i=0;i<listadoProgramas.size();i++){
 			ProgramaAcademico elemento = listadoProgramas.get(i);
 			comboBoxListadoProgramas.addItem(elemento.getNombre());			
@@ -304,73 +310,83 @@ public class ModuloProgramaAcademico extends JFrame {
 		contentPane.add(comboBoxListadoProgramas);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 447, 547, 2);
+		separator_2.setBounds(10, 480, 547, 2);
 		contentPane.add(separator_2);
+		
+		JLabel label_CostoRelacion = new JLabel("Costo Programa Acad\u00E9mico");
+		label_CostoRelacion.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		label_CostoRelacion.setBounds(19, 442, 237, 22);
+		contentPane.add(label_CostoRelacion);
+		
+		textFieldCostoRelacion = new JTextField();
+		textFieldCostoRelacion.setEditable(false);
+		textFieldCostoRelacion.setBounds(268, 442, 274, 26);
+		contentPane.add(textFieldCostoRelacion);
 		
 		btn_Agregar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int identificador = 0;
-				String nombre = "";
-				String costo = "";
-				String auxIns = "";
-				String auxArea = "";
-				int idArea = 0;
-				int idInstitucion = 0;
-					
-				try{	
-				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
-				}catch(NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-				}
-				if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
-						|| comboBox_AreaPrograma.getSelectedItem().toString().equals("SELECCIONAR") 
-								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){					
-					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
-				}else{					
-					nombre = txt_Nombre_PA.getText();
-					costo = txt_Costo_PA.getText();
-					auxIns = comboBox_Instituciones.getSelectedItem().toString();
-					auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
-					for (int z=0;z<listadoAreas.size();z++){
-						String [] aux = listadoAreas.get(z);
-						if(aux[1].equals(auxArea)){
-							idArea = Integer.parseInt(aux[0]);
-						}
+				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
+					int identificador = 0;
+					String nombre = "";
+					String costo = "";
+					String auxIns = "";
+					String auxArea = "";
+					int idArea = 0;
+					int idInstitucion = 0;					
+					try{	
+					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					for (int t=0;t<listadoInstituciones.size();t++){
-						String aux = listadoInstituciones.get(t).getNombre();
-						if(aux.equals(auxIns)){
-							idInstitucion = listadoInstituciones.get(t).getId();
+					if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
+							|| comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1) 
+									|| comboBox_Instituciones.getSelectedItem().toString().equals(OPCION1)){					
+						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+					}else{					
+						nombre = txt_Nombre_PA.getText();
+						costo = txt_Costo_PA.getText();
+						auxIns = comboBox_Instituciones.getSelectedItem().toString();
+						auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
+						for (int z=0;z<listadoAreas.size();z++){
+							String [] aux = listadoAreas.get(z);
+							if(aux[1].equals(auxArea)){
+								idArea = Integer.parseInt(aux[0]);
+							}
 						}
-					}					
-				}	
-				ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre, costo, idInstitucion);
-				
-				
-				/*if(chckboxRelacion.isSelected()== false){					
+						for (int t=0;t<listadoInstituciones.size();t++){
+							String aux = listadoInstituciones.get(t).getNombre();
+							if(aux.equals(auxIns)){
+								idInstitucion = listadoInstituciones.get(t).getId();
+							}
+						}					
+					}	
+					ProgramaAcademico programa = new ProgramaAcademico(identificador, idArea, nombre, costo, idInstitucion);
 					if(gestionProgramas.crearProgramaAcademico(programa) == -1){
 						JOptionPane.showMessageDialog(null, "No se creo el registro");						
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Se creo de forma exitosa");
 					}
-				}else{
+					txt_Id_ProgramasAcademicos.setText("");
+					txt_Nombre_PA.setText("");
+					txt_Costo_PA.setText("");
+					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
+					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));					
+				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
+					String eleIns = comboBoxListInstituciones.getSelectedItem().toString();
+					String eleProg =comboBoxListadoProgramas.getSelectedItem().toString();
+					/*ProgramaAcademico programa;
 					if(gestionProgramas.crearRelacion(programa) == -1){
 						JOptionPane.showMessageDialog(null, "No se creo la relacion entre Programa e Institucion");						
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Se creo la relacion entre Programa e Institucion exitosamente");
-					}
+					}*/
+					
 				}
-					txt_Id_ProgramasAcademicos.setText("");
-					txt_Nombre_PA.setText("");
-					txt_Costo_PA.setText("");
-					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
-					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
-				*/
 			}	
 		});
 		
@@ -438,51 +454,56 @@ public class ModuloProgramaAcademico extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int identificador = 0;
-				String nombre = "";
-				String costo= "";
-				int idArea = 0;
-				int idInstitucion = 0;
-				String auxIns = "";
-				String auxArea = "";				
-				try{	
-				identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
-				}catch(NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-				}
-				if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
-						|| comboBox_AreaPrograma.getSelectedItem().toString().equals("SELECCIONAR") 
-								|| comboBox_Instituciones.getSelectedItem().toString().equals("SELECCIONAR")){					
-					JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
-				}else{					
-					nombre = txt_Nombre_PA.getText();
-					costo = txt_Costo_PA.getText();
-					auxIns = comboBox_Instituciones.getSelectedItem().toString();
-					auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
-					for (int z=0;z<listadoAreas.size();z++){
-						String [] aux = listadoAreas.get(z);
-						if(aux[1].equals(auxArea)){
-							idArea = Integer.parseInt(aux[0]);
-						}
+				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
+					int identificador = 0;
+					String nombre = "";
+					String costo= "";
+					int idArea = 0;
+					int idInstitucion = 0;
+					String auxIns = "";
+					String auxArea = "";				
+					try{	
+					identificador = Integer.parseInt(txt_Id_ProgramasAcademicos.getText());
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					for (int t=0;t<listadoInstituciones.size();t++){
-						String aux = listadoInstituciones.get(t).getNombre();
-						if(aux.equals(auxIns)){
-							idInstitucion = listadoInstituciones.get(t).getId();
+					if (txt_Nombre_PA.getText().equals("") || txt_Costo_PA.getText().equals("")
+							|| comboBox_AreaPrograma.getSelectedItem().toString().equals(OPCION1) 
+									|| comboBox_Instituciones.getSelectedItem().toString().equals(OPCION1)){					
+						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+					}else{					
+						nombre = txt_Nombre_PA.getText();
+						costo = txt_Costo_PA.getText();
+						auxIns = comboBox_Instituciones.getSelectedItem().toString();
+						auxArea = comboBox_AreaPrograma.getSelectedItem().toString();
+						for (int z=0;z<listadoAreas.size();z++){
+							String [] aux = listadoAreas.get(z);
+							if(aux[1].equals(auxArea)){
+								idArea = Integer.parseInt(aux[0]);
+							}
 						}
-					}					
-				}				
-				if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
-					JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
+						for (int t=0;t<listadoInstituciones.size();t++){
+							String aux = listadoInstituciones.get(t).getNombre();
+							if(aux.equals(auxIns)){
+								idInstitucion = listadoInstituciones.get(t).getId();
+							}
+						}					
+					}				
+					if(gestionProgramas.updateProgramasAcademicos(identificador, idArea, nombre, costo, idInstitucion)){
+						JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "No se actualizo el registro");
+					}
+					txt_Id_ProgramasAcademicos.setText("");
+					txt_Nombre_PA.setText("");
+					txt_Costo_PA.setText("");
+					comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
+					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
+				}else{
+					JOptionPane.showMessageDialog(null, "Operacion unicamente cuando se agrega un Programa Academico Nuevo");
 				}
-				else{
-					JOptionPane.showMessageDialog(null, "No se actualizo el registro");
-				}
-				txt_Id_ProgramasAcademicos.setText("");
-				txt_Nombre_PA.setText("");
-				txt_Costo_PA.setText("");
-				comboBox_AreaPrograma.setSelectedItem(comboBox_AreaPrograma.getItemAt(0));
-				comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));
+				
 			}
 		});
 				
