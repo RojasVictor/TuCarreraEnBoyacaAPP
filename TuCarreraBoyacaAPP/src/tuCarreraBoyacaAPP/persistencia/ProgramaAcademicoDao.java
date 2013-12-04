@@ -80,6 +80,18 @@ public class ProgramaAcademicoDao {
 		}
 		return -1;
 	}
+	
+	public int deleteRelacion(String [] elemento){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.deleteRelacion(elemento));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 	/**
 	 * 

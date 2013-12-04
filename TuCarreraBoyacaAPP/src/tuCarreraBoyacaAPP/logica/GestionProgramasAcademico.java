@@ -67,6 +67,13 @@ public class GestionProgramasAcademico {
 		return academicoDao.insertProgramaNuevo(programa);
 	}
 	
+	/**
+	 * 
+	 * @param idPrograma - Integer - identificador del programa a crear en la relación
+	 * @param idInstitucion - Integer - identificador de la institucion a crear en la relación
+	 * @param costo - string - dato que contiene el costo de la matricula del programa Academico
+	 * @return -1 si no se ejecuto el codigo SQL sobre la BD
+	 */
 	public int crearRelacion (int idPrograma, int idInstitucion, String costo){
 		return academicoDao.insertRelacion(idPrograma, idInstitucion, costo);
 	}
@@ -87,12 +94,43 @@ public class GestionProgramasAcademico {
 	}
 	
 	/**
+	 * 
+	 * @param idPrograma - Integer - identificador elemento a buscar
+	 * @param idInstitucion - Integer - identificador elemento a buscar
+	 * @return elemento - string [] - Objeto que contiene los datos de la busqueda
+	 */
+	public String[] searchElementoRelacion(int idPrograma, int idInstitucion){
+		ArrayList<String[]> listado = readProgInstCosto();
+		String[] elemento = new String[3];
+		for(int t=0; t<listado.size();t++){
+			elemento = listado.get(t);
+			if(Integer.parseInt(elemento[0]) == idPrograma && Integer.parseInt(elemento[1]) == idInstitucion){
+				return elemento;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * @return ArrayList de programas academicos existentes
 	 */
 	public ArrayList<ProgramaAcademico> readProgramasAcademico (){
 		return academicoDao.selectProgramas();
 	}
 	
+	/**
+	 * 
+	 * @returnObjeto ArrayList que contiene objetos de tipo String[]
+	 */
+	public ArrayList<String[]> readProgInstCosto(){
+		return academicoDao.selectProgramasCosto();
+	}
+	
+	
+	/**
+	 * 
+	 * @return Objeto ArrayList que contiene objetos de tipo String[]
+	 */
 	public ArrayList<String[]> readProgramasAcademicoReporte(){
 		return academicoDao.selectProgramasReporte();
 	}
@@ -140,6 +178,25 @@ public class GestionProgramasAcademico {
 				busqueda = getAcademicos().get(i);
 				if(academicos.get(i).getId() == id){
 					academicoDao.deletePrograma(elemento.getId());
+					academicos = readProgramasAcademico();
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	public boolean removeRelacion (int idPrograma, int idInstitucion){
+		ArrayList<String[]> elementos = readProgInstCosto();
+		String[] dato = searchElementoRelacion(idPrograma, idInstitucion);
+		String[] busqueda;
+		if(dato != null){
+			for(int i=0; i<elementos.size();i++){
+				busqueda = elementos.get(i);
+				if(Integer.parseInt(elementos.get(i)[0]) == idPrograma && Integer.parseInt(elementos.get(i)[1]) == idInstitucion){
+					academicoDao.deleteRelacion(elementos.get(i));
 					academicos = readProgramasAcademico();
 					return true;
 				}
