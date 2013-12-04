@@ -52,11 +52,16 @@ public class GestionPreguntaTest {
 	/**
 	 ** @return ArrayList - un ArrayList de los objetos presentes
 	 ***/ 
-	public ArrayList<PreguntaTest> readPreguntaTests () {
-		return preguntaDao.selectPreguntas();
+	public ArrayList<String[]> readPreguntaTestsReporte () {
+		return preguntaDao.selectPreguntasReportes();
 	}
 	
-	
+	/**
+	 * @return
+	 */
+	private ArrayList<PreguntaTest> readPreguntaTests() {
+		return preguntaDao.selectPreguntas();
+	}
 	
 	/**
 	 * @return the preguntaDao
@@ -71,7 +76,7 @@ public class GestionPreguntaTest {
 	 ***/ 
 	public PreguntaTest searchPreguntaTest (int busqueda){
 		preguntas = readPreguntaTests();
-		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0, 0, 0);
+		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0);
 		for (int i=0; i<getPreguntas().size();i++){
 			pregunt = getPreguntas().get(i);
 			if(pregunt.getId() == busqueda){
@@ -95,7 +100,7 @@ public class GestionPreguntaTest {
 			String respuesta2, String respuesta3, String respuesta4,
 			int respuestaCorrecta, int idPrograma, int puntaje){
 		preguntas = readPreguntaTests();
-		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta, idPrograma, puntaje);
+		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
 		if(searchPreguntaTest(id)!= null){
 			for (int i=0; i<preguntas.size();i++){
 				if(preguntas.get(i).getId() == id){
@@ -128,5 +133,7 @@ public class GestionPreguntaTest {
 		}		
 		return false;
 	}
+
+	
 
 }

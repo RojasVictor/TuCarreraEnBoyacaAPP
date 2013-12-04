@@ -213,7 +213,7 @@ public class ModuloReportes extends JFrame {
 				}else if(seleccion.equals(dato3)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
-					ArrayList<PreguntaTest> preguntas = gesPreguntas.readPreguntaTests();
+					ArrayList<String[]> preguntas = gesPreguntas.readPreguntaTestsReporte();
 					if(preguntas.size() !=0){
 					datos.addColumn("ID PREGUNTA");
 					datos.addColumn("DESCRIPCION PREGUNTA");
@@ -225,16 +225,18 @@ public class ModuloReportes extends JFrame {
 					datos.addColumn("ID PROGRAMA");
 					datos.addColumn("PUNTAJE");
 						for (int j=0; j<preguntas.size();j++){
+							String[] pregunta = new String[9];
+							pregunta = preguntas.get(j);
 							Vector<String> lista = new Vector<String>();
-							lista.add(Integer.toString(preguntas.get(j).getId()));
-							lista.add(preguntas.get(j).getDescripcion());
-							lista.add(preguntas.get(j).getRespuesta1());
-							lista.add(preguntas.get(j).getRespuesta2());
-							lista.add(preguntas.get(j).getRespuesta3());
-							lista.add(preguntas.get(j).getRespuesta4());
-							lista.add(Integer.toString(preguntas.get(j).getRespuestaCorrecta()));
-							lista.add(Integer.toString(preguntas.get(j).getIdPrograma()));
-							lista.add(Integer.toString(preguntas.get(j).getPuntaje()));
+							lista.add(pregunta[0]);
+							lista.add(pregunta[1]);
+							lista.add(pregunta[2]);
+							lista.add(pregunta[3]);
+							lista.add(pregunta[4]);
+							lista.add(pregunta[5]);
+							lista.add(pregunta[6]);
+							lista.add(pregunta[7]);
+							lista.add(pregunta[8]);
 							datos.addRow(lista);
 						}
 					}

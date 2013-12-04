@@ -9,19 +9,16 @@ public class PreguntaTest {
 	private String respuesta3;	
 	private String respuesta4;
 	private int respuestaCorrecta;
-	private int idPrograma;
-	private int puntaje;
 	
-	public PreguntaTest (int identificador, String descrip,String r1, String r2, String r3, String r4, int respuestaC, int idProg, int punt){
+	public PreguntaTest (int identificador, String descrip,String r1,
+			String r2, String r3, String r4, int respuestaC){
 		id=identificador;
 		descripcion=descrip;
 		respuesta1=r1;
 		respuesta2=r2;
 		respuesta3=r3;
 		respuesta4=r4;
-		respuestaCorrecta=respuestaC;
-		idPrograma = idProg;
-		puntaje = punt;		
+		respuestaCorrecta=respuestaC;		
 	}
 
 	/**
@@ -120,34 +117,6 @@ public class PreguntaTest {
 	 */
 	public void setRespuestaCorrecta(int respuestaCorrecta) {
 		this.respuestaCorrecta = respuestaCorrecta;
-	}
-
-	/**
-	 * @return the idPrograma
-	 */
-	public int getIdPrograma() {
-		return idPrograma;
-	}
-
-	/**
-	 * @param idPrograma the idPrograma to set
-	 */
-	public void setIdPrograma(int idPrograma) {
-		this.idPrograma = idPrograma;
-	}
-
-	/**
-	 * @return the puntaje
-	 */
-	public int getPuntaje() {
-		return puntaje;
-	}
-
-	/**
-	 * @param puntaje the puntaje to set
-	 */
-	public void setPuntaje(int puntaje) {
-		this.puntaje = puntaje;
-	}
+	}	
 			
 }
