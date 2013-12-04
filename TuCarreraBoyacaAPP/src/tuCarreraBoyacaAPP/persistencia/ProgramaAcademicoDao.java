@@ -128,6 +128,35 @@ public class ProgramaAcademicoDao {
 		return null;
 	}
 	
+	public ArrayList<String[]> selectProgramasCosto(){
+		ResultSet datos;		
+		ArrayList<String[]> resultado = new ArrayList<String[]>();
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				datos = sentencia.executeQuery(academicoSql.selectProgramasCostos());
+				while (datos.next()) {
+					String idPrograma = datos.getString("ID_PROGRAMA_ACADEMICO");
+					String idInstitucion = datos.getString("ID_INSTITUCION");
+					String costo = datos.getString("COSTO_PROGRAMA");
+					String [] elemento = new String[3];
+					elemento[0] = idInstitucion;
+					elemento[1] = idPrograma;
+					elemento[2] = costo;
+					resultado.add(elemento);
+				}
+				return resultado;
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}				
+		}
+		return null;
+	}
+	 
+	/**
+	 * 
+	 * @return Objeto tipo ArrayList que contiene objetos de tipo ProgramaAcademico obtenidos de la BD
+	 */
 	public ArrayList<ProgramaAcademico> selectProgramas(){
 		ResultSet datos;
 		ProgramaAcademico programa;
