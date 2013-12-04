@@ -182,12 +182,16 @@ public class GestionProgramasAcademico {
 					return true;
 				}
 			}
-		}
-		
+		}		
 		return false;
 	}
 	
-	
+	/**
+	 * 
+	 * @param idPrograma - Integer - identificador del elemento a borrar
+	 * @param idInstitucion - Integer - identificador del elemento a borrar
+	 * @return true si se elimino correctamente
+	 */
 	public boolean removeRelacion (int idPrograma, int idInstitucion){
 		ArrayList<String[]> elementos = readProgInstCosto();
 		String[] dato = searchElementoRelacion(idPrograma, idInstitucion);
@@ -201,8 +205,7 @@ public class GestionProgramasAcademico {
 					return true;
 				}
 			}
-		}
-		
+		}		
 		return false;
 	}
 }

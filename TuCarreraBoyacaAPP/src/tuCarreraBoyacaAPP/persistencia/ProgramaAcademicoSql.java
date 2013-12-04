@@ -52,6 +52,11 @@ public class ProgramaAcademicoSql {
 				
 	}
 	
+	/**
+	 * 
+	 * @param elemento - Objeto de tipo String[] que debe ser eliminado de la base de datos
+	 * @return String - Comando SQL para ejecutar sobre la base de datos
+	 */
 	public String deleteRelacion(String[] elemento){
 		return "DELETE FROM programa_academico_institicion_educacion_superior WHERE "
 				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[0])+" AND "
@@ -91,6 +96,10 @@ public class ProgramaAcademicoSql {
 		return "SELECT * FROM programa_academico;";
 	}
 	
+	/**
+	 * 
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
 	public String selectProgramasCostos(){
 		return "SELECT * FROM programa_academico_institucion_educacion_superior;";
 	}
