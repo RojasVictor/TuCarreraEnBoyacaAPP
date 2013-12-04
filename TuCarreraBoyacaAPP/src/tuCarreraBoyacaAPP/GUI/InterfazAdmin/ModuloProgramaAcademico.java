@@ -377,7 +377,22 @@ public class ModuloProgramaAcademico extends JFrame {
 					comboBox_Instituciones.setSelectedItem(comboBox_Instituciones.getItemAt(0));					
 				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
 					String eleIns = comboBoxListInstituciones.getSelectedItem().toString();
-					String eleProg =comboBoxListadoProgramas.getSelectedItem().toString();
+					String eleProg = comboBoxListadoProgramas.getSelectedItem().toString();
+					String costo = textFieldCostoRelacion.getText();
+					InstitucionEducacionSuperior componente1 = new InstitucionEducacionSuperior(0, eleIns, null);
+					ProgramaAcademico componente2= new ProgramaAcademico(0, 0, eleProg, costo, 0);
+					for (int i=0;i<listadoInstituciones.size();i++){
+						if (listadoInstituciones.get(i).getNombre().equals(eleIns)){
+							componente1 = listadoInstituciones.get(i);
+						}
+					}
+					for (int j=0; j<listadoProgramas.size();j++){
+						if (listadoProgramas.get(j).getNombre().equals(eleProg)){
+							componente2 = listadoProgramas.get(j);
+							componente2.setCosto(costo);
+						}
+					}
+					gestionProgramas.crearRelacion(componente2, componente1);
 					/*ProgramaAcademico programa;
 					if(gestionProgramas.crearRelacion(programa) == -1){
 						JOptionPane.showMessageDialog(null, "No se creo la relacion entre Programa e Institucion");						

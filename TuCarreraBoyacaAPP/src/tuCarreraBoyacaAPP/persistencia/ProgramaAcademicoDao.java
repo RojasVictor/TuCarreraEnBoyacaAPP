@@ -37,7 +37,7 @@ public class ProgramaAcademicoDao {
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
 				int s1 = sentencia.executeUpdate(academicoSql.insertProgramaNuevo(programa));
-				int s2 = sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa));
+				int s2 = sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa, programa.getIdInstitucion()));
 				if(s1 != -1 && s2 != -1){
 					return s1;
 				}
@@ -48,11 +48,11 @@ public class ProgramaAcademicoDao {
 		return -1;
 	}
 	
-	public int insertRelacion(ProgramaAcademico programa){
+	public int insertRelacion(ProgramaAcademico programa, InstitucionEducacionSuperior institucion){
 		if(conexion.conectar()){
 			try{
 				Statement sentencia=conexion.getConexion().createStatement();
-				return sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa));
+				return sentencia.executeUpdate(academicoSql.insertarRelacionPrograma(programa, institucion.getId()));
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}

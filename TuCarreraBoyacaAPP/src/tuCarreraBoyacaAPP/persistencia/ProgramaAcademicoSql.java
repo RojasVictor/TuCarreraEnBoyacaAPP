@@ -3,6 +3,7 @@
  */
 package tuCarreraBoyacaAPP.persistencia;
 
+import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 /**
  * @author JUDIT
@@ -26,9 +27,9 @@ public class ProgramaAcademicoSql {
 				+ programa.getId()+"', '"+ programa.getIdArea()+"', '"+programa.getNombre()+"');";									
 	}
 	
-	public String insertarRelacionPrograma (ProgramaAcademico programa){
+	public String insertarRelacionPrograma (ProgramaAcademico programa, int idInstitucion){
 		return "INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
-				+programa.getIdInstitucion()+","
+				+idInstitucion+","
 				+programa.getId()+","
 				+programa.getCosto()+");";
 	}
