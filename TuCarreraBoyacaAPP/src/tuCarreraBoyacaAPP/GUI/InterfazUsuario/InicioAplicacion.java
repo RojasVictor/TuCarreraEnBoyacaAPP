@@ -84,13 +84,29 @@ public class InicioAplicacion extends JFrame {
 		label_4.setBounds(42, 91, 216, 203);
 		contentPane.add(label_4);
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setIndeterminate(true);
+		final JProgressBar progressBar = new JProgressBar();
 		progressBar.setStringPainted(true);
 		progressBar.setForeground(new Color(178, 34, 34));
 		progressBar.setBackground(Color.WHITE);
 		progressBar.setBounds(41, 448, 230, 27);
 		contentPane.add(progressBar);
+		final InicioAplicacion actual = this;
+		Thread hiloBarra = new Thread(){
+			public void run() {
+				for (int i = 0; i < 100; i++) {
+					progressBar.setValue(i);
+					try {
+						sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}	
+				}
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				menuPrincipal.setVisible(true);
+				actual.dispose();
+			}
+		};
+		hiloBarra.start();
 	
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(this.getClass().getResource("Images/Logo_Principal.png")));

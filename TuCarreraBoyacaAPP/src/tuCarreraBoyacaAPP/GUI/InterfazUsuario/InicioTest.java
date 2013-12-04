@@ -117,12 +117,19 @@ public class InicioTest extends JFrame {
 				MenuPrincipal.main(null);				
 			}
 			});
-			contentPane.add(btn_Regresar);
 		
 		JButton btn_IniciarTest = new JButton("");
 		btn_IniciarTest.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_IniciarTest.png")));
 		btn_IniciarTest.setBounds(212, 439, 60, 53);
 		contentPane.add(btn_IniciarTest);
+		btn_IniciarTest.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				VistaPreguntas.main(null);				
+			}
+			});
 								
 		JLabel label = new JLabel("");
 		label.setBackground(Color.WHITE);

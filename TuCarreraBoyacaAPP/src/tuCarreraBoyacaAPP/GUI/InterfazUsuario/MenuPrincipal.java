@@ -132,7 +132,6 @@ public class MenuPrincipal extends JFrame {
 				System.exit (0);			
 			}
 			});
-		contentPane.add(btn_Salir);
 		
 		JButton btn_Ingresar = new JButton("");
 		btn_Ingresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Ingresar.png")));
@@ -146,7 +145,6 @@ public class MenuPrincipal extends JFrame {
 				InicioTest.main(null);				
 			}
 			});
-		contentPane.add(btn_Ingresar);
 
 	}
 }
