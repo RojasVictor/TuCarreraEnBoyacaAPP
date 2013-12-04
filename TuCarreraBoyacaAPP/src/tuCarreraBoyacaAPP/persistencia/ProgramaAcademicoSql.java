@@ -54,6 +54,17 @@ public class ProgramaAcademicoSql {
 	
 	/**
 	 * 
+	 * @param elemento - Objeto de tipo String[] que debe ser eliminado de la base de datos
+	 * @return String - Comando SQL para ejecutar sobre la base de datos
+	 */
+	public String deleteRelacion(String[] elemento){
+		return "DELETE FROM programa_academico_institucion_educacion_superior WHERE "
+				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[1])+" AND "
+				+ "ID_INSTITUCION = "+Integer.parseInt(elemento[0])+";";
+	}
+	
+	/**
+	 * 
 	 * @param programa - Objeto del cual se realizarán las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
@@ -77,8 +88,20 @@ public class ProgramaAcademicoSql {
 				+" ORDER BY ID_PROGRAMA_ACADEMICO";
 	}
 	
+	/**
+	 * 
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
 	public String selectProgramas(){
 		return "SELECT * FROM programa_academico;";
+	}
+	
+	/**
+	 * 
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
+	public String selectProgramasCostos(){
+		return "SELECT * FROM programa_academico_institucion_educacion_superior;";
 	}
 	
 	/**
@@ -87,6 +110,17 @@ public class ProgramaAcademicoSql {
 	 */
 	public String selectAreas(){
 		return "SELECT * FROM area;";
+	}
+	/**
+	 * @param idInstitucion
+	 * @param idPrograma
+	 * @param costo
+	 * @return
+	 */
+	public String updateRelacion(int idInstitucion, int idPrograma, String costo) {
+		return "UPDATE programa_academico_institucion_educacion_superior SET COSTO_PROGRAMA = '"
+				+ costo+"' WHERE ID_INSTITUCION = "+ idInstitucion + " AND "
+				+ " ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
 	}
 
 }

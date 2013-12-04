@@ -80,6 +80,23 @@ public class ProgramaAcademicoDao {
 		}
 		return -1;
 	}
+	
+	/**
+	 * 
+	 * @param elemento - Objeto de tipo String[] que debe ser eliminado de la base de datos
+	 * @return -1 si la eliminiacion no se realizo en la base de datos
+	 */
+	public int deleteRelacion(String [] elemento){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.deleteRelacion(elemento));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 
 	/**
 	 * 
@@ -97,6 +114,19 @@ public class ProgramaAcademicoDao {
 		}
 		return -1;
 	}
+	
+	public int updateRelacion(int idInstitucion, int idPrograma, String costo){
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(academicoSql.updateRelacion(idInstitucion,idPrograma,costo));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		return -1;
+	}
 
 	/**
 	 * 
@@ -104,8 +134,7 @@ public class ProgramaAcademicoDao {
 	 * 
 	 */
 	public ArrayList<String[]> selectProgramasReporte(){
-		ResultSet datos;
-		
+		ResultSet datos;		
 		ArrayList<String[]> academicos = new ArrayList<String[]>();
 		if(conexion.conectar()){
 			try{
@@ -128,6 +157,39 @@ public class ProgramaAcademicoDao {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @return Obejto de tipo ArrayList que contiene objetos de tipo String[]
+	 */
+	public ArrayList<String[]> selectProgramasCosto(){
+		ResultSet datos;		
+		ArrayList<String[]> resultado = new ArrayList<String[]>();
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				datos = sentencia.executeQuery(academicoSql.selectProgramasCostos());
+				while (datos.next()) {
+					String idPrograma = datos.getString("ID_PROGRAMA_ACADEMICO");
+					String idInstitucion = datos.getString("ID_INSTITUCION");
+					String costo = datos.getString("COSTO_PROGRAMA");
+					String [] elemento = new String[3];
+					elemento[0] = idInstitucion;
+					elemento[1] = idPrograma;					
+					elemento[2] = costo;
+					resultado.add(elemento);
+				}
+				return resultado;
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}				
+		}
+		return null;
+	}
+	 
+	/**
+	 * 
+	 * @return Objeto tipo ArrayList que contiene objetos de tipo ProgramaAcademico obtenidos de la BD
+	 */
 	public ArrayList<ProgramaAcademico> selectProgramas(){
 		ResultSet datos;
 		ProgramaAcademico programa;
@@ -150,8 +212,7 @@ public class ProgramaAcademicoDao {
 		}
 		return null;
 	}
-	
-	
+		
 	/**
 	 * 
 	 * @return null - si no hay registros en la base de datos, y en caso contrario retorna objeto de tipo ResultSet con los datos de la base de datos
