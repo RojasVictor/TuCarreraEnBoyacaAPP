@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.regex.Matcher;
@@ -120,6 +121,7 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame implements KeyL
 		txt_Nombre_IES.setColumns(10);
 		txt_Nombre_IES.setBounds(277, 180, 272, 26);
 		contentPane.add(txt_Nombre_IES);
+		soloLetras(txt_Nombre_IES);
 		
 		txt_Url_IES = new JTextField();
 		txt_Url_IES.setColumns(10);
@@ -295,5 +297,23 @@ public class ModuloInstitucionesEducacionSuperior extends JFrame implements KeyL
 	@Override
 	public void keyTyped(KeyEvent e) {
 
+	}
+	
+	public void soloLetras(JTextField letra){
+		
+		letra.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				char c= e.getKeyChar();
+				if(Character.isDigit(c)){
+					getToolkit().beep();
+					e.consume();
+
+			}
+			}
+		});
+		
 	}
 }
