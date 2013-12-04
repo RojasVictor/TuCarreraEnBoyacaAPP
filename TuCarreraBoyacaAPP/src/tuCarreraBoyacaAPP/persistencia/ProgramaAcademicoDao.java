@@ -48,6 +48,13 @@ public class ProgramaAcademicoDao {
 		return -1;
 	}
 	
+	/**
+	 * 
+	 * @param programa - Objeto de tipo ProgramaAcademico
+	 * @param institucion - Objeto de tipo InstitucionEducacionSuperior
+	 * @return -1 si el comando sql no se ejecuta correctamente
+	 */
+	
 	public int insertRelacion(ProgramaAcademico programa, InstitucionEducacionSuperior institucion){
 		if(conexion.conectar()){
 			try{

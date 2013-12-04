@@ -7,6 +7,7 @@ import tuCarreraBoyacaAPP.logica.InstitucionEducacionSuperior;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
 /**
  * @author JUDIT
+ * @author Victor_Rojas
  *
  */
 public class ProgramaAcademicoSql {
@@ -26,6 +27,13 @@ public class ProgramaAcademicoSql {
 				+ "`NOMBRE_PROGRAMA_ACADEMICO`)VALUES('"
 				+ programa.getId()+"', '"+ programa.getIdArea()+"', '"+programa.getNombre()+"');";									
 	}
+	
+	/**
+	 * 
+	 * @param programa - Objeto de tipo ProgramaAcademico
+	 * @param institucion - Objeto de tipo InstitucionEducacionSuperior
+	 * @return Sentencia SQL para ser ejecutada por la base de datos
+	 */
 	
 	public String insertarRelacionPrograma (ProgramaAcademico programa, int idInstitucion){
 		return "INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
@@ -72,6 +80,10 @@ public class ProgramaAcademicoSql {
 				+" ORDER BY ID_PROGRAMA_ACADEMICO";
 	}
 	
+	/**
+	 * 
+	 * @return String - Comando SQL para ejecutar sobre la base de datos
+	 */
 	public String selectAreas(){
 		return "SELECT * FROM area;";
 	}
