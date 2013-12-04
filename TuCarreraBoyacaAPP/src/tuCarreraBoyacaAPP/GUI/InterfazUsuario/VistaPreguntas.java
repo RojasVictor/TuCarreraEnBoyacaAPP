@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,7 +35,7 @@ public class VistaPreguntas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuPrincipal frame = new MenuPrincipal();
+					VistaPreguntas frame = new VistaPreguntas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +63,7 @@ public class VistaPreguntas extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(this.getClass().getResource("Images/celularfondo.png")));
-		label.setBounds(-10, -31, 305, 583);
+		label.setBounds(-10, -19, 305, 583);
 		contentPane.add(label);
 		
 		JLabel lbl_TituloPrincipal = new JLabel("");
@@ -74,23 +75,26 @@ public class VistaPreguntas extends JFrame {
 		lblTextoDeLa.setBounds(10, 143, 277, 15);
 		contentPane.add(lblTextoDeLa);
 		
-		
+		ButtonGroup grupo=new ButtonGroup();
 		JRadioButton rdbtnOpcion = new JRadioButton("Opcion1");
-		rdbtnOpcion.setBounds(8, 261, 279, 23);
+		rdbtnOpcion.setBounds(8, 261, 270, 23);
 		contentPane.add(rdbtnOpcion);
 		
 		JRadioButton radioButton = new JRadioButton("Opcion1");
-		radioButton.setBounds(8, 288, 279, 23);
+		radioButton.setBounds(8, 288, 270, 23);
 		contentPane.add(radioButton);
 		
 		JRadioButton radioButton_1 = new JRadioButton("Opcion1");
-		radioButton_1.setBounds(8, 315, 279, 23);
+		radioButton_1.setBounds(8, 315, 270, 23);
 		contentPane.add(radioButton_1);
 		
 		JRadioButton radioButton_2 = new JRadioButton("Opcion1");
-		radioButton_2.setBounds(8, 342, 279, 23);
+		radioButton_2.setBounds(8, 342, 270, 23);
 		contentPane.add(radioButton_2);
-		
+		grupo.add(radioButton);
+		grupo.add(radioButton_1);
+		grupo.add(rdbtnOpcion);
+		grupo.add(radioButton_2);
 		JButton btnNewButton = new JButton();
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
