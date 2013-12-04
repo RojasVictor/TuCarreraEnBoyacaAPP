@@ -52,6 +52,12 @@ public class ProgramaAcademicoSql {
 				
 	}
 	
+	public String deleteRelacion(String[] elemento){
+		return "DELETE FROM programa_academico_institicion_educacion_superior WHERE "
+				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[0])+" AND "
+				+ "ID_INSTITUCION = "+Integer.parseInt(elemento[1])+";";
+	}
+	
 	/**
 	 * 
 	 * @param programa - Objeto del cual se realizarán las insersiones en la base de datos
