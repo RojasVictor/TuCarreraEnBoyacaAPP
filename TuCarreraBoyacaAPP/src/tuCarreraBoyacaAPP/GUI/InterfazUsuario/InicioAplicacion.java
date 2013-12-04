@@ -17,6 +17,8 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -89,7 +91,7 @@ public class InicioAplicacion extends JFrame {
 		progressBar.setBackground(Color.WHITE);
 		progressBar.setBounds(41, 448, 230, 27);
 		contentPane.add(progressBar);
-		
+	
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(this.getClass().getResource("Images/Logo_Principal.png")));
 		label.setBounds(39, 256, 232, 186);
