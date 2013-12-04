@@ -77,8 +77,16 @@ public class ProgramaAcademicoSql {
 				+" ORDER BY ID_PROGRAMA_ACADEMICO";
 	}
 	
+	/**
+	 * 
+	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 */
 	public String selectProgramas(){
 		return "SELECT * FROM programa_academico;";
+	}
+	
+	public String selectProgramasCostos(){
+		return "SELECT * FROM programa_academico_institucion_educacion_superior;";
 	}
 	
 	/**
