@@ -123,6 +123,12 @@ public class PreguntaSql {
 		return "UPDATE progacademico_pregtest SET PUNTAJE = "+puntaje
 				+" WHERE ID_PREGUNTA = "+pregunta+ " AND ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
 	}
+	/**
+	 * 
+	 * @param idPregunta
+	 * @param idPrograma
+	 * @return
+	 */
 	public String seleccionarPuntaje(int idPregunta,int idPrograma){
 		return "SELECT puntaje from progracademico_pregtest where id_programa_academico="+idPrograma+" and id_pregunta="+idPregunta+";";
 	}
