@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -120,7 +121,8 @@ public class FiltroPreguntas extends JFrame {
 		lbl_Enunciado.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		lbl_Enunciado.setBounds(44, 220, 224, 30);
 		contentPane.add(lbl_Enunciado);
-		
+				
+		ButtonGroup grupo=new ButtonGroup();
 		JRadioButton rdbtnSi = new JRadioButton("SI");
 		rdbtnSi.setToolTipText("");
 		rdbtnSi.setSelected(true);
@@ -140,6 +142,7 @@ public class FiltroPreguntas extends JFrame {
 		label_5.setBounds(44, 329, 224, 30);
 		contentPane.add(label_5);
 		
+		ButtonGroup grupo1 =new ButtonGroup();
 		JRadioButton radioButton = new JRadioButton("SI");
 		radioButton.setToolTipText("");
 		radioButton.setSelected(true);
@@ -153,6 +156,11 @@ public class FiltroPreguntas extends JFrame {
 		radioButton_1.setBackground(Color.WHITE);
 		radioButton_1.setBounds(164, 392, 60, 23);
 		contentPane.add(radioButton_1);
+			
+		grupo.add(rdbtnSi);
+		grupo.add(rdbtnNo);
+		grupo1.add(radioButton);
+		grupo1.add(radioButton_1);
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(278, 151, 17, 273);
