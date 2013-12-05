@@ -90,7 +90,7 @@ public class MenuPrincipal extends JFrame {
 		lbl_Titulo.setBounds(62, 157, 165, 14);
 		contentPane.add(lbl_Titulo);
 		
-		JLabel lbl_SubTitulo = new JLabel("Menï¿½ Principal");
+		JLabel lbl_SubTitulo = new JLabel("Menú Principal");
 		lbl_SubTitulo.setForeground(new Color(25, 25, 112));
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
 		lbl_SubTitulo.setBounds(82, 181, 133, 14);
