@@ -3,6 +3,7 @@
  */
 package tuCarreraBoyacaAPP.GUI.InterfazUsuario;
 
+import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.JPanel;
 
@@ -99,6 +101,26 @@ public class MenuPrincipal extends JFrame {
 		btn_Sonido.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Sonido.png")));
 		btn_Sonido.setBounds(60, 331, 79, 65);
 		contentPane.add(btn_Sonido);
+		btn_Sonido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				/*AudioClip sonido;
+				sonido=java.applet.Applet.newAudioClip(getClass().getResource("Images/suenos.wav"));
+				sonido.loop();
+				sonido.play(); */
+				
+				AudioClip sonido; 
+				sonido = getAudioClip(getClass().getResource("Images/suenos.wav")); 
+				//sonido.play();
+				sonido.loop();
+			
+			}
+
+			private AudioClip getAudioClip(URL resource) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
 		
 		JLabel lbl_ImagenVocacional = new JLabel("");
 		lbl_ImagenVocacional.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_opcion.png")));
