@@ -127,7 +127,7 @@ public class InicioTest extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				VistaPreguntas.main(null);				
+				FiltroPreguntas.main(null);				
 			}
 			});
 								
