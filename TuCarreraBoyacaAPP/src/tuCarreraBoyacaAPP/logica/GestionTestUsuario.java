@@ -12,13 +12,11 @@ import java.util.ArrayList;
 public class GestionTestUsuario {
 //Attributes------------------------------------
 	private TestUsuario testUsuario;
-	private ArrayList<Integer> selecciones;
 	private ArrayList<Double> puntaje;
 //Building--------------------------------------
 	public GestionTestUsuario(){
 		testUsuario=new TestUsuario();
 		testUsuario.cargarPreguntasUsuario();
-		selecciones=new ArrayList<Integer>();
 		puntaje=new ArrayList<Double>();
 	}
 //Methods---------------------------------------

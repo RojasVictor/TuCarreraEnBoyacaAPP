@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 
@@ -80,29 +81,30 @@ public class VistaPreguntas extends JFrame {
 				FiltroPreguntas.main(null);				
 			}
 			});
-		
-		JLabel lblTextoDeLa = new JLabel("Texto de la Pregunta");
+		JScrollPane panel=new JScrollPane();
+		//---------------------------------------------------------------------------------------------------------------//
+		JLabel lblTextoDeLa = new JLabel("Para poder instalar un programa de computador debe tener:");
 		lblTextoDeLa.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		lblTextoDeLa.setBounds(20, 224, 234, 15);
 		contentPane.add(lblTextoDeLa);
 		
 		ButtonGroup grupo=new ButtonGroup();
-		JRadioButton rdbtn_Opcion1 = new JRadioButton("Opcion1");
+		JRadioButton rdbtn_Opcion1 = new JRadioButton("Un usuario que sepa realizar la instalacion del sistema operativo");
 		rdbtn_Opcion1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		rdbtn_Opcion1.setBounds(20, 270, 234, 23);
 		contentPane.add(rdbtn_Opcion1);
 		
-		JRadioButton rdbtn_Opcion2 = new JRadioButton("Opcion1");
+		JRadioButton rdbtn_Opcion2 = new JRadioButton("Un disco duro donde se albergue el sistema operativo");
 		rdbtn_Opcion2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		rdbtn_Opcion2.setBounds(20, 297, 234, 23);
 		contentPane.add(rdbtn_Opcion2);
 		
-		JRadioButton rdbtn_Opcion3 = new JRadioButton("Opcion1");
+		JRadioButton rdbtn_Opcion3 = new JRadioButton("Unos parlantes");
 		rdbtn_Opcion3.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		rdbtn_Opcion3.setBounds(20, 324, 234, 23);
 		contentPane.add(rdbtn_Opcion3);
 		
-		JRadioButton rdbtn_Opcion4 = new JRadioButton("Opcion1");
+		JRadioButton rdbtn_Opcion4 = new JRadioButton("Conexion a una red");
 		rdbtn_Opcion4.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
 		rdbtn_Opcion4.setBounds(20, 351, 234, 23);
 		contentPane.add(rdbtn_Opcion4);
@@ -112,7 +114,106 @@ public class VistaPreguntas extends JFrame {
 		grupo.add(rdbtn_Opcion1);
 		grupo.add(rdbtn_Opcion4);
 		
-		
+		panel.add(lblTextoDeLa);
+		panel.add(rdbtn_Opcion1);
+		panel.add(rdbtn_Opcion2);
+		panel.add(rdbtn_Opcion3);
+		panel.add(rdbtn_Opcion4);
+		//---------------------------------------------------------------------------------------------------------------//
+				JLabel lblTextDos = new JLabel("La formula para hallar el area de un cuadrado es:");
+				lblTextoDeLa.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				lblTextoDeLa.setBounds(20, 224, 234, 15);
+				contentPane.add(lblTextDos);
+				
+				ButtonGroup grupo2=new ButtonGroup();
+				JRadioButton rdbtn_Opcion5 = new JRadioButton("lado * lado");
+				rdbtn_Opcion1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion1.setBounds(20, 270, 234, 23);
+				contentPane.add(rdbtn_Opcion5);
+				
+				JRadioButton rdbtn_Opcion6 = new JRadioButton("lado + lado");
+				rdbtn_Opcion2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion2.setBounds(20, 297, 234, 23);
+				contentPane.add(rdbtn_Opcion6);
+				
+				JRadioButton rdbtn_Opcion7 = new JRadioButton("lado * 3pi");
+				rdbtn_Opcion3.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion3.setBounds(20, 324, 234, 23);
+				contentPane.add(rdbtn_Opcion7);
+				
+				JRadioButton rdbtn_Opcion8 = new JRadioButton("lado - (lado+3)");
+				rdbtn_Opcion4.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion4.setBounds(20, 351, 234, 23);
+				contentPane.add(rdbtn_Opcion8);
+				
+				grupo2.add(rdbtn_Opcion5);
+				grupo2.add(rdbtn_Opcion6);
+				grupo2.add(rdbtn_Opcion7);
+				grupo2.add(rdbtn_Opcion8);
+				
+		//---------------------------------------------------------------------------------------------------------------//
+				JLabel lblTextTres = new JLabel("Cual es la formula quimica del agua:");
+				lblTextoDeLa.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				lblTextoDeLa.setBounds(20, 224, 234, 15);
+				contentPane.add(lblTextTres);
+				
+				ButtonGroup grupo3=new ButtonGroup();
+				JRadioButton rdbtn_Opcion9 = new JRadioButton("HCCHO");
+				rdbtn_Opcion1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion1.setBounds(20, 270, 234, 23);
+				contentPane.add(rdbtn_Opcion9);
+				
+				JRadioButton rdbtn_Opcion10 = new JRadioButton("H2O4");
+				rdbtn_Opcion2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion2.setBounds(20, 297, 234, 23);
+				contentPane.add(rdbtn_Opcion10);
+				
+				JRadioButton rdbtn_Opcion11 = new JRadioButton("H2O");
+				rdbtn_Opcion3.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion3.setBounds(20, 324, 234, 23);
+				contentPane.add(rdbtn_Opcion11);
+				
+				JRadioButton rdbtn_Opcion12 = new JRadioButton("LIOH");
+				rdbtn_Opcion4.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion4.setBounds(20, 351, 234, 23);
+				contentPane.add(rdbtn_Opcion12);
+				
+				grupo3.add(rdbtn_Opcion9);
+				grupo3.add(rdbtn_Opcion10);
+				grupo3.add(rdbtn_Opcion11);
+				grupo3.add(rdbtn_Opcion12);
+				
+		//---------------------------------------------------------------------------------------------------------------//
+				JLabel lblTextCuatro = new JLabel("Quien planteo la ley de la relatividad:");
+				lblTextoDeLa.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				lblTextoDeLa.setBounds(20, 224, 234, 15);
+				contentPane.add(lblTextCuatro);
+				
+				ButtonGroup grupo4=new ButtonGroup();
+				JRadioButton rdbtn_Opcion13 = new JRadioButton("Albert Einstein");
+				rdbtn_Opcion1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion1.setBounds(20, 270, 234, 23);
+				contentPane.add(rdbtn_Opcion13);
+				
+				JRadioButton rdbtn_Opcion14 = new JRadioButton("Isaac Newton");
+				rdbtn_Opcion2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion2.setBounds(20, 297, 234, 23);
+				contentPane.add(rdbtn_Opcion14);
+				
+				JRadioButton rdbtn_Opcion15 = new JRadioButton("Nicolay Tesla");
+				rdbtn_Opcion3.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion3.setBounds(20, 324, 234, 23);
+				contentPane.add(rdbtn_Opcion15);
+				
+				JRadioButton rdbtn_Opcion16 = new JRadioButton("Friederich Von Del Haum");
+				rdbtn_Opcion4.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+				rdbtn_Opcion4.setBounds(20, 351, 234, 23);
+				contentPane.add(rdbtn_Opcion16);
+				
+				grupo2.add(rdbtn_Opcion13);
+				grupo2.add(rdbtn_Opcion14);
+				grupo2.add(rdbtn_Opcion15);
+				grupo2.add(rdbtn_Opcion16);
 		JButton btn_siguiente = new JButton();
 		btn_siguiente.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_siguiente.png")));
 		btn_siguiente.setBounds(219, 428, 54, 54);
@@ -137,9 +238,7 @@ public class VistaPreguntas extends JFrame {
 		lbl_imagenVocaional.setBounds(208, 159, 46, 34);
 		contentPane.add(lbl_imagenVocaional);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(266, 145, 17, 272);
-		contentPane.add(scrollBar);
+		contentPane.add(panel);
 		
 		JLabel lbl_TituloPrincipal = new JLabel("");
 		lbl_TituloPrincipal.setIcon(new ImageIcon(this.getClass().getResource("Images/TituloPrincipal.png")));
