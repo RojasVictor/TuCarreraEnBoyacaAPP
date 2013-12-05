@@ -25,13 +25,14 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertPregunta (PreguntaTest pregunta) {
-		return "INSERT INTO pregunta_test VALUES('"
+		return "INSERT INTO pregunta_test VALUES("
+				+pregunta.getId()+",'"
 				+pregunta.getDescripcion()+"','"
 				+pregunta.getRespuesta1()+"','"
 				+pregunta.getRespuesta2()+"','"
 				+pregunta.getRespuesta3()+"','"
-				+pregunta.getRespuesta4()+"','"
-				+pregunta.getRespuestaCorrecta()+"')";		
+				+pregunta.getRespuesta4()+"',"
+				+pregunta.getRespuestaCorrecta()+")";		
 	}
 	
 	/**
@@ -51,14 +52,14 @@ public class PreguntaSql {
 	public String updatePregunta (PreguntaTest pregunta) {
 		String BaseDatos = conexion.getBaseDatos();
 		
-		return "UPDATE `"+BaseDatos+"`.`pregunta_test``DESCRIPCION_PREGUNTA` = '"
+		return "UPDATE `"+BaseDatos+"`.`pregunta_test` SET `DESCRIPCION_PREGUNTA` = '"
 				+pregunta.getDescripcion()+"',"
-				+"`RESPUESTA_1` = '"+pregunta.getRespuesta1()+"','"
-				+"`RESPUESTA_2` = '"+pregunta.getRespuesta2()+"','"
-				+"`RESPUESTA_3` = '"+pregunta.getRespuesta3()+"','"
-				+"`RESPUESTA_4` = '"+pregunta.getRespuesta4()+"','"
-				+"`RESPUESTA_CORRECTA` = '"+pregunta.getRespuestaCorrecta()
-				+"' WHERE `pregunta_test`.`ID_PREGUNTA` ="+pregunta.getId()+";";
+				+" `RESPUESTA_1` = '"+pregunta.getRespuesta1()+"',"
+				+" `RESPUESTA_2` = '"+pregunta.getRespuesta2()+"',"
+				+" `RESPUESTA_3` = '"+pregunta.getRespuesta3()+"',"
+				+" `RESPUESTA_4` = '"+pregunta.getRespuesta4()+"',"
+				+" `RESPUESTA_CORRECTA` = "+pregunta.getRespuestaCorrecta()
+				+" WHERE `pregunta_test`.`ID_PREGUNTA` ="+pregunta.getId()+";";
 	}
 	
 	/**

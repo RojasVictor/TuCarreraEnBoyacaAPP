@@ -183,7 +183,7 @@ public class ModuloPreguntas extends JFrame {
 					}catch(NumberFormatException e){
 							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					if (txt_Id_Pregunta.getText().equals("") || descripcion.equals("") 
+					if (identificador == 0 || descripcion.equals("") 
 							|| respuesta1.equals("") || respuesta2.equals("") || respuesta3.equals("") 
 							|| respuesta4.equals("")){
 						JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
@@ -199,10 +199,6 @@ public class ModuloPreguntas extends JFrame {
 				}else if(opcion.equals(OPCION3)){
 					
 				}
-				
-				//if (textField_descripcion.getText().equals("") || textField_.getText().equals("")){
-				//	JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
-				//}
 			}
 		});
 	
@@ -239,6 +235,7 @@ public class ModuloPreguntas extends JFrame {
 			ProgramaAcademico elemento = listadoProgramas.get(i);
 			cmbBox_ProgramaAcademico.addItem(elemento.getNombre());			
 		}	
+		contentPane.add(cmbBox_ProgramaAcademico);
 						
 		JLabel lbl_RespuestaCuatro = new JLabel("Respuesta Cuatro");
 		lbl_RespuestaCuatro.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
@@ -440,7 +437,15 @@ public class ModuloPreguntas extends JFrame {
 				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
 					int pregunta = Integer.parseInt(comboBoxPreguntas.getSelectedItem().toString());
 					String programa = cmbBox_ProgramaAcademico.getSelectedItem().toString();
-					int puntaje = Integer.parseInt(txt_EstimacionPuntaje.getText());
+					int puntaje =0;
+					try{	
+						String puntaje1 = txt_EstimacionPuntaje.getText();
+						if (puntaje1.equalsIgnoreCase("")){
+							puntaje = Integer.parseInt(puntaje1);
+						}
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "El espacio ''puntaje'' no puede estar en blanco");
+					}
 					int idPrograma = 0;			
 					
 					for (int j=0; j<listadoProgramas.size();j++){
