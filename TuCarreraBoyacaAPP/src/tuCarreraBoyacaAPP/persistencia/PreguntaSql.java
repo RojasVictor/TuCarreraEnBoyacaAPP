@@ -109,7 +109,19 @@ public class PreguntaSql {
 	 */
 	
 	public String deleteRelacion(int pregunta, int idPrograma) {
-		return null;
+		return "DELETE FROM progacademico_pregtest WHERE ID_PREGUNTA = "+pregunta
+				+" AND ID_PROGRAMA_ACADEMICO = "+idPrograma+";";
+	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @param puntaje
+	 * @return
+	 */
+	public String updateRelacion(int pregunta, int idPrograma, int puntaje) {
+		return "UPDATE progacademico_pregtest SET PUNTAJE = "+puntaje
+				+" WHERE ID_PREGUNTA = "+pregunta+ " AND ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
 	}
 
 }

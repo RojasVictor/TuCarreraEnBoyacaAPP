@@ -79,7 +79,7 @@ public class GestionPreguntaTest {
 	/**
 	 * @return rrayList - un ArrayList con los objetos presentes en la tabla pregunta_test de la BD
 	 */
-	private ArrayList<PreguntaTest> readPreguntaTests() {
+	public ArrayList<PreguntaTest> readPreguntaTests() {
 		return preguntaDao.selectPreguntas();
 	}
 	
@@ -117,8 +117,7 @@ public class GestionPreguntaTest {
 	 ** @param respuestaCorrecta -- Integer -- numero de la respuesta correcta
 	 ***/ 
 	public boolean updatePreguntaTest (int id, String descripcion, String respuesta1,
-			String respuesta2, String respuesta3, String respuesta4,
-			int respuestaCorrecta, int idPrograma, int puntaje){
+		String respuesta2, String respuesta3, String respuesta4, int respuestaCorrecta){
 		preguntas = readPreguntaTests();
 		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
 		if(searchPreguntaTest(id)!= null){
@@ -152,6 +151,42 @@ public class GestionPreguntaTest {
 			}
 		}		
 		return false;
+	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @return
+	 */
+	public int removeRelacion(int pregunta, int idPrograma) {
+		return preguntaDao.deleteRelacion(pregunta, idPrograma);
+	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @return
+	 */
+	public String[] searchElementoRelacion(int pregunta, int idPrograma) {
+		ArrayList<String[]> listado = readRelaciones();
+		String[] elemento = new String[3];
+		for(int t=0; t<listado.size();t++){
+			elemento = listado.get(t);
+			if(Integer.parseInt(elemento[0]) == pregunta && Integer.parseInt(elemento[1]) == idPrograma){
+				return elemento;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @param puntaje
+	 * @return
+	 */
+	public int updateRelacion(int pregunta, int idPrograma, int puntaje) {
+		return preguntaDao.updateRelacion(pregunta, idPrograma, puntaje);
 	}
 
 	

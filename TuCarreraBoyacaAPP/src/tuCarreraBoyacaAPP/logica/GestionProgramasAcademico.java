@@ -36,6 +36,7 @@ public class GestionProgramasAcademico {
 	 */
 	public ArrayList<String[]> readAreas() {
 		return academicoDao.selectAreas();
+		
 	}
 		
 	/**

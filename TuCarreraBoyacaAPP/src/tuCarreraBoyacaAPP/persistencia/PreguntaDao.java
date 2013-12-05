@@ -202,4 +202,22 @@ public class PreguntaDao {
 		}
 		return -1;
 	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @param puntaje
+	 * @return
+	 */
+	public int updateRelacion(int pregunta, int idPrograma, int puntaje) {
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sqlPregunta.updateRelacion(pregunta,idPrograma,puntaje));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 }
