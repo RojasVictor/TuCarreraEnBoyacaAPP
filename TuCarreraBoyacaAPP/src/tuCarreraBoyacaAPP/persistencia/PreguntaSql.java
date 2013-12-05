@@ -21,7 +21,7 @@ public class PreguntaSql {
 	
 	/**
 	 * 
-	 * @param pregunta - Objeto del cual se realizarán las insersiones en la base de datos
+	 * @param pregunta - Objeto del cual se realizarï¿½n las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertPregunta (PreguntaTest pregunta) {
@@ -46,7 +46,7 @@ public class PreguntaSql {
 	
 	/**
 	 * 
-	 * @param pregunta- Objeto del cual se realizarán las insersiones en la base de datos
+	 * @param pregunta- Objeto del cual se realizarï¿½n las insersiones en la base de datos
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updatePregunta (PreguntaTest pregunta) {
@@ -122,6 +122,9 @@ public class PreguntaSql {
 	public String updateRelacion(int pregunta, int idPrograma, int puntaje) {
 		return "UPDATE progacademico_pregtest SET PUNTAJE = "+puntaje
 				+" WHERE ID_PREGUNTA = "+pregunta+ " AND ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
+	}
+	public String seleccionarPuntaje(int idPregunta,int idPrograma){
+		return "SELECT puntaje from progracademico_pregtest where id_programa_academico="+idPrograma+" and id_pregunta="+idPregunta+";";
 	}
 
 }
