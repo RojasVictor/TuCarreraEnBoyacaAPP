@@ -185,4 +185,21 @@ public class PreguntaDao {
 			}
 		return null;
 	}
+
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @return
+	 */
+	public int deleteRelacion(int pregunta, int idPrograma) {
+		if(conexion.conectar()){
+			try{
+				Statement sentencia=conexion.getConexion().createStatement();
+				return sentencia.executeUpdate(sqlPregunta.deleteRelacion(pregunta, idPrograma));
+			}catch (SQLException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return -1;
+	}
 }

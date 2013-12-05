@@ -102,4 +102,14 @@ public class PreguntaSql {
 		return "SELECT * FROM progacademico_pregtest;";
 	}
 
+	/**
+	 * @param pregunta
+	 * @param idPrograma
+	 * @return
+	 */
+	
+	public String deleteRelacion(int pregunta, int idPrograma) {
+		return null;
+	}
+
 }
