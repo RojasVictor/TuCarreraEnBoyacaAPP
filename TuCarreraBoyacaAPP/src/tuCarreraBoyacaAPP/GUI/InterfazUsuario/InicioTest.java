@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -104,6 +106,7 @@ public class InicioTest extends JFrame {
 		txt_Nombre.setBounds(48, 387, 191, 29);
 		contentPane.add(txt_Nombre);
 		txt_Nombre.setColumns(10);
+		soloLetras(txt_Nombre);
 		
 		JButton btn_Regresar = new JButton("");
 		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btb_regresar.png")));
@@ -187,5 +190,23 @@ public class InicioTest extends JFrame {
 		lbl_panelBotones.setBounds(10, 427, 278, 69);
 		contentPane.add(lbl_panelBotones);
 
+	}
+	
+	public void soloLetras(JTextField letra){
+		
+		letra.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				char c= e.getKeyChar();
+				if(Character.isDigit(c)){
+					getToolkit().beep();
+					e.consume();
+
+			}
+			}
+		});
+		
 	}
 }
