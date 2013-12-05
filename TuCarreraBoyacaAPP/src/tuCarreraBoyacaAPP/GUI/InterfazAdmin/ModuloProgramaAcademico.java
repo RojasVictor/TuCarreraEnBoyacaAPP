@@ -21,6 +21,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -291,6 +293,7 @@ public class ModuloProgramaAcademico extends JFrame {
 		textFieldCostoRelacion.setEditable(false);
 		textFieldCostoRelacion.setBounds(268, 373, 274, 26);
 		contentPane.add(textFieldCostoRelacion);
+		soloNumeros(textFieldCostoRelacion);
 		
 		btn_Agregar.addActionListener(new ActionListener() {
 			
@@ -525,7 +528,23 @@ public class ModuloProgramaAcademico extends JFrame {
 					}
 				}				
 			}
-		});
-				
+		});		
 	}
+	
+	public void soloNumeros(JTextField letra){
+		
+		letra.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				char ch= e.getKeyChar();
+				if(Character.isLetter(ch)){
+					getToolkit().beep();
+					e.consume();
+
+			}
+			}
+		});	
+	}
+	
 }
