@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -139,6 +141,14 @@ public class ComoComenzar2 extends JFrame {
 		btn_regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btb_regresar.png")));
 		btn_regresar.setBounds(25, 420, 55, 59);
 		contentPane.add(btn_regresar);
+		btn_regresar.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				MenuPrincipal.main(null);				
+			}
+		});
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(this.getClass().getResource("Images/Logo_TCBAPP.png")));
