@@ -105,7 +105,15 @@ public class MenuPrincipal extends JFrame {
 		btn_ComoIniciar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_comoIniciar.png")));
 		btn_ComoIniciar.setBounds(156, 331, 79, 65);
 		contentPane.add(btn_ComoIniciar);
-		
+		btn_ComoIniciar.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ComoComenzar.main(null);				
+			}
+			});
+
 		JButton btn_Sonido = new JButton("");
 		btn_Sonido.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Sonido.png")));
 		btn_Sonido.setBounds(60, 331, 79, 65);
