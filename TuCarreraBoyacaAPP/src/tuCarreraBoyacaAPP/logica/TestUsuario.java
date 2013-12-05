@@ -12,10 +12,11 @@ public class TestUsuario {
 	//Attributes---------------------------------------
 	private int idTest;
 	private String nombreUsuario;
+	private  GestionPreguntaTest gestion;
 	private ArrayList<PreguntaTest> preguntaTest;
-		
 	//Building-----------------------------------------
 	public TestUsuario(){
+		gestion=new GestionPreguntaTest();
 		idTest = 0;
 		nombreUsuario = "";
 		preguntaTest = new ArrayList<>();
@@ -50,6 +51,14 @@ public class TestUsuario {
 
 	public void setPreguntaTest(ArrayList<PreguntaTest> preguntaTest) {
 		this.preguntaTest = preguntaTest;
+	}
+	/**
+	 * 
+	 */
+	public void cargarPreguntasUsuario(){
+		for(int i=0;i<3;i++){
+			preguntaTest.add(gestion.getPreguntas().get(i));
+		}
 	}
  	
 }
