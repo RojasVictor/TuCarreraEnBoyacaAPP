@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 import tuCarreraBoyacaAPP.GUI.InterfazUsuario.MenuPrincipal;
 import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
+import javax.swing.JPasswordField;
 
 
 /**
@@ -29,11 +30,11 @@ import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 public class CambiarContrasena extends JFrame{
 	
 	//Attributes ------------------------------------
-	private JTextField JPasswordField_ContrasenaActual;
-	private JTextField JPasswordField_ContrasenaNueva;
+	private JPasswordField JPasswordField_ContrasenaActual;
+	private JPasswordField JPasswordField_ContrasenaNueva;
 	private JLabel lblRespuesta; 
 	private JTextField textField_Usuario;
-	
+		
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -90,12 +91,12 @@ public class CambiarContrasena extends JFrame{
 			});
 		getContentPane().add(btn_Regresar);
 		
-		JPasswordField_ContrasenaActual = new JTextField();
+		JPasswordField_ContrasenaActual = new JPasswordField();
 		JPasswordField_ContrasenaActual.setBounds(178, 120, 135, 27);
 		getContentPane().add(JPasswordField_ContrasenaActual);
 		JPasswordField_ContrasenaActual.setColumns(10);
 		
-		JPasswordField_ContrasenaNueva = new JTextField();
+		JPasswordField_ContrasenaNueva = new JPasswordField();
 		JPasswordField_ContrasenaNueva.setBounds(178, 162, 135, 27);
 		getContentPane().add(JPasswordField_ContrasenaNueva);
 		JPasswordField_ContrasenaNueva.setColumns(10);
@@ -128,8 +129,19 @@ public class CambiarContrasena extends JFrame{
 				boolean resaux = false;
 				boolean respuesta;
 				String usuCambiar = textField_Usuario.getText();
-				float actual = Float.parseFloat(JPasswordField_ContrasenaActual.getText());
-				float nueva = Float.parseFloat(JPasswordField_ContrasenaNueva.getText());
+				char[] datoActual = JPasswordField_ContrasenaActual.getPassword();
+				char[] datoNuevo = JPasswordField_ContrasenaNueva.getPassword();
+				String dato1 = "";
+				String dato2 = "";
+				for (int i=0;i<datoActual.length;i++){
+					dato1 = dato1+datoActual[i];
+				}
+				for(int j=0;j<datoNuevo.length;j++){
+					dato2 = dato2+datoNuevo[j];
+				}
+				
+				float actual = Float.parseFloat(dato1);
+				float nueva = Float.parseFloat(dato2);
 				ArchivoContrasena guardaDato = new ArchivoContrasena();
 				ArrayList<String[]> listado = guardaDato.lectura();
 				actual = EventsAdmin.encriptarContrasena(actual);
