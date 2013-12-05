@@ -7,6 +7,11 @@ import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -22,6 +27,10 @@ import javax.swing.JButton;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.swing.JPanel;
@@ -81,7 +90,7 @@ public class MenuPrincipal extends JFrame {
 		lbl_Titulo.setBounds(62, 157, 165, 14);
 		contentPane.add(lbl_Titulo);
 		
-		JLabel lbl_SubTitulo = new JLabel("Menú Principal");
+		JLabel lbl_SubTitulo = new JLabel("Menï¿½ Principal");
 		lbl_SubTitulo.setForeground(new Color(25, 25, 112));
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 18));
 		lbl_SubTitulo.setBounds(82, 181, 133, 14);
@@ -108,20 +117,15 @@ public class MenuPrincipal extends JFrame {
 				sonido=java.applet.Applet.newAudioClip(getClass().getResource("Images/suenos.wav"));
 				sonido.loop();
 				sonido.play(); */
-				
-				AudioClip sonido; 
-				sonido = getAudioClip(getClass().getResource("Images/suenos.wav")); 
-				//sonido.play();
-				sonido.loop();
-			
-			}
-
-			private AudioClip getAudioClip(URL resource) {
-				// TODO Auto-generated method stub
-				return null;
+				try {
+					initSonido();
+				} catch (LineUnavailableException | IOException
+						| UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		
 		JLabel lbl_ImagenVocacional = new JLabel("");
 		lbl_ImagenVocacional.setIcon(new ImageIcon(this.getClass().getResource("Images/imagen_opcion.png")));
 		lbl_ImagenVocacional.setBounds(228, 157, 46, 38);
@@ -168,5 +172,12 @@ public class MenuPrincipal extends JFrame {
 			}
 			});
 
+	}
+	private void initSonido() throws LineUnavailableException,IOException,UnsupportedAudioFileException{
+		//BufferedInputStream bis=new BufferedInputStream(getClass().getResourceAsStream("/Images/suenos.wav"));
+		//AudioInputStream ais=AudioSystem.getAudioInputStream(bis);
+		Clip sonido= AudioSystem.getClip();
+		sonido.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/Images/suenos.wav")));
+		sonido.start();
 	}
 }
