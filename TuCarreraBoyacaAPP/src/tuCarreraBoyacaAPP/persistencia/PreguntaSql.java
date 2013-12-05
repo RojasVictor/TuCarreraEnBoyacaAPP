@@ -105,9 +105,8 @@ public class PreguntaSql {
 	/**
 	 * @param pregunta
 	 * @param idPrograma
-	 * @return
+	 * @return - Comando SQL para ejecutar sobre la base de datos
 	 */
-	
 	public String deleteRelacion(int pregunta, int idPrograma) {
 		return "DELETE FROM progacademico_pregtest WHERE ID_PREGUNTA = "+pregunta
 				+" AND ID_PROGRAMA_ACADEMICO = "+idPrograma+";";
@@ -117,7 +116,7 @@ public class PreguntaSql {
 	 * @param pregunta
 	 * @param idPrograma
 	 * @param puntaje
-	 * @return
+	 * @return - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updateRelacion(int pregunta, int idPrograma, int puntaje) {
 		return "UPDATE progacademico_pregtest SET PUNTAJE = "+puntaje
