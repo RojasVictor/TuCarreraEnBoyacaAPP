@@ -111,6 +111,7 @@ public class ProgramaAcademicoSql {
 	public String selectAreas(){
 		return "SELECT * FROM area;";
 	}
+	
 	/**
 	 * @param idInstitucion
 	 * @param idPrograma

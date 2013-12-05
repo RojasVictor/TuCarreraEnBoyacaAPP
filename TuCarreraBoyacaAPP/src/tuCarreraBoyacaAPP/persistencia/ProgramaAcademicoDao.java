@@ -225,13 +225,11 @@ public class ProgramaAcademicoDao {
 				Statement sentencia=conexion.getConexion().createStatement();
 				datos = sentencia.executeQuery(academicoSql.selectAreas());
 				while (datos.next()){
-					String aux0 = datos.getString("ID_AREA");
-					String aux1 = datos.getString("NOMBRE_AREA");
-					String [] aux = new String[2];
-					aux[0] = aux0;
-					aux[1] = aux1;
+					String [] aux = new String[2];					
+					aux[0] = datos.getString("ID_AREA");
+					aux[1] = datos.getString("NOMBRE_AREA");
 					resultado.add(aux);
-				}
+				}				
 				return resultado;
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
