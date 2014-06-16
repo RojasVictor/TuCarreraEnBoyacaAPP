@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -34,20 +35,20 @@ public class MenuAdmin extends JFrame {
 			public void run() {
 				try {
 					MenuAdmin frame = new MenuAdmin();
-					frame.setVisible(true);
+					frame.setVisible(true);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
 	public MenuAdmin() {
 		setTitle("Menú Administrador");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modulo_admin.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/ingreso.png")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/modulo_admin.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 587, 312);
 		contentPane = new JPanel();
@@ -59,12 +60,14 @@ public class MenuAdmin extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("Images/LogoPrincipal_TCBAPP.png")));
+		ImageIcon imagen1 =new ImageIcon(this.getClass().getResource("Images/LogoPrincipal_TCBAPP.png"));
+		label.setIcon(imagen1);
 		label.setBounds(10, 11, 120, 81);
 		contentPane.add(label);
 		
 		JButton btn_IES = new JButton("");
-		btn_IES.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_IES.png")));
+		ImageIcon imagen2 =new ImageIcon(this.getClass().getResource("Images/btn_IES.png"));
+		btn_IES.setIcon(imagen2);
 		btn_IES.setBounds(178, 115, 384, 42);
 		contentPane.add(btn_IES);
 		btn_IES.addActionListener(new ActionListener() {
@@ -75,7 +78,8 @@ public class MenuAdmin extends JFrame {
 		});
 		
 		JButton btn_ProgramasAcademicos = new JButton("");
-		btn_ProgramasAcademicos.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Programas.png")));
+		ImageIcon imagen3 =new ImageIcon(this.getClass().getResource("Images/btn_Programas.png"));
+		btn_ProgramasAcademicos.setIcon(imagen3);
 		btn_ProgramasAcademicos.setBounds(178, 168, 384, 42);
 		contentPane.add(btn_ProgramasAcademicos);
 		btn_ProgramasAcademicos.addActionListener(new ActionListener() {
@@ -88,7 +92,8 @@ public class MenuAdmin extends JFrame {
 		});
 		
 		JButton btn_Preguntas = new JButton("");
-		btn_Preguntas.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Preguntas.png")));
+		ImageIcon imagen4 =new ImageIcon(this.getClass().getResource("Images/btn_Preguntas.png"));
+		btn_Preguntas.setIcon(imagen4);
 		btn_Preguntas.setBounds(178, 221, 384, 41);
 		contentPane.add(btn_Preguntas);
 		btn_Preguntas.addActionListener(new ActionListener() {
@@ -96,11 +101,11 @@ public class MenuAdmin extends JFrame {
 				dispose();
 				ModuloPreguntas.main(null);
 			}
-		});
-			
+		});			
 		
 		JButton btn_Regresar = new JButton("");
-		btn_Regresar.setIcon(new ImageIcon(MenuAdmin.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_CerrearSesion.png")));
+		ImageIcon imagen5 =new ImageIcon(this.getClass().getResource("Images/btn_CerrearSesion.png"));
+		btn_Regresar.setIcon(imagen5);
 		btn_Regresar.setBounds(10, 221, 158, 41);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
@@ -108,7 +113,7 @@ public class MenuAdmin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginAdmin.main(null);
+				IniciarSesion.main(null);
 				
 			}
 		});
@@ -122,12 +127,15 @@ public class MenuAdmin extends JFrame {
 				
 			}
 		});
-		btn_CambioContrasena.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_CambiarContraseña.png")));
+		
+		ImageIcon imagen6 =new ImageIcon(this.getClass().getResource("Images/btn_CambiarContraseña.png"));
+		btn_CambioContrasena.setIcon(imagen6);
 		btn_CambioContrasena.setBounds(10, 123, 74, 81);
 		contentPane.add(btn_CambioContrasena);
 		
 		JButton btn_Reportes = new JButton("");
-		btn_Reportes.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Reporte.png")));
+		ImageIcon imagen7 =new ImageIcon(this.getClass().getResource("Images/btn_Reporte.png"));
+		btn_Reportes.setIcon(imagen7);
 		btn_Reportes.setBounds(92, 123, 68, 81);
 		contentPane.add(btn_Reportes);
 		btn_Reportes.addActionListener(new ActionListener() {

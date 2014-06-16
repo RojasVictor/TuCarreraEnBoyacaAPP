@@ -19,7 +19,7 @@ public class EventsAdmin implements ActionListener{
 //Attributes-------------------------------------------
 	public static final String INGRESAR="Ingresar";
 	public static final String IES="Universidades";
-	private LoginAdmin login;
+	private IniciarSesion login;
 	
 //Building---------------------------------------------
 	public EventsAdmin(){
@@ -32,9 +32,10 @@ public class EventsAdmin implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		ArchivoContrasena validar = new ArchivoContrasena();
 		ArrayList<String[]> conjuntoDatos = validar.lectura();		
-		if(login.isIniciar()){
+		if(login.isIniciar()){			
 			String user=getLogin().getTxt_Usuario().getText();
 			String word = "";
 			float password;
@@ -49,15 +50,17 @@ public class EventsAdmin implements ActionListener{
 				password= Float.parseFloat(word);
 			}
 			if(user.length()!=0 && password!=0){
+				
 				int conteo = 0;
-				for (conteo=0; conteo<conjuntoDatos.size();conteo++){
+				
+				for (conteo=0; conteo<conjuntoDatos.size();conteo++){					
 					String [] dato  = conjuntoDatos.get(conteo);
 					String usuario = dato[0];
 					float pass = Float.parseFloat(dato[1]);
 					desencriptada = desencirptarContrasena(pass);
-					if(user.equals(usuario) && password==desencriptada){
+					if(user.equals(usuario) && password==desencriptada){						
 						login.dispose();
-						MenuAdmin.main(null);
+						MenuAdmin.main(null);						
 						break;
 					}					
 				}
@@ -77,15 +80,15 @@ public class EventsAdmin implements ActionListener{
 	/**
 	 * @return the login
 	 */
-	public LoginAdmin getLogin() {
+	public IniciarSesion getLogin() {
 		return login;
 	}
 
 	/**
-	 * @param login the login to set
+	 * @param iniciarSesion the login to set
 	 */
-	public void setLogin(LoginAdmin login) {
-		this.login = login;
+	public void setLogin(IniciarSesion iniciarSesion) {
+		this.login = iniciarSesion;
 	}
 	
 	

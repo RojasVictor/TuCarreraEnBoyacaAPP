@@ -18,17 +18,19 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import tuCarreraBoyacaAPP.GUI.InterfazUsuario.MenuPrincipal;
 import tuCarreraBoyacaAPP.persistencia.ArchivoContrasena;
 import javax.swing.JPasswordField;
 
-
 /**
- * @author FABIO
+ * @author VICTOR
  *
  */
 public class CambiarContrasena extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Attributes ------------------------------------
 	private JPasswordField JPasswordField_ContrasenaActual;
 	private JPasswordField JPasswordField_ContrasenaNueva;
