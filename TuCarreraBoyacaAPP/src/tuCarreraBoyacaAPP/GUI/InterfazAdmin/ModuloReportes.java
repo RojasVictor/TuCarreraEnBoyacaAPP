@@ -169,7 +169,6 @@ public class ModuloReportes extends JFrame {
 					datos.setNumRows(0);
 					ArrayList<String[]> programas = new ArrayList<String[]>();
 					programas = gesProgramas.readProgramasAcademicoReporte();
-					System.out.println(programas.size());
 					if(programas.size()!=0){
 					datos.addColumn("ID PROGRAMA");
 					datos.addColumn("NOMBRE PROGRAMA");
