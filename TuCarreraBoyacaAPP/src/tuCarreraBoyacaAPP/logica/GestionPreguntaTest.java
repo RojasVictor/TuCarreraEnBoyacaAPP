@@ -50,18 +50,6 @@ public class GestionPreguntaTest {
 	}
 	
 	/**
-	 * 
-	 * @param idPregunta - identificador pregunta a relacionar
-	 * @param idPrograma - identificador programa a relacionar
-	 * @param puntaje - puntaje asignado a esa relacion entre pregunta y programa
-	 * @return -1 si la accion no fue exitosa 
-	 */
-	public int createRelacion (int idPregunta, int idPrograma, int puntaje){
-		int respuesta = preguntaDao.insertRelacion(idPregunta, idPrograma, puntaje);
-		return respuesta;
-	}
-	
-	/**
 	 ** @return ArrayList - un ArrayList de los objetos presentes
 	 ***/ 
 	public ArrayList<String[]> readPreguntaTestsReporte () {
@@ -72,9 +60,7 @@ public class GestionPreguntaTest {
 	 * 
 	 * @return ArrayList - un ArrayList con los objetos presentes en la tabla progacademico_pregtest de la BD
 	 */
-	public ArrayList<String[]> readRelaciones () {
-		return preguntaDao.selectRelaciones();
-	}
+	
 	
 	/**
 	 * @return rrayList - un ArrayList con los objetos presentes en la tabla pregunta_test de la BD
@@ -96,7 +82,7 @@ public class GestionPreguntaTest {
 	 ***/ 
 	public PreguntaTest searchPreguntaTest (int busqueda){
 		preguntas = readPreguntaTests();
-		PreguntaTest pregunt = new PreguntaTest(busqueda, null, null, null, null, null, 0);
+		PreguntaTest pregunt = new PreguntaTest(busqueda, 0, 0, "");
 		for (int i=0; i<getPreguntas().size();i++){
 			pregunt = getPreguntas().get(i);
 			if(pregunt.getId() == busqueda){
@@ -106,20 +92,17 @@ public class GestionPreguntaTest {
 		return null;
 	}
 	
-	/**
-	 ** @return true - si se actualizo el registro correctamente
-	 ** @param id -- integer  -- identificador de la pregunta a actualizar
-	 ** @param descripcion -- String -- enunciado de la pregunta
-	 ** @param respuesta1 -- String -- enunciado de la respuesta 1 a actualizar
-	 ** @param respuesta2 -- String -- enunciado de la respuesta 1 a actualizar
-	 ** @param respuesta3 -- String -- enunciado de la respuesta 1 a actualizar
-	 ** @param respuesta4 -- String -- enunciado de la respuesta 1 a actualizar
-	 ** @param respuestaCorrecta -- Integer -- numero de la respuesta correcta
-	 ***/ 
-	public boolean updatePreguntaTest (int id, String descripcion, String respuesta1,
-		String respuesta2, String respuesta3, String respuesta4, int respuestaCorrecta){
+	/** 
+	 * @param id
+	 * @param idCategoria
+	 * @param idPrograma
+	 * @param descripcion
+	 * @return
+	 */
+	public boolean updatePreguntaTest (int id, int idCategoria, 
+			int idPrograma, String descripcion){
 		preguntas = readPreguntaTests();
-		PreguntaTest actualizar = new PreguntaTest(id, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
+		PreguntaTest actualizar = new PreguntaTest(id, idCategoria,idPrograma,descripcion);
 		if(searchPreguntaTest(id)!= null){
 			for (int i=0; i<preguntas.size();i++){
 				if(preguntas.get(i).getId() == id){
@@ -152,43 +135,4 @@ public class GestionPreguntaTest {
 		}		
 		return false;
 	}
-
-	/**
-	 * @param pregunta
-	 * @param idPrograma
-	 * @return
-	 */
-	public int removeRelacion(int pregunta, int idPrograma) {
-		return preguntaDao.deleteRelacion(pregunta, idPrograma);
-	}
-
-	/**
-	 * @param pregunta
-	 * @param idPrograma
-	 * @return
-	 */
-	public String[] searchElementoRelacion(int pregunta, int idPrograma) {
-		ArrayList<String[]> listado = readRelaciones();
-		String[] elemento = new String[3];
-		for(int t=0; t<listado.size();t++){
-			elemento = listado.get(t);
-			if(Integer.parseInt(elemento[0]) == pregunta && Integer.parseInt(elemento[1]) == idPrograma){
-				return elemento;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @param pregunta
-	 * @param idPrograma
-	 * @param puntaje
-	 * @return
-	 */
-	public int updateRelacion(int pregunta, int idPrograma, int puntaje) {
-		return preguntaDao.updateRelacion(pregunta, idPrograma, puntaje);
-	}
-
-	
-
 }

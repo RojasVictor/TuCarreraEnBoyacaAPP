@@ -4,8 +4,7 @@ public class ProgramaAcademico {
 
 	//ATTRIBUTES --------------------------
 	
-	private int id;	
-	private int idArea;
+	private int id;		
 	private String nombre;	
 		
 	//BUILDING -------------------------------------
@@ -14,9 +13,8 @@ public class ProgramaAcademico {
 	 * @param nombre
 	 * @param categoria
 	 */
-	public ProgramaAcademico(int id, int idArea, String nombre) {
-		this.id = id;
-		this.idArea = idArea;
+	public ProgramaAcademico(int id, String nombre) {
+		this.id = id;		
 		this.nombre = nombre;		
 	}
 	
@@ -34,20 +32,6 @@ public class ProgramaAcademico {
 	 */
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the idArea
-	 */
-	public int getIdArea() {
-		return idArea;
-	}
-
-	/**
-	 * @param idArea the idArea to set
-	 */
-	public void setIdArea(int idArea) {
-		this.idArea = idArea;
 	}
 
 	/**

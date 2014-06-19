@@ -17,27 +17,17 @@ public class GestionProgramasAcademico {
 	
 	private ArrayList<ProgramaAcademico> academicos;
 	private ProgramaAcademicoDao academicoDao;
-	private ArrayList<String []> areas; 
 	private ArrayList<String[]> listado;
 	
 	//Building ----------------------------------------------------------
 	public GestionProgramasAcademico() {
 		academicos = new ArrayList<ProgramaAcademico>();
 		academicoDao = new ProgramaAcademicoDao();
-		academicos = readProgramasAcademico();
-		areas = readAreas();
+		academicos = readProgramasAcademicos();		
 	}
 	
 	//Methods ------------------------------------------------------------
 	
-	/**
-	 * 
-	 * @return ArrayList<String[]> con los datos de la tabla area
-	 */
-	public ArrayList<String[]> readAreas() {
-		return academicoDao.selectAreas();
-		
-	}
 		
 	/**
 	 * @return the academicos
@@ -51,13 +41,6 @@ public class GestionProgramasAcademico {
 	 */
 	public void setAcademicos(ArrayList<ProgramaAcademico> academicos) {
 		this.academicos = academicos;
-	}
-
-	/**
-	 * @param areas the areas to set
-	 */
-	public void setAreas(ArrayList<String[]> areas) {
-		this.areas = areas;
 	}
 
 	/**
@@ -84,8 +67,8 @@ public class GestionProgramasAcademico {
 	 * @param busqueda -- integer -- id del elemento a buscar en el ArrayList
 	 * @return Objeto de tipo Programa Academico que se encuentra en el ArrayList**/
 	public ProgramaAcademico searchProgramaAcademico (int busqueda){
-		academicos = readProgramasAcademico();
-		ProgramaAcademico programa =new ProgramaAcademico(busqueda, 0, null);
+		academicos = readProgramasAcademicos();
+		ProgramaAcademico programa =new ProgramaAcademico(busqueda, null);
 		for(int i=0; i<academicos.size();i++){
 			programa = getAcademicos().get(i);
 			if(programa.getId()==busqueda){
@@ -116,7 +99,7 @@ public class GestionProgramasAcademico {
 	/**
 	 * @return ArrayList de programas academicos existentes
 	 */
-	public ArrayList<ProgramaAcademico> readProgramasAcademico (){
+	public ArrayList<ProgramaAcademico> readProgramasAcademicos (){
 		return academicoDao.selectProgramas();
 	}
 	
@@ -151,14 +134,14 @@ public class GestionProgramasAcademico {
 	 * @param area - nombre del area que queda actualizado en el elemento
 	 * @return true - si se actualiza exitosamente el elemento del ArrayList
 	 */
-	public boolean updateProgramasAcademicos(int id, int idArea, String nombre){
-		academicos = readProgramasAcademico();
-		ProgramaAcademico actualizar = new ProgramaAcademico(id, idArea, nombre);
+	public boolean updateProgramasAcademicos(int id, String nombre){
+		academicos = readProgramasAcademicos();
+		ProgramaAcademico actualizar = new ProgramaAcademico(id, nombre);
 		if (searchProgramaAcademico(id) != null){
 			for(int i=0; i<getAcademicos().size();i++){
 				if(getAcademicos().get(i).getId() == id){
 					academicoDao.updatePrograma(actualizar);
-					academicos = readProgramasAcademico();
+					academicos = readProgramasAcademicos();
 					return true;
 				}
 			}
@@ -186,7 +169,7 @@ public class GestionProgramasAcademico {
 	 * @return true - si se elimino el elemento correctamente 
 	 */
 	public boolean removeProgramasAcademicos(int id){
-		academicos = readProgramasAcademico();
+		academicos = readProgramasAcademicos();
 		ProgramaAcademico elemento = searchProgramaAcademico(id);
 		ProgramaAcademico busqueda;
 		if(elemento != null){
@@ -194,7 +177,7 @@ public class GestionProgramasAcademico {
 				busqueda = getAcademicos().get(i);
 				if(academicos.get(i).getId() == id){
 					academicoDao.deletePrograma(elemento.getId());
-					academicos = readProgramasAcademico();
+					academicos = readProgramasAcademicos();
 					return true;
 				}
 			}
@@ -217,7 +200,7 @@ public class GestionProgramasAcademico {
 				busqueda = elementos.get(i);
 				if(Integer.parseInt(elementos.get(i)[0]) == idInstitucion && Integer.parseInt(elementos.get(i)[1]) == idPrograma){
 					academicoDao.deleteRelacion(elementos.get(i));
-					academicos = readProgramasAcademico();
+					academicos = readProgramasAcademicos();
 					return true;
 				}
 			}

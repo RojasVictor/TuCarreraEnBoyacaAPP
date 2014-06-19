@@ -141,12 +141,11 @@ public class ProgramaAcademicoDao {
 				Statement sentencia=conexion.getConexion().createStatement();
 				datos = sentencia.executeQuery(academicoSql.selectProgramasReportes());
 				while (datos.next()) {
-					String[] programa = new String[5];
-					programa[0] = datos.getString("ID_PROGRAMA_ACADEMICO");
-					programa[1] = datos.getString("ID_AREA");
-					programa[2] = datos.getString("NOMBRE_PROGRAMA_ACADEMICO");
-					programa[3] = datos.getString("COSTO_PROGRAMA");
-					programa[4] = datos.getString("ID_INSTITUCION");
+					String[] programa = new String[4];
+					programa[0] = datos.getString("ID_PROGRAMA");					
+					programa[1] = datos.getString("NOMBRE_PROGRAMA");
+					programa[2] = datos.getString("COSTO");
+					programa[3] = datos.getString("ID_INSTITUCION");
 					academicos.add(programa);					
 				}					
 				return academicos;
@@ -169,9 +168,9 @@ public class ProgramaAcademicoDao {
 				Statement sentencia=conexion.getConexion().createStatement();
 				datos = sentencia.executeQuery(academicoSql.selectProgramasCostos());
 				while (datos.next()) {
-					String idPrograma = datos.getString("ID_PROGRAMA_ACADEMICO");
+					String idPrograma = datos.getString("ID_PROGRAMA");
 					String idInstitucion = datos.getString("ID_INSTITUCION");
-					String costo = datos.getString("COSTO_PROGRAMA");
+					String costo = datos.getString("COSTO");
 					String [] elemento = new String[3];
 					elemento[0] = idInstitucion;
 					elemento[1] = idPrograma;					
@@ -199,41 +198,15 @@ public class ProgramaAcademicoDao {
 				Statement sentencia=conexion.getConexion().createStatement();
 				datos = sentencia.executeQuery(academicoSql.selectProgramas());
 				while (datos.next()) {
-					int idPrograma = Integer.parseInt(datos.getString("ID_PROGRAMA_ACADEMICO"));
-					int idArea = Integer.parseInt(datos.getString("ID_AREA"));
-					String nombre = datos.getString("NOMBRE_PROGRAMA_ACADEMICO");
-					programa = new ProgramaAcademico(idPrograma, idArea, nombre);
+					int idPrograma = Integer.parseInt(datos.getString("ID_PROGRAMA"));
+					String nombre = datos.getString("NOMBRE_PROGRAMA");
+					programa = new ProgramaAcademico(idPrograma, nombre);
 					academicos.add(programa);
 				}
 				return academicos;
 			}catch (SQLException e){
 				System.out.println(e.getMessage());
 			}				
-		}
-		return null;
-	}
-		
-	/**
-	 * 
-	 * @return null - si no hay registros en la base de datos, y en caso contrario retorna objeto de tipo ResultSet con los datos de la base de datos
-	 */
-	public ArrayList<String []> selectAreas(){
-		ResultSet datos;
-		ArrayList<String []> resultado = new ArrayList<String []>();
-		if(conexion.conectar()){
-			try{
-				Statement sentencia=conexion.getConexion().createStatement();
-				datos = sentencia.executeQuery(academicoSql.selectAreas());
-				while (datos.next()){
-					String [] aux = new String[2];					
-					aux[0] = datos.getString("ID_AREA");
-					aux[1] = datos.getString("NOMBRE_AREA");
-					resultado.add(aux);
-				}				
-				return resultado;
-			}catch (SQLException e){
-				System.out.println(e.getMessage());
-			}
 		}
 		return null;
 	}

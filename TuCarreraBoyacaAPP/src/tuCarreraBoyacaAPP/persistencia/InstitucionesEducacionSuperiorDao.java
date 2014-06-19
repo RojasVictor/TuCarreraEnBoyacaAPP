@@ -96,7 +96,7 @@ public class InstitucionesEducacionSuperiorDao {
 				while (datos.next()) {
 					int id = Integer.parseInt(datos.getString("ID_INSTITUCION"));
 					String nombre = datos.getString("NOMBRE_INSTITUCION");
-					String url = datos.getString("URL_INSTITUCION");
+					String url = datos.getString("URL");
 					institucion = new InstitucionEducacionSuperior(id, nombre, url);
 				    superiors.add(institucion);
 				}

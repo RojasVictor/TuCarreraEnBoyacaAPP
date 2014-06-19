@@ -27,7 +27,7 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertInstituciones (InstitucionEducacionSuperior superior) {
-		return "INSERT INTO institucion_educacion_superior VALUES('"
+		return "INSERT INTO institucion VALUES('"
 				+superior.getId()+"','"
 				+superior.getNombre()+"','"
 				+superior.getDireccionURL()+"')";		
@@ -39,7 +39,7 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deleteInstituciones (int id) {
-		return "DELETE FROM institucion_educacion_superior WHERE ID_INSTITUCION="+id+";";	
+		return "DELETE FROM institucion WHERE ID_INSTITUCION="+id+";";	
 	
 	}
 		
@@ -51,8 +51,8 @@ public class InstitucionesEducacionSsuperiorSql {
 	public String updateInstituciones (InstitucionEducacionSuperior educacionSuperior){
 		String BaseDatos = conexion.getBaseDatos();
 		
-		return "UPDATE `"+BaseDatos+"`.`institucion_educacion_superior` SET  `NOMBRE_INSTITUCION` = '"
-				+educacionSuperior.getNombre()+"', `URL_INSTITUCION` = '"
+		return "UPDATE `"+BaseDatos+"`.`institucion` SET  `NOMBRE_INSTITUCION` = '"
+				+educacionSuperior.getNombre()+"', `URL` = '"
 				+educacionSuperior.getDireccionURL()+"' WHERE `institucion_educacion_superior`.`ID_INSTITUCION` ="
 				+educacionSuperior.getId()+";";
 
@@ -63,7 +63,7 @@ public class InstitucionesEducacionSsuperiorSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectInstituciones(){
-		return "SELECT * FROM institucion_educacion_superior;";
+		return "SELECT * FROM institucion;";
 	}
 
 }

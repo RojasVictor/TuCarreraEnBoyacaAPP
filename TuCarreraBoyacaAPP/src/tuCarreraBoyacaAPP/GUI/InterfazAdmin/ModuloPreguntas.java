@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.color.CMMException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,10 +30,14 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 
+import tuCarreraBoyacaAPP.logica.Categoria;
+import tuCarreraBoyacaAPP.logica.GestionCategorias;
 import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
 import tuCarreraBoyacaAPP.logica.GestionProgramasAcademico;
 import tuCarreraBoyacaAPP.logica.PreguntaTest;
 import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
+
+import javax.swing.SwingConstants;
 
 /**
  * @author JUDIT
@@ -42,31 +47,21 @@ public class ModuloPreguntas extends JFrame {
 
 	private final String OPCION1 = "SELECCIONAR";
 	private final String OPCION2 = "AGREGAR NUEVA PREGUNTA";
-	private final String OPCION3 = "AGREGAR RELACIONES";
 	private GestionPreguntaTest gesPreguntas;
 	private GestionProgramasAcademico gesProgramas;
+	private GestionCategorias gesCategorias;
 	private JPanel contentPane;
 	private JTextField txt_Id_Pregunta;
-	private JTextField txt_EstimacionPuntaje;
-	private JComboBox comboBoxOpcionPrincipal;
-	private JSpinner spinner_RespuestaCorrecta;
-	private JComboBox cmbBox_ProgramaAcademico;
-	private JComboBox comboBoxPreguntas;
+	private JComboBox<String> comboBoxOpcionPrincipal;
+	private JComboBox<String> comboBoxProgramas;
+	private JComboBox<String> comboBoxCategorias;
 	private JTextArea textAreaDescripcion;
-	private JTextArea textAreaRespuesta1;
-	private JTextArea textAreaRespuesta2;
-	private JTextArea textAreaRespuesta3;
-	private JTextArea textAreaRespuesta4;
 	private JScrollPane scrollPane;
-	private JScrollPane scrollPane_1;
-	private JScrollPane scrollPane_2;
-	private JScrollPane scrollPane_3;
-	private JScrollPane scrollPane_4;
 	private ArrayList<PreguntaTest> listadoPregunta;
 	private ArrayList<String[]> elementos;
 	private ArrayList<ProgramaAcademico> listadoProgramas;
-	private ArrayList<String[]> areas;
-	
+	private ArrayList<Categoria> listadoCategorias;
+		
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +85,7 @@ public class ModuloPreguntas extends JFrame {
 		setTitle("MODULO PREGUNTAS");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("Images/modul_pregunta.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 612, 700);
+		setBounds(100, 100, 500, 485);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,15 +95,12 @@ public class ModuloPreguntas extends JFrame {
 		setLocationRelativeTo(null);
 		
 		gesPreguntas = new GestionPreguntaTest();
-		gesProgramas = new GestionProgramasAcademico();		
-		areas = gesProgramas.readAreas();
-					
-		if(gesPreguntas.readRelaciones().size() != 0){
-		elementos = gesPreguntas.readRelaciones();
-		}
+		gesProgramas = new GestionProgramasAcademico();	
+		gesCategorias = new GestionCategorias();
+		
 		listadoPregunta = gesPreguntas.readPreguntaTests();
-		listadoProgramas = gesProgramas.readProgramasAcademico();
-				
+		listadoProgramas = gesProgramas.readProgramasAcademicos();	
+		listadoCategorias = gesCategorias.getCategorias();
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(this.getClass().getResource("Images/LogoPrincipal_TCBAPP.png")));
@@ -121,33 +113,19 @@ public class ModuloPreguntas extends JFrame {
 		contentPane.add(lbl_Id_Pregunta);
 		
 		txt_Id_Pregunta = new JTextField();
+		txt_Id_Pregunta.setEnabled(false);
 		txt_Id_Pregunta.setColumns(10);
 		txt_Id_Pregunta.setBounds(207, 195, 273, 26);
 		contentPane.add(txt_Id_Pregunta);
 		
-		JLabel lbl_DescripcionPregunta = new JLabel("Descripción Pregunta");
-		lbl_DescripcionPregunta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_DescripcionPregunta.setBounds(22, 242, 162, 26);
-		contentPane.add(lbl_DescripcionPregunta);
-		
-		JLabel lbl_EstimacionPuntaje = new JLabel("Estimación Puntaje");
-		lbl_EstimacionPuntaje.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_EstimacionPuntaje.setBounds(23, 626, 152, 26);
-		contentPane.add(lbl_EstimacionPuntaje);
-		
-		txt_EstimacionPuntaje = new JTextField();
-		txt_EstimacionPuntaje.setColumns(10);
-		txt_EstimacionPuntaje.setBounds(208, 628, 272, 26);
-		contentPane.add(txt_EstimacionPuntaje);
-		
-		JLabel lbl_ProgramasAcadmicos = new JLabel("Programas Académicos");
-		lbl_ProgramasAcadmicos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_ProgramasAcadmicos.setBounds(23, 588, 174, 25);
-		contentPane.add(lbl_ProgramasAcadmicos);
+		JLabel lbl_Enunciado = new JLabel("Enunciado Pregunta");
+		lbl_Enunciado.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_Enunciado.setBounds(22, 318, 162, 26);
+		contentPane.add(lbl_Enunciado);
 		
 		JButton btn_Regresar = new JButton("");
 		btn_Regresar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Regresar.png")));
-		btn_Regresar.setBounds(487, 608, 110, 45);
+		btn_Regresar.setBounds(22, 384, 110, 45);
 		contentPane.add(btn_Regresar);
 		btn_Regresar.addActionListener(new ActionListener() {
 			
@@ -161,60 +139,63 @@ public class ModuloPreguntas extends JFrame {
 		
 		JButton btn_Agregar = new JButton("");
 		btn_Agregar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Agrega.png")));
-		btn_Agregar.setBounds(519, 211, 73, 66);
+		btn_Agregar.setBounds(158, 376, 73, 66);
 		contentPane.add(btn_Agregar);
-		btn_Agregar.addActionListener(new ActionListener() {
-			
+		
+		btn_Agregar.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String opcion = comboBoxOpcionPrincipal.getSelectedItem().toString();
 				if (opcion.equals(OPCION1)){
 					JOptionPane.showMessageDialog(null, "Debe seleccionar una opcion en la primera casilla");
 				}else if(opcion.equals(OPCION2)){
-					int identificador = 0;
-					String descripcion = textAreaDescripcion.getText();
-					String respuesta1 = textAreaRespuesta1.getText();
-					String respuesta2 = textAreaRespuesta2.getText();
-					String respuesta3 = textAreaRespuesta3.getText();
-					String respuesta4 = textAreaRespuesta4.getText();
-					int respuestaCor;
+					txt_Id_Pregunta.setEnabled(true);
+					comboBoxCategorias.setEnabled(true);
+					comboBoxProgramas.setEnabled(true);
+					textAreaDescripcion.setEnabled(true);
+					
+					int identificador = 0;					
+					String enunciado = textAreaDescripcion.getText();					
+					String categoria;
+					String programa;
+					
 					try{	
 						identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 					}catch(NumberFormatException e){
 							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					if (identificador == 0 || descripcion.equals("") 
-							|| respuesta1.equals("") || respuesta2.equals("") || respuesta3.equals("") 
-							|| respuesta4.equals("")){
-						JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+					if (identificador == 0 || enunciado.equals("") || comboBoxCategorias.getSelectedItem().toString().equals(OPCION1) 
+							|| comboBoxProgramas.getSelectedItem().toString().equals(OPCION1) ){
+						JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");											
 					}else{
-						respuestaCor = Integer.parseInt(spinner_RespuestaCorrecta.getValue().toString());
-						PreguntaTest pregunta = new PreguntaTest(identificador, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCor);
+						categoria = comboBoxCategorias.getSelectedItem().toString();
+						programa = comboBoxProgramas.getSelectedItem().toString();
+						int idCategoria = encontrarIdCategoria(categoria);
+						int idPrograma = encontrarIdPrograma(programa);
+						PreguntaTest pregunta = new PreguntaTest(identificador, idCategoria, idPrograma, enunciado);
 						if(gesPreguntas.createPregunta(pregunta) == -1){
 							JOptionPane.showMessageDialog(null, "No se pudo agregar la pregunta");
 						}else {
 							JOptionPane.showMessageDialog(null, "Se agrego la pregunta correctamente");
 						}
 					}					
-				}else if(opcion.equals(OPCION3)){
-					
 				}
-			}
+			}			
 		});
 	
 		JButton btn_Guardar = new JButton("");
 		btn_Guardar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Guardar.png")));
-		btn_Guardar.setBounds(519, 288, 73, 66);
+		btn_Guardar.setBounds(241, 376, 73, 66);
 		contentPane.add(btn_Guardar);
 		
 		JButton btn_Buscar = new JButton("");
 		btn_Buscar.setIcon(new ImageIcon(ModuloPreguntas.class.getResource("/tuCarreraBoyacaAPP/GUI/InterfazAdmin/Images/btn_Busca.png")));
-		btn_Buscar.setBounds(519, 365, 73, 66);
+		btn_Buscar.setBounds(324, 376, 73, 66);
 		contentPane.add(btn_Buscar);
 		
 		JButton btn_Eliminar = new JButton("");
 		btn_Eliminar.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_Eliminar.png")));
-		btn_Eliminar.setBounds(519, 445, 73, 66);
+		btn_Eliminar.setBounds(407, 376, 73, 66);
 		contentPane.add(btn_Eliminar);
 		
 		JLabel lbl_Titulo = new JLabel("TU CARRERA EN BOYACÁ APP");
@@ -229,44 +210,16 @@ public class ModuloPreguntas extends JFrame {
 		lbl_SubTitulo.setBounds(232, 73, 174, 26);
 		contentPane.add(lbl_SubTitulo);
 		
-		cmbBox_ProgramaAcademico = new JComboBox();
-		cmbBox_ProgramaAcademico.setBounds(207, 589, 273, 26);
-		for (int i=0;i<listadoProgramas.size();i++){
-			ProgramaAcademico elemento = listadoProgramas.get(i);
-			cmbBox_ProgramaAcademico.addItem(elemento.getNombre());			
-		}	
-		contentPane.add(cmbBox_ProgramaAcademico);
-						
-		JLabel lbl_RespuestaCuatro = new JLabel("Respuesta Cuatro");
-		lbl_RespuestaCuatro.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_RespuestaCuatro.setBounds(22, 428, 174, 25);
-		contentPane.add(lbl_RespuestaCuatro);
 		
-		JLabel lbl_RespuestaUno = new JLabel("Respuesta Uno");
-		lbl_RespuestaUno.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_RespuestaUno.setBounds(22, 283, 174, 25);
-		contentPane.add(lbl_RespuestaUno);
+		JLabel lbl_IdPrograma = new JLabel("Programa Academico");
+		lbl_IdPrograma.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
+		lbl_IdPrograma.setBounds(22, 241, 174, 25);
+		contentPane.add(lbl_IdPrograma);
 		
-		JLabel lbl_RespuestaDos = new JLabel("Respuesta Dos");
+		JLabel lbl_RespuestaDos = new JLabel("Categoria");
 		lbl_RespuestaDos.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_RespuestaDos.setBounds(22, 333, 174, 25);
+		lbl_RespuestaDos.setBounds(22, 280, 174, 25);
 		contentPane.add(lbl_RespuestaDos);
-		
-		JLabel lblRespuestaTres = new JLabel("Respuesta Tres");
-		lblRespuestaTres.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lblRespuestaTres.setBounds(21, 382, 174, 25);
-		contentPane.add(lblRespuestaTres);
-		
-		JLabel lbl_RespuestaCorrecta = new JLabel("Respuesta Correcta");
-		lbl_RespuestaCorrecta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lbl_RespuestaCorrecta.setBounds(22, 486, 174, 25);
-		contentPane.add(lbl_RespuestaCorrecta);
-		
-		spinner_RespuestaCorrecta = new JSpinner();
-		spinner_RespuestaCorrecta.setModel(new SpinnerNumberModel(1, 1, 4, 1));
-		spinner_RespuestaCorrecta.setToolTipText("1\r\n2\r\n3\r\n4");
-		spinner_RespuestaCorrecta.setBounds(206, 487, 73, 26);
-		contentPane.add(spinner_RespuestaCorrecta);
 		
 		JLabel label_1 = new JLabel("Seleccione una Opci\u00F3n");
 		label_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
@@ -276,75 +229,46 @@ public class ModuloPreguntas extends JFrame {
 		comboBoxOpcionPrincipal = new JComboBox();
 		comboBoxOpcionPrincipal.addItem(OPCION1);
 		comboBoxOpcionPrincipal.addItem(OPCION2);
-		comboBoxOpcionPrincipal.addItem(OPCION3);
+		
 		comboBoxOpcionPrincipal.setBounds(207, 125, 272, 26);		
 		contentPane.add(comboBoxOpcionPrincipal);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 538, 487, 2);
-		contentPane.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 171, 487, 2);
 		contentPane.add(separator_1);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(207, 232, 273, 36);
+		scrollPane.setBounds(207, 318, 273, 36);
 		contentPane.add(scrollPane);
 		
 		textAreaDescripcion = new JTextArea();
-		scrollPane.setViewportView(textAreaDescripcion);
-		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(207, 283, 273, 36);
-		contentPane.add(scrollPane_1);
-		
-		textAreaRespuesta1 = new JTextArea();
-		scrollPane_1.setViewportView(textAreaRespuesta1);
-		
-		scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(207, 335, 273, 36);
-		contentPane.add(scrollPane_2);
-		
-		textAreaRespuesta2 = new JTextArea();
-		scrollPane_2.setViewportView(textAreaRespuesta2);
-		
-		scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(207, 382, 273, 36);
-		contentPane.add(scrollPane_3);
-		
-		textAreaRespuesta3 = new JTextArea();
-		scrollPane_3.setViewportView(textAreaRespuesta3);
-		
-		scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(207, 428, 273, 36);
-		contentPane.add(scrollPane_4);
-		
-		textAreaRespuesta4 = new JTextArea();
-		scrollPane_4.setViewportView(textAreaRespuesta4);
-		
-		txt_Id_Pregunta.setEnabled(false);
-		txt_EstimacionPuntaje.setEnabled(false);
-		spinner_RespuestaCorrecta.setEnabled(false);
-		cmbBox_ProgramaAcademico.setEnabled(false);
 		textAreaDescripcion.setEnabled(false);
-		textAreaRespuesta1.setEnabled(false);
-		textAreaRespuesta2.setEnabled(false);
-		textAreaRespuesta3.setEnabled(false);
-		textAreaRespuesta4.setEnabled(false);
+		scrollPane.setViewportView(textAreaDescripcion);
+				
+		comboBoxProgramas = new JComboBox();
+		comboBoxProgramas.setEnabled(false);
+		comboBoxProgramas.setBounds(207, 242, 273, 26);
+		comboBoxProgramas.addItem(OPCION1);
+		contentPane.add(comboBoxProgramas);
 		
-		JLabel lblIdentificadorPreguntas = new JLabel("Identificador Preguntas");
-		lblIdentificadorPreguntas.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lblIdentificadorPreguntas.setBounds(22, 551, 174, 26);
-		contentPane.add(lblIdentificadorPreguntas);
+		comboBoxCategorias = new JComboBox();
+		comboBoxCategorias.setEnabled(false);
+		comboBoxCategorias.setBounds(207, 281, 273, 26);
+		comboBoxCategorias.addItem(OPCION1);
+		contentPane.add(comboBoxCategorias);
 		
-		comboBoxPreguntas = new JComboBox();
-		comboBoxPreguntas.setEnabled(false);
-		comboBoxPreguntas.setBounds(207, 551, 273, 26);
-		for(int i=0;i< listadoPregunta.size();i++){			
-			comboBoxPreguntas.addItem(listadoPregunta.get(i).getId());		
-		}		
-		contentPane.add(comboBoxPreguntas);
+
+		for (int i=0;i<listadoProgramas.size();i++){			
+			ProgramaAcademico elemento = listadoProgramas.get(i);
+			comboBoxProgramas.addItem(elemento.getNombre());			
+		}
+		
+		for (int j=0;j<listadoCategorias.size();j++){			
+			Categoria elemento = listadoCategorias.get(j);
+			comboBoxCategorias.addItem(elemento.getNombreCategoria());			
+		}
+		
+		
 		
 		comboBoxOpcionPrincipal.addActionListener(new ActionListener() {
 			
@@ -353,113 +277,18 @@ public class ModuloPreguntas extends JFrame {
 			String seleccion = comboBoxOpcionPrincipal.getSelectedItem().toString();
 				if (seleccion.equals(OPCION1)){
 					
-					txt_Id_Pregunta.setEnabled(false);
-					txt_EstimacionPuntaje.setEnabled(false);
-					spinner_RespuestaCorrecta.setEnabled(false);
-					cmbBox_ProgramaAcademico.setEnabled(false);
-					comboBoxPreguntas.setEnabled(false);
+					txt_Id_Pregunta.setEnabled(false);					
 					textAreaDescripcion.setEnabled(false);
-					textAreaRespuesta1.setEnabled(false);
-					textAreaRespuesta2.setEnabled(false);
-					textAreaRespuesta3.setEnabled(false);
-					textAreaRespuesta4.setEnabled(false);
+					comboBoxCategorias.setEnabled(false);
+					comboBoxProgramas.setEnabled(false);
 					
 				}else if(seleccion.equals(OPCION2)){
 					txt_Id_Pregunta.setEnabled(true);
 					textAreaDescripcion.setEnabled(true);
-					textAreaRespuesta1.setEnabled(true);
-					textAreaRespuesta2.setEnabled(true);
-					textAreaRespuesta3.setEnabled(true);
-					textAreaRespuesta4.setEnabled(true);
-					spinner_RespuestaCorrecta.setEnabled(true);
-					txt_EstimacionPuntaje.setEnabled(false);
-					cmbBox_ProgramaAcademico.setEnabled(false);
-					comboBoxPreguntas.setEnabled(false);
-					
-				}else if(seleccion.equals(OPCION3)){
-					txt_EstimacionPuntaje.setEnabled(true);
-					cmbBox_ProgramaAcademico.setEnabled(true);
-					comboBoxPreguntas.setEnabled(true);
-					txt_Id_Pregunta.setEnabled(false);
-					textAreaDescripcion.setEnabled(false);
-					textAreaRespuesta1.setEnabled(false);
-					textAreaRespuesta2.setEnabled(false);
-					textAreaRespuesta3.setEnabled(false);
-					textAreaRespuesta4.setEnabled(false);
-					spinner_RespuestaCorrecta.setEnabled(false);
+					comboBoxCategorias.setEnabled(true);
+					comboBoxProgramas.setEnabled(true);					
 				}
 			}
-		});
-		
-		btn_Agregar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
-					int identificador = 0;
-					String descripcion = "";
-					String respuesta1 = "";
-					String respuesta2 = "";
-					String respuesta3 = "";
-					String respuesta4 = "";
-					int respuestaCorrecta = 0;
-					PreguntaTest pregunta;
-					try{	
-					identificador = Integer.parseInt(txt_Id_Pregunta.getText());
-					}catch(NumberFormatException e){
-						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
-					}
-					if (textAreaDescripcion.getText().equals("") || textAreaRespuesta1.getText().equals("") || textAreaRespuesta2.getText().equals("")
-							|| textAreaRespuesta3.getText().equals("")|| textAreaRespuesta4.getText().equals("")){					
-						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
-					}else{					
-						descripcion = textAreaDescripcion.getText();
-						respuesta1 = textAreaRespuesta1.getText();
-						respuesta2 = textAreaRespuesta2.getText();
-						respuesta3 = textAreaRespuesta3.getText();
-						respuesta4 = textAreaRespuesta4.getText();
-						respuestaCorrecta = Integer.parseInt(spinner_RespuestaCorrecta.getValue().toString());						
-					}	
-					pregunta = new PreguntaTest(identificador, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta);
-					if(gesPreguntas.createPregunta(pregunta) == -1){
-						JOptionPane.showMessageDialog(null, "No se creo el registro");						
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Se creo de forma exitosa");
-					}
-					textAreaDescripcion.setText("");
-					textAreaRespuesta1.setText("");
-					textAreaRespuesta2.setText("");	
-					textAreaRespuesta3.setText("");	
-					textAreaRespuesta4.setText("");							
-					
-				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
-					int pregunta = Integer.parseInt(comboBoxPreguntas.getSelectedItem().toString());
-					String programa = cmbBox_ProgramaAcademico.getSelectedItem().toString();
-					int puntaje =0;
-					try{	
-						String puntaje1 = txt_EstimacionPuntaje.getText();
-						if (puntaje1.equalsIgnoreCase("")){
-							puntaje = Integer.parseInt(puntaje1);
-						}
-						}catch(NumberFormatException e){
-							JOptionPane.showMessageDialog(null, "El espacio ''puntaje'' no puede estar en blanco");
-					}
-					int idPrograma = 0;			
-					
-					for (int j=0; j<listadoProgramas.size();j++){
-						if (listadoProgramas.get(j).getNombre().equals(programa)){
-							idPrograma = listadoProgramas.get(j).getId();
-						}
-					}
-					if(gesPreguntas.createRelacion(pregunta, idPrograma, puntaje) != -1){
-						JOptionPane.showMessageDialog(null, "Se creo la relacion correctamente");
-					}else{
-						JOptionPane.showMessageDialog(null, "No se creo la relacion");	
-					}										
-				}
-			}	
 		});
 		
 		btn_Eliminar.addActionListener(new ActionListener() {
@@ -479,31 +308,8 @@ public class ModuloPreguntas extends JFrame {
 						}catch(NumberFormatException e){
 							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 						}					
-					textAreaDescripcion.setText("");
-					textAreaRespuesta1.setText("");
-					textAreaRespuesta2.setText("");	
-					textAreaRespuesta3.setText("");	
-					textAreaRespuesta4.setText("");	
-				
-				}else if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
-					int pregunta = Integer.parseInt(comboBoxPreguntas.getSelectedItem().toString());
-					String programa = cmbBox_ProgramaAcademico.getSelectedItem().toString();
-					int puntaje = Integer.parseInt(txt_EstimacionPuntaje.getText());
-					int idPrograma = 0;			
-					
-					for (int j=0; j<listadoProgramas.size();j++){
-						if (listadoProgramas.get(j).getNombre().equals(programa)){
-							idPrograma = listadoProgramas.get(j).getId();
-						}
-					}
-					if(gesPreguntas.removeRelacion(pregunta,idPrograma) != -1){
-						JOptionPane.showMessageDialog(null, "Se elimino la relacion correctamente");
-					}else{
-						JOptionPane.showMessageDialog(null, "No se elimino la relacion");	
-					}
-					txt_EstimacionPuntaje.setText("");
-				}
-							
+					textAreaDescripcion.setText("");				
+				}							
 			}
 		});
 		
@@ -517,11 +323,7 @@ public class ModuloPreguntas extends JFrame {
 						identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 						if(identificador!=0){
 							PreguntaTest pregunta = gesPreguntas.searchPreguntaTest(identificador);
-							textAreaDescripcion.setText(pregunta.getDescripcion());
-							textAreaRespuesta1.setText(pregunta.getRespuesta1());
-							textAreaRespuesta2.setText(pregunta.getRespuesta2());
-							textAreaRespuesta3.setText(pregunta.getRespuesta3());
-							textAreaRespuesta4.setText(pregunta.getRespuesta4());							
+							textAreaDescripcion.setText(pregunta.getDescripcion());													
 						}
 						}catch(NumberFormatException e){
 							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
@@ -529,28 +331,7 @@ public class ModuloPreguntas extends JFrame {
 						catch(NullPointerException e){
 							JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
 						}
-				} else{
-					if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
-						int pregunta = Integer.parseInt(comboBoxPreguntas.getSelectedItem().toString());
-						String programa = cmbBox_ProgramaAcademico.getSelectedItem().toString();
-						int idPrograma = 0;	
-						for (int j=0; j<listadoProgramas.size();j++){
-							if (listadoProgramas.get(j).getNombre().equals(programa)){
-								idPrograma = listadoProgramas.get(j).getId();
-							}
-						}
-						
-						String[] dato = gesPreguntas.searchElementoRelacion(pregunta,idPrograma);
-						if(dato != null){
-							txt_EstimacionPuntaje.setText(""+dato[2]);	
-						}else{
-							JOptionPane.showMessageDialog(null, "No se encontro la relacion");	
-						}
-						
-					}
-				}
-				
-								
+				}							
 			}
 		});
 		
@@ -559,61 +340,59 @@ public class ModuloPreguntas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
-					int identificador = 0;
-					String descripcion = "";
-					String respuesta1 = "";
-					String respuesta2 = "";
-					String respuesta3 = "";
-					String respuesta4 = "";
-					int respuestaCorrecta = 0;
-					PreguntaTest pregunta;				
+					int identificador = 0;					
+					String enunciado = textAreaDescripcion.getText();					
+					String categoria;
+					String programa;					
+					PreguntaTest pregunta;	
+					int idCategoria = 0;
+					int idPrograma = 0;
 					try{	
 					identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
 					}
-					if (textAreaDescripcion.getText().equals("") || textAreaRespuesta1.getText().equals("") || textAreaRespuesta2.getText().equals("")
-							|| textAreaRespuesta3.getText().equals("")|| textAreaRespuesta4.getText().equals("")){					
-						JOptionPane.showMessageDialog(null, "Todos los son campos obligatorios");
+					if (identificador == 0 || enunciado.equals("") || comboBoxCategorias.getSelectedItem().toString().equals(OPCION1) 
+							|| comboBoxProgramas.getSelectedItem().toString().equals(OPCION1) ){
+						JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");	
 					}else{					
-						descripcion = textAreaDescripcion.getText();
-						respuesta1 = textAreaRespuesta1.getText();
-						respuesta2 = textAreaRespuesta2.getText();
-						respuesta3 = textAreaRespuesta3.getText();
-						respuesta4 = textAreaRespuesta4.getText();
-						respuestaCorrecta = Integer.parseInt(spinner_RespuestaCorrecta.getValue().toString());					
+						enunciado = textAreaDescripcion.getText();
+						categoria = comboBoxCategorias.getSelectedItem().toString();
+						programa = comboBoxProgramas.getSelectedItem().toString();
+						idCategoria = encontrarIdCategoria(categoria);
+						idPrograma = encontrarIdPrograma(programa);
+						pregunta = new PreguntaTest(identificador, idCategoria, idPrograma, enunciado);				
 					}				
-					if(gesPreguntas.updatePreguntaTest(identificador, descripcion, respuesta1, respuesta2, respuesta3, respuesta4, respuestaCorrecta)){
+					if(gesPreguntas.updatePreguntaTest(identificador, idCategoria, idPrograma, enunciado)){
 						JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "No se actualizo el registro");
 					}
 					textAreaDescripcion.setText("");
-					textAreaRespuesta1.setText("");
-					textAreaRespuesta2.setText("");	
-					textAreaRespuesta3.setText("");	
-					textAreaRespuesta4.setText("");					
-				}else{
-					if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION3)){
-						int pregunta = Integer.parseInt(comboBoxPreguntas.getSelectedItem().toString());
-						String programa = cmbBox_ProgramaAcademico.getSelectedItem().toString();
-						int puntaje = Integer.parseInt(txt_EstimacionPuntaje.getText());
-						int idPrograma = 0;			
-						
-						for (int j=0; j<listadoProgramas.size();j++){
-							if (listadoProgramas.get(j).getNombre().equals(programa)){
-								idPrograma = listadoProgramas.get(j).getId();
-							}
-						}					
-						if(gesPreguntas.updateRelacion(pregunta, idPrograma, puntaje) != -1){
-							JOptionPane.showMessageDialog(null, "Se actualizo la relacion exitosamente");
-						}else{
-							JOptionPane.showMessageDialog(null, "No se actualizo la relacion");	
-						}
-					}
+										
 				}				
 			}
 		});
+	}
+	
+	private int encontrarIdPrograma(String busqueda) {
+		ArrayList<ProgramaAcademico> programa = gesProgramas.getAcademicos();
+		for(int i=0;i<programa.size();i++){
+			if(programa.get(i).getNombre().equals(busqueda) ){
+				return programa.get(i).getId();
+			}
+		}
+		return -1;
+	}
+
+	private int encontrarIdCategoria(String busqueda) {
+		ArrayList<Categoria> categoria = gesCategorias.getCategorias();
+		for(int i=0;i<categoria.size();i++){
+			if(categoria.get(i).getNombreCategoria().equals(busqueda)){
+				return categoria.get(i).getIdentificador();
+			}
+		}
+		return -1;
 	}
 }

@@ -23,9 +23,8 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String insertProgramaNuevo (ProgramaAcademico programa) {
-		return "INSERT INTO `apptest`.`programa_academico` ( `ID_PROGRAMA_ACADEMICO` , `ID_AREA` ,"
-				+ "`NOMBRE_PROGRAMA_ACADEMICO`)VALUES('"
-				+ programa.getId()+"', '"+ programa.getIdArea()+"', '"+programa.getNombre()+"');";									
+		return "INSERT INTO programa_academico values ("
+				+ programa.getId()+", '"+programa.getNombre()+"');";									
 	}
 	
 	/**
@@ -36,9 +35,9 @@ public class ProgramaAcademicoSql {
 	 */
 	
 	public String insertarRelacionPrograma (int idPrograma, int idInstitucion, String Costo){
-		return "INSERT INTO programa_academico_institucion_educacion_superior VALUES ("
-				+idInstitucion+","
+		return "INSERT INTO programa_institucion VALUES ("
 				+idPrograma+","
+				+idInstitucion+","				
 				+Costo+");";
 	}
 	
@@ -48,7 +47,7 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deletePrograma (int id) {
-		return "DELETE FROM programa_academico WHERE ID_PROGRAMA_ACADEMICO ="+id+";";
+		return "DELETE FROM programa_academico WHERE ID_PROGRAMA ="+id+";";
 				
 	}
 	
@@ -58,8 +57,8 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String deleteRelacion(String[] elemento){
-		return "DELETE FROM programa_academico_institucion_educacion_superior WHERE "
-				+ "ID_PROGRAMA_ACADEMICO = "+ Integer.parseInt(elemento[1])+" AND "
+		return "DELETE FROM programa_institucion WHERE "
+				+ "ID_PROGRAMA = "+ Integer.parseInt(elemento[1])+" AND "
 				+ "ID_INSTITUCION = "+Integer.parseInt(elemento[0])+";";
 	}
 	
@@ -70,9 +69,9 @@ public class ProgramaAcademicoSql {
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
 			
-		return  "UPDATE programa_academico SET ID_AREA =" +programa.getIdArea() +","
-				+" NOMBRE_PROGRAMA_ACADEMICO = '"+programa.getNombre()+"',"
-				+" WHERE ID_PROGRAMA_ACADEMICO="+programa.getId()+";";				
+		return  "UPDATE programa_academico"
+				+" NOMBRE_PROGRAMA = '"+programa.getNombre()+"',"
+				+" WHERE ID_PROGRAMA="+programa.getId()+";";				
 	}
 	
 	/**
@@ -80,12 +79,12 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectProgramasReportes() {
-		return "SELECT programa_academico.ID_PROGRAMA_ACADEMICO,"
-				+"ID_AREA, NOMBRE_PROGRAMA_ACADEMICO, COSTO_PROGRAMA, ID_INSTITUCION"
+		return "SELECT programa_academico.ID_PROGRAMA,"
+				+"NOMBRE_PROGRAMA_ACADEMICO, COSTO, ID_INSTITUCION"
 				+" FROM programa_academico"
-				+" JOIN (programa_academico_institucion_educacion_superior)"
-				+" WHERE programa_academico.ID_PROGRAMA_ACADEMICO = programa_academico_institucion_educacion_superior.ID_PROGRAMA_ACADEMICO"
-				+" ORDER BY ID_PROGRAMA_ACADEMICO";
+				+" JOIN (programa_institucion)"
+				+" WHERE programa_academico.ID_PROGRAMA = programa_institucion.ID_PROGRAMA_ACADEMICO"
+				+" ORDER BY ID_PROGRAMA";
 	}
 	
 	/**
@@ -101,17 +100,13 @@ public class ProgramaAcademicoSql {
 	 * @return - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectProgramasCostos(){
-		return "SELECT * FROM programa_academico_institucion_educacion_superior;";
+		return "SELECT * FROM programa_institucion;";
 	}
 	
 	/**
 	 * 
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
-	public String selectAreas(){
-		return "SELECT * FROM area;";
-	}
-	
 	/**
 	 * @param idInstitucion
 	 * @param idPrograma
@@ -119,9 +114,9 @@ public class ProgramaAcademicoSql {
 	 * @return
 	 */
 	public String updateRelacion(int idInstitucion, int idPrograma, String costo) {
-		return "UPDATE programa_academico_institucion_educacion_superior SET COSTO_PROGRAMA = '"
+		return "UPDATE programa_institucion SET COSTO = '"
 				+ costo+"' WHERE ID_INSTITUCION = "+ idInstitucion + " AND "
-				+ " ID_PROGRAMA_ACADEMICO = "+ idPrograma +";";
+				+ " ID_PROGRAMA = "+ idPrograma +";";
 	}
 
 }

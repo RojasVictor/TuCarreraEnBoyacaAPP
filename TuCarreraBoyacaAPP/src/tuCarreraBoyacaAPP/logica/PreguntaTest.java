@@ -2,23 +2,18 @@ package tuCarreraBoyacaAPP.logica;
 
 public class PreguntaTest {
 
-	private  int id;	
-	private String descripcion;	
-	private String respuesta1;	
-	private String respuesta2;	
-	private String respuesta3;	
-	private String respuesta4;
-	private int respuestaCorrecta;
+	private int id;	
+	private String descripcion;
+	private int idCategoria;
+	private int idPrograma;
 	
-	public PreguntaTest (int identificador, String descrip,String r1,
-			String r2, String r3, String r4, int respuestaC){
-		id=identificador;
-		descripcion=descrip;
-		respuesta1=r1;
-		respuesta2=r2;
-		respuesta3=r3;
-		respuesta4=r4;
-		respuestaCorrecta=respuestaC;		
+	
+	public PreguntaTest (int identificador, int idCategoria2,
+			int idPrograma2, String enunciado){
+		id = identificador;
+		descripcion = enunciado;
+		idCategoria = idCategoria2;
+		idPrograma = idPrograma2;		
 	}
 
 	/**
@@ -50,73 +45,31 @@ public class PreguntaTest {
 	}
 
 	/**
-	 * @return the respuesta1
+	 * @return the idCategoria
 	 */
-	public String getRespuesta1() {
-		return respuesta1;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
 
 	/**
-	 * @param respuesta1 the respuesta1 to set
+	 * @param idCategoria the idCategoria to set
 	 */
-	public void setRespuesta1(String respuesta1) {
-		this.respuesta1 = respuesta1;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	/**
-	 * @return the respuesta2
+	 * @return the idPrograma
 	 */
-	public String getRespuesta2() {
-		return respuesta2;
+	public int getIdPrograma() {
+		return idPrograma;
 	}
 
 	/**
-	 * @param respuesta2 the respuesta2 to set
+	 * @param idPrograma the idPrograma to set
 	 */
-	public void setRespuesta2(String respuesta2) {
-		this.respuesta2 = respuesta2;
+	public void setIdPrograma(int idPrograma) {
+		this.idPrograma = idPrograma;
 	}
-
-	/**
-	 * @return the respuesta3
-	 */
-	public String getRespuesta3() {
-		return respuesta3;
-	}
-
-	/**
-	 * @param respuesta3 the respuesta3 to set
-	 */
-	public void setRespuesta3(String respuesta3) {
-		this.respuesta3 = respuesta3;
-	}
-
-	/**
-	 * @return the respuesta4
-	 */
-	public String getRespuesta4() {
-		return respuesta4;
-	}
-
-	/**
-	 * @param respuesta4 the respuesta4 to set
-	 */
-	public void setRespuesta4(String respuesta4) {
-		this.respuesta4 = respuesta4;
-	}
-
-	/**
-	 * @return the respuestaCorrecta
-	 */
-	public int getRespuestaCorrecta() {
-		return respuestaCorrecta;
-	}
-
-	/**
-	 * @param respuestaCorrecta the respuestaCorrecta to set
-	 */
-	public void setRespuestaCorrecta(int respuestaCorrecta) {
-		this.respuestaCorrecta = respuestaCorrecta;
-	}	
 			
 }
