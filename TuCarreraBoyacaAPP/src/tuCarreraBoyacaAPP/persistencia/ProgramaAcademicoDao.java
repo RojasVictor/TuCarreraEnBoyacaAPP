@@ -145,7 +145,7 @@ public class ProgramaAcademicoDao {
 					programa[0] = datos.getString("ID_PROGRAMA");					
 					programa[1] = datos.getString("NOMBRE_PROGRAMA");
 					programa[2] = datos.getString("COSTO");
-					programa[3] = datos.getString("ID_INSTITUCION");
+					programa[3] = datos.getString("NOMBRE_INSTITUCION");
 					academicos.add(programa);					
 				}					
 				return academicos;

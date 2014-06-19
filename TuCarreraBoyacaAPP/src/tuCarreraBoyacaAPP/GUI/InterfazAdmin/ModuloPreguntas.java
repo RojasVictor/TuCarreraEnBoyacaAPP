@@ -176,7 +176,11 @@ public class ModuloPreguntas extends JFrame {
 						if(gesPreguntas.createPregunta(pregunta) == -1){
 							JOptionPane.showMessageDialog(null, "No se pudo agregar la pregunta");
 						}else {
-							JOptionPane.showMessageDialog(null, "Se agrego la pregunta correctamente");
+							comboBoxCategorias.setSelectedItem(0);
+							comboBoxProgramas.setSelectedItem(0);
+							textAreaDescripcion.setText("");
+							txt_Id_Pregunta.setText("");
+							JOptionPane.showMessageDialog(null, "Se agrego la pregunta correctamente");							
 						}
 					}					
 				}
@@ -209,8 +213,7 @@ public class ModuloPreguntas extends JFrame {
 		lbl_SubTitulo.setFont(new Font("Berlin Sans FB", Font.BOLD, 20));
 		lbl_SubTitulo.setBounds(232, 73, 174, 26);
 		contentPane.add(lbl_SubTitulo);
-		
-		
+				
 		JLabel lbl_IdPrograma = new JLabel("Programa Academico");
 		lbl_IdPrograma.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
 		lbl_IdPrograma.setBounds(22, 241, 174, 25);
@@ -257,7 +260,6 @@ public class ModuloPreguntas extends JFrame {
 		comboBoxCategorias.addItem(OPCION1);
 		contentPane.add(comboBoxCategorias);
 		
-
 		for (int i=0;i<listadoProgramas.size();i++){			
 			ProgramaAcademico elemento = listadoProgramas.get(i);
 			comboBoxProgramas.addItem(elemento.getNombre());			
@@ -267,9 +269,7 @@ public class ModuloPreguntas extends JFrame {
 			Categoria elemento = listadoCategorias.get(j);
 			comboBoxCategorias.addItem(elemento.getNombreCategoria());			
 		}
-		
-		
-		
+				
 		comboBoxOpcionPrincipal.addActionListener(new ActionListener() {
 			
 			@Override
@@ -301,7 +301,12 @@ public class ModuloPreguntas extends JFrame {
 						identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 						boolean respuesta = gesPreguntas.removePreguntaTest(identificador);
 						if(respuesta){
+							comboBoxCategorias.setSelectedItem(0);
+							comboBoxProgramas.setSelectedItem(0);
+							textAreaDescripcion.setText("");
+							txt_Id_Pregunta.setText("");
 							JOptionPane.showMessageDialog(null, "Se elimino satisfactoriamente");
+							
 						}else{
 							JOptionPane.showMessageDialog(null, "No se elimino o no existe el elemento");
 						}
@@ -323,7 +328,11 @@ public class ModuloPreguntas extends JFrame {
 						identificador = Integer.parseInt(txt_Id_Pregunta.getText());
 						if(identificador!=0){
 							PreguntaTest pregunta = gesPreguntas.searchPreguntaTest(identificador);
-							textAreaDescripcion.setText(pregunta.getDescripcion());													
+							textAreaDescripcion.setText(pregunta.getDescripcion());	
+							int idPrograma = pregunta.getIdPrograma();
+							int idCategoria = pregunta.getIdCategoria();
+							seleccionarNombreCategoria(idCategoria);
+							seleccionarNombrePrograma(idPrograma);						
 						}
 						}catch(NumberFormatException e){
 							JOptionPane.showMessageDialog(null, "El espacio ''identificador'' no puede estar en blanco");
@@ -332,6 +341,25 @@ public class ModuloPreguntas extends JFrame {
 							JOptionPane.showMessageDialog(null, "No se encuentra elemento de acuerdo al parametro de busqueda");
 						}
 				}							
+			}
+
+			private void seleccionarNombrePrograma(int idPrograma) {
+				listadoProgramas = gesProgramas.readProgramasAcademicos();
+				for(int i=0;i<listadoProgramas.size();i++){
+					if(listadoProgramas.get(i).getId() == idPrograma){
+						comboBoxProgramas.setSelectedItem(i);
+					}
+				}				
+			}
+
+			private void seleccionarNombreCategoria(int idCategoria) {
+				listadoCategorias = gesCategorias.getCategorias();
+				for(int i=0;i<listadoCategorias.size();i++){
+					if(listadoCategorias.get(i).getIdentificador() == idCategoria){
+						comboBoxCategorias.setSelectedItem(i);
+					}
+				}
+				
 			}
 		});
 		
@@ -364,6 +392,10 @@ public class ModuloPreguntas extends JFrame {
 						pregunta = new PreguntaTest(identificador, idCategoria, idPrograma, enunciado);				
 					}				
 					if(gesPreguntas.updatePreguntaTest(identificador, idCategoria, idPrograma, enunciado)){
+						comboBoxCategorias.setSelectedItem(0);
+						comboBoxProgramas.setSelectedItem(0);
+						textAreaDescripcion.setText("");
+						txt_Id_Pregunta.setText("");
 						JOptionPane.showMessageDialog(null, "Se actualizo de forma exitosa");
 					}
 					else{

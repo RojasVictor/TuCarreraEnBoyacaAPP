@@ -11,10 +11,12 @@ import tuCarreraBoyacaAPP.logica.ProgramaAcademico;
  *
  */
 public class ProgramaAcademicoSql {
-				
-	//Building -----------------------------------------
-	public ProgramaAcademicoSql() {
+	//Attributes -----------------------------------------------	
+		private Conexion conexion;
 		
+		//Building -----------------------------------------	
+	public ProgramaAcademicoSql() {
+		conexion = new Conexion();
 	}
 	//METHODS -----------------------------------------
 	/**
@@ -68,10 +70,12 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String updatePrograma (ProgramaAcademico programa) {
-			
-		return  "UPDATE programa_academico"
-				+" NOMBRE_PROGRAMA = '"+programa.getNombre()+"',"
-				+" WHERE ID_PROGRAMA="+programa.getId()+";";				
+		String BaseDatos = conexion.getBaseDatos();
+		
+		return "UPDATE `"+BaseDatos+"`.`programa_academico` SET  `NOMBRE_PROGRAMA` = '"
+				+programa.getNombre()+"'"
+				+" WHERE `programa_academico`.`ID_PROGRAMA` ="
+				+programa.getId()+";";							
 	}
 	
 	/**
@@ -79,12 +83,14 @@ public class ProgramaAcademicoSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectProgramasReportes() {
+				
 		return "SELECT programa_academico.ID_PROGRAMA,"
-				+"NOMBRE_PROGRAMA_ACADEMICO, COSTO, ID_INSTITUCION"
+				+" NOMBRE_PROGRAMA, COSTO, NOMBRE_INSTITUCION"
 				+" FROM programa_academico"
-				+" JOIN (programa_institucion)"
-				+" WHERE programa_academico.ID_PROGRAMA = programa_institucion.ID_PROGRAMA_ACADEMICO"
-				+" ORDER BY ID_PROGRAMA";
+				+" JOIN (programa_institucion) JOIN (institucion)"
+				+" WHERE programa_academico.ID_PROGRAMA = programa_institucion.ID_PROGRAMA"
+				+" AND programa_institucion.ID_INSTITUCION = institucion.ID_INSTITUCION"				
+				+" ORDER BY ID_PROGRAMA;";
 	}
 	
 	/**

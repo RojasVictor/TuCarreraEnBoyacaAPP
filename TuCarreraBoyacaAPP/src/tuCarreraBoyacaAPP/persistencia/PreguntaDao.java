@@ -94,9 +94,9 @@ public class PreguntaDao {
 				while (datos.next()) {
 					String[] pregunta = new String[4];
 					pregunta[0] = datos.getString("ID_PREGUNTA");
-					pregunta[1] = datos.getString("ID_PROGRAMA");
-					pregunta[2] = datos.getString("ID_CATEGORIA");
-					pregunta[3] = datos.getString("ENUNCIADO");					
+					pregunta[1] = datos.getString("ENUNCIADO");
+					pregunta[2] = datos.getString("NOMBRE_PROGRAMA");
+					pregunta[3] = datos.getString("NOMBRE_CATEGORIA");					
 					preguntas.add(pregunta);
 				}
 				return preguntas;

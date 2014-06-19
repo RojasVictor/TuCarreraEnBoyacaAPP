@@ -53,9 +53,8 @@ public class InstitucionesEducacionSsuperiorSql {
 		
 		return "UPDATE `"+BaseDatos+"`.`institucion` SET  `NOMBRE_INSTITUCION` = '"
 				+educacionSuperior.getNombre()+"', `URL` = '"
-				+educacionSuperior.getDireccionURL()+"' WHERE `institucion_educacion_superior`.`ID_INSTITUCION` ="
+				+educacionSuperior.getDireccionURL()+"' WHERE `institucion`.`ID_INSTITUCION` ="
 				+educacionSuperior.getId()+";";
-
 	}
 	
 	/**

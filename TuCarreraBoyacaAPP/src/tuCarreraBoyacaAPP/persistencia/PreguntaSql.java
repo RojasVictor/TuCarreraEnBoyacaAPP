@@ -60,12 +60,12 @@ public class PreguntaSql {
 	 * @return String - Comando SQL para ejecutar sobre la base de datos
 	 */
 	public String selectPreguntasReporte() {
-		return "SELECT ID_PREGUNTA, "
-				+"ENUNCIADO, NOMBRE_PROGRAMA,"
-				+"NOMBRE_CATEGORIA,"
+		return "SELECT ID_PREGUNTA,"
+				+" ENUNCIADO, NOMBRE_PROGRAMA,"
+				+" NOMBRE_CATEGORIA"
 				+" FROM pregunta JOIN (categoria) JOIN (programa_academico)" 
 				+" WHERE programa_academico.ID_PROGRAMA = pregunta.ID_PROGRAMA AND"
-				+ "pregunta.ID_CATEGORIA = categoria.ID_CATEGORIA"
+				+" pregunta.ID_CATEGORIA = categoria.ID_CATEGORIA"
 				+" ORDER BY pregunta.ID_PREGUNTA;";
 
 	}

@@ -163,18 +163,18 @@ public class ModuloReportes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String seleccion = cmbBox_Modulos.getSelectedItem().toString();	
-				if(seleccion.equals(dato1)){
+					
+				if(cmbBox_Modulos.getSelectedItem().toString().equals(dato1)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<String[]> programas = new ArrayList<String[]>();
 					programas = gesProgramas.readProgramasAcademicoReporte();
+					System.out.println(programas.size());
 					if(programas.size()!=0){
 					datos.addColumn("ID PROGRAMA");
-					datos.addColumn("ID AREA");
 					datos.addColumn("NOMBRE PROGRAMA");
 					datos.addColumn("COSTO PROGRAMA");
-					datos.addColumn("ID INSTITUCION");
+					datos.addColumn("NOMBRE INSTITUCION");
 					String [] aux = new String[5];
 					Vector<String> lista;
 						for (int j=0;j<programas.size();j++){
@@ -184,14 +184,13 @@ public class ModuloReportes extends JFrame {
 							lista.add(aux[1]);
 							lista.add(aux[2]);
 							lista.add(aux[3]);
-							lista.add(aux[4]);							
 							datos.addRow(lista);
 						}	
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "No hay programas para generar reporte");
 					}
-				}else if(seleccion.equals(dato2)){
+				}else if(cmbBox_Modulos.getSelectedItem().toString().equals(dato2)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<InstitucionEducacionSuperior> instituciones = gesInstituciones.readInstitucionesEducacionSuperior();
@@ -210,33 +209,24 @@ public class ModuloReportes extends JFrame {
 					else{
 						JOptionPane.showMessageDialog(null, "No hay instituciones para generar reporte");
 					}					
-				}else if(seleccion.equals(dato3)){
+				}else if(cmbBox_Modulos.getSelectedItem().toString().equals(dato3)){
 					datos.setColumnCount(0);
 					datos.setNumRows(0);
 					ArrayList<String[]> preguntas = gesPreguntas.readPreguntaTestsReporte();
 					if(preguntas.size() !=0){
 					datos.addColumn("ID PREGUNTA");
-					datos.addColumn("DESCRIPCION PREGUNTA");
-					datos.addColumn("RESPUESTA 1");
-					datos.addColumn("RESPUESTA 2");
-					datos.addColumn("RESPUESTA 3");
-					datos.addColumn("RESPUESTA 4");
-					datos.addColumn("RESPUESTA CORRECTA");
-					datos.addColumn("ID PROGRAMA");
-					datos.addColumn("PUNTAJE");
+					datos.addColumn("ENUNCIADO PREGUNTA");
+					datos.addColumn("NOMNRE PROGRAMA");
+					datos.addColumn("NOMBRE CATEGORIA");
+					
 						for (int j=0; j<preguntas.size();j++){
-							String[] pregunta = new String[9];
+							String[] pregunta = new String[4];
 							pregunta = preguntas.get(j);
 							Vector<String> lista = new Vector<String>();
 							lista.add(pregunta[0]);
 							lista.add(pregunta[1]);
 							lista.add(pregunta[2]);
-							lista.add(pregunta[3]);
-							lista.add(pregunta[4]);
-							lista.add(pregunta[5]);
-							lista.add(pregunta[6]);
-							lista.add(pregunta[7]);
-							lista.add(pregunta[8]);
+							lista.add(pregunta[3]);							
 							datos.addRow(lista);
 						}
 					}
