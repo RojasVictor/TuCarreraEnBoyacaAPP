@@ -132,8 +132,7 @@ public class ModuloPreguntas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				MenuAdmin.main(null);
-				
+				MenuAdmin.main(null);				
 			}
 		});
 		
@@ -176,8 +175,8 @@ public class ModuloPreguntas extends JFrame {
 						if(gesPreguntas.createPregunta(pregunta) == -1){
 							JOptionPane.showMessageDialog(null, "No se pudo agregar la pregunta");
 						}else {
-							comboBoxCategorias.setSelectedItem(0);
-							comboBoxProgramas.setSelectedItem(0);
+							comboBoxCategorias.setSelectedItem(comboBoxCategorias.getItemAt(0));
+							comboBoxProgramas.setSelectedItem(comboBoxProgramas.getItemAt(0));
 							textAreaDescripcion.setText("");
 							txt_Id_Pregunta.setText("");
 							JOptionPane.showMessageDialog(null, "Se agrego la pregunta correctamente");							
@@ -291,8 +290,7 @@ public class ModuloPreguntas extends JFrame {
 			}
 		});
 		
-		btn_Eliminar.addActionListener(new ActionListener() {
-			
+		btn_Eliminar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
@@ -318,8 +316,7 @@ public class ModuloPreguntas extends JFrame {
 			}
 		});
 		
-		btn_Buscar.addActionListener(new ActionListener() {
-			
+		btn_Buscar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
@@ -347,24 +344,23 @@ public class ModuloPreguntas extends JFrame {
 				listadoProgramas = gesProgramas.readProgramasAcademicos();
 				for(int i=0;i<listadoProgramas.size();i++){
 					if(listadoProgramas.get(i).getId() == idPrograma){
-						comboBoxProgramas.setSelectedItem(i);
+						comboBoxProgramas.setSelectedItem(comboBoxProgramas.getItemAt(i+1));						
 					}
 				}				
 			}
 
 			private void seleccionarNombreCategoria(int idCategoria) {
 				listadoCategorias = gesCategorias.getCategorias();
-				for(int i=0;i<listadoCategorias.size();i++){
-					if(listadoCategorias.get(i).getIdentificador() == idCategoria){
-						comboBoxCategorias.setSelectedItem(i);
+				for(int i=0;i<listadoCategorias.size();i++){				
+					if(listadoCategorias.get(i).getIdentificador() == idCategoria){						
+						comboBoxCategorias.setSelectedItem(comboBoxCategorias.getItemAt(i+1));						
 					}
 				}
 				
 			}
 		});
 		
-		btn_Guardar.addActionListener(new ActionListener() {
-			
+		btn_Guardar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxOpcionPrincipal.getSelectedItem().toString().equals(OPCION2)){
@@ -401,8 +397,7 @@ public class ModuloPreguntas extends JFrame {
 					else{
 						JOptionPane.showMessageDialog(null, "No se actualizo el registro");
 					}
-					textAreaDescripcion.setText("");
-										
+					textAreaDescripcion.setText("");										
 				}				
 			}
 		});
