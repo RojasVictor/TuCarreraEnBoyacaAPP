@@ -27,7 +27,7 @@ import javax.swing.JRadioButton;
  * @author JUDIT
  *
  */
-public class VistaPreguntas extends JFrame {
+public class EstadisticaPreguntas extends JFrame {
 
 	private JPanel contentPane;
 
@@ -38,7 +38,7 @@ public class VistaPreguntas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VistaPreguntas frame = new VistaPreguntas();
+					EstadisticaPreguntas frame = new EstadisticaPreguntas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class VistaPreguntas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaPreguntas() {
+	public EstadisticaPreguntas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 293, 580);
 		contentPane = new JPanel();

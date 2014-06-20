@@ -23,11 +23,14 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 
+import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -39,6 +42,8 @@ public class FiltroPreguntas extends JFrame {
 	private JPanel contentPane;
 	private JRadioButton[][] opciones;
 	private JLabel[] enunciados;
+	private ArrayList<String[]> listaPreguntas;
+	private GestionPreguntaTest gesPreguntas;
 
 	/**
 	 * Launch the application.
@@ -67,6 +72,7 @@ public class FiltroPreguntas extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
 
+		gesPreguntas = new GestionPreguntaTest();
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
@@ -99,8 +105,11 @@ public class FiltroPreguntas extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//--FALTA COLOCAR QUE TODAS LAS PREGUNTAS ESTEN RESUELTAS
+				//--PARA QUE CONTINUE LA APLICACION
 				dispose();
-				VistaPreguntas.main(null);				
+				EstadisticaPreguntas.main(null);				
 			}
 		});
 
@@ -126,31 +135,35 @@ public class FiltroPreguntas extends JFrame {
 		contentPane.add(lbl_Titulo);
 
 		//--------
-
-		int  numero = 10;
-
-
-
-		Object[][] preguntas = new Object[numero*2][2];
-		String[] columnas = {"A","B"};
-
-
-		opciones = new JRadioButton[numero][2];
+		listaPreguntas = gesPreguntas.readPreguntaTestsReporte();
+		int numCategoria = cantidadCategorias(listaPreguntas).size()*3;		
+		 
+		ArrayList<ArrayList<String>> listadoPorCategorias = preguntasCategoria(listaPreguntas);
 		
-		JLabel[] enunciados = new JLabel[numero];
+		
+		Object[][] preguntas = new Object[numCategoria*2][2];
+		String[] columnas = {"A","B"};
+		
+		opciones = new JRadioButton[numCategoria][2];
+		
+		JLabel[] enunciados = new JLabel[numCategoria];
 		for (int i = 0; i < enunciados.length; i++) {
-			enunciados[i] = new JLabel("Enunciado "+i);// cargar de base de datos en base al nuemro
+			enunciados[i] = new JLabel("Enunciado "+i);
+			enunciados[i].setFont(new Font("Berlin Sans FB", Font.PLAIN, 16));
+			// cargar de base de datos en base al nuemro
 		}
 		
 		JPanel panelTabla = new JPanel(new MigLayout("", "[][]", "[][]"));
 		
-		for (int i = 0; i < numero; i ++) {
+		for (int i = 0; i < numCategoria; i ++) {
 			//enunciados[i].setBounds(0, 40*i, 270, 20);
 			
 			ButtonGroup bg = new ButtonGroup();
 			opciones[i][0] = new JRadioButton("Si");
+			opciones[i][0].setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 			//opciones[i][0].setBounds(10, 20+40*i, 125, 20);
 			opciones[i][1] = new JRadioButton("No");
+			opciones[i][1].setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 			//opciones[i][1].setBounds(135, 20+40*i, 130, 20);
 			bg.add(opciones[i][0]);
 			bg.add(opciones[i][1]);
@@ -165,54 +178,61 @@ public class FiltroPreguntas extends JFrame {
 		contentPane.add(sp);
 		//--------
 
-		/*JLabel lbl_Enunciado = new JLabel("Enunciado");
-		lbl_Enunciado.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		lbl_Enunciado.setBounds(44, 220, 224, 30);
-		contentPane.add(lbl_Enunciado);
+	}
 
-		ButtonGroup grupo=new ButtonGroup();
-		JRadioButton rdbtnSi = new JRadioButton("SI");
-		rdbtnSi.setToolTipText("");
-		rdbtnSi.setSelected(true);
-		rdbtnSi.setBackground(Color.WHITE);
-		rdbtnSi.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		rdbtnSi.setBounds(44, 283, 60, 23);
-		contentPane.add(rdbtnSi);
+	/**
+	 * @param listaPreguntas2 
+	 * @return
+	 */
+	private ArrayList<ArrayList<String>> preguntasCategoria(ArrayList<String[]> listaPreguntas2) {
+		
+		ArrayList<ArrayList<String>> resultado = new ArrayList<ArrayList<String>>() ;		
+		ArrayList<String> categorias = cantidadCategorias(listaPreguntas2);
+		String aux1 ="";
+		
+		for(int j=0; j<categorias.size();j++){
+			resultado.add(new ArrayList<String>());
+			resultado.get(j).add(categorias.get(j));
+		}
+	
+		for(int i=0;i<listaPreguntas2.size();i++){			
+				aux1 = listaPreguntas2.get(i)[3];
+				for(int z=0;z<resultado.size();z++){
+					if(resultado.get(z).get(i).equals(aux1)){
+						resultado.get(z).add(listaPreguntas2.get(i)[1]);
+					}	
+				}
+			}
+		
+		return resultado;
+	}
 
-		JRadioButton rdbtnNo = new JRadioButton("NO");
-		rdbtnNo.setBackground(Color.WHITE);
-		rdbtnNo.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		rdbtnNo.setBounds(164, 283, 60, 23);
-		contentPane.add(rdbtnNo);
-
-		JLabel label_5 = new JLabel("Enunciado");
-		label_5.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		label_5.setBounds(44, 329, 224, 30);
-		contentPane.add(label_5);
-
-		ButtonGroup grupo1 =new ButtonGroup();
-		JRadioButton radioButton = new JRadioButton("SI");
-		radioButton.setToolTipText("");
-		radioButton.setSelected(true);
-		radioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		radioButton.setBackground(Color.WHITE);
-		radioButton.setBounds(44, 392, 60, 23);
-		contentPane.add(radioButton);
-
-		JRadioButton radioButton_1 = new JRadioButton("NO");
-		radioButton_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-		radioButton_1.setBackground(Color.WHITE);
-		radioButton_1.setBounds(164, 392, 60, 23);
-		contentPane.add(radioButton_1);
-
-		grupo.add(rdbtnSi);
-		grupo.add(rdbtnNo);
-		grupo1.add(radioButton);
-		grupo1.add(radioButton_1);
-
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(278, 151, 17, 273);
-		contentPane.add(scrollBar);*/
-
+	/**
+	 * 
+	 * @param listaPreguntas2
+	 * @return cantidad de categorias
+	 */
+	public ArrayList<String> cantidadCategorias(ArrayList<String[]> listaPreguntas2) {
+		ArrayList<String> cantidad = new ArrayList<String>();
+		String aux = "";
+		/*
+		 * 0 -- ID
+		 * 1 -- ENUNCIADO
+		 * 2 -- NOMBRE PROGRAMA
+		 * 3 -- NOMBRE CATEGORIA
+		 */
+		for(int i=0;i<listaPreguntas2.size();i++){
+			if(i==0){
+				aux = listaPreguntas2.get(i)[3];
+				cantidad.add(aux);
+			}
+			if(i > 0){
+				if(!aux.equals(listaPreguntas2.get(i)[3])){
+					cantidad.add(listaPreguntas2.get(i)[3]);
+				}
+			}
+		}
+		
+		return cantidad;
 	}
 }

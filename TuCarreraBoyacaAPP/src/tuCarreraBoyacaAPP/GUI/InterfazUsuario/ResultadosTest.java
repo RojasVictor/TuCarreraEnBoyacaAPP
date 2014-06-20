@@ -77,7 +77,7 @@ public class ResultadosTest extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				VistaPreguntas.main(null);			
+				EstadisticaPreguntas.main(null);			
 			}
 			});
 		
