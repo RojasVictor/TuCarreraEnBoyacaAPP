@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
@@ -30,7 +31,10 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 
+import tuCarreraBoyacaAPP.logica.Categoria;
 import tuCarreraBoyacaAPP.logica.GestionPreguntaTest;
+import tuCarreraBoyacaAPP.persistencia.CategoriaDao;
+import tuCarreraBoyacaAPP.GUI.InterfazUsuario.*;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -44,6 +48,11 @@ public class FiltroPreguntas extends JFrame {
 	private JLabel[] enunciados;
 	private ArrayList<String[]> listaPreguntas;
 	private GestionPreguntaTest gesPreguntas;
+	private int controlEnunciado = 0;
+	private ArrayList<ArrayList<String>> listadoPorCategorias;
+	private ArrayList<ArrayList<String>> listadoPorCategoriasElim;
+	private Vector<String> categorias;
+	private String nombreUsuario;
 
 	/**
 	 * Launch the application.
@@ -52,7 +61,7 @@ public class FiltroPreguntas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FiltroPreguntas frame = new FiltroPreguntas();
+					FiltroPreguntas frame = new FiltroPreguntas(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,9 +72,10 @@ public class FiltroPreguntas extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param inicio 
 	 */
-	public FiltroPreguntas() {
-
+	public FiltroPreguntas(InicioTest inicio) {
+		nombreUsuario = inicio.getTxt_Nombre().getText();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 305, 584);
 		contentPane = new JPanel();
@@ -101,15 +111,28 @@ public class FiltroPreguntas extends JFrame {
 		btn_siguiente.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_siguiente.png")));
 		btn_siguiente.setBounds(222, 432, 60, 58);
 		contentPane.add(btn_siguiente);
+		final FiltroPreguntas fp = this;
 		btn_siguiente.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//--FALTA COLOCAR QUE TODAS LAS PREGUNTAS ESTEN RESUELTAS
-				//--PARA QUE CONTINUE LA APLICACION
-				dispose();
-				EstadisticaPreguntas.main(null);				
+				boolean marcados = false;
+				for (int i = 0; i < opciones.length; i++) {
+					if(opciones[i][0].isSelected() || opciones[i][1].isSelected()){
+						marcados = true;
+					}else{
+						marcados = false;
+						break;
+					}
+				}				
+				if(marcados){
+					setVisible(false);					
+					ResultadosTest resultadosTest = new ResultadosTest(fp);
+					resultadosTest.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "Debe responder todas las preguntas");					
+				}
 			}
 		});
 
@@ -135,29 +158,29 @@ public class FiltroPreguntas extends JFrame {
 		contentPane.add(lbl_Titulo);
 
 		//--------
+
+		int numPreguntas = 3;
 		listaPreguntas = gesPreguntas.readPreguntaTestsReporte();
-		int numCategoria = cantidadCategorias(listaPreguntas).size()*3;		
-		 
-		ArrayList<ArrayList<String>> listadoPorCategorias = preguntasCategoria(listaPreguntas);
-		
-		
-		Object[][] preguntas = new Object[numCategoria*2][2];
-		String[] columnas = {"A","B"};
-		
-		opciones = new JRadioButton[numCategoria][2];
-		
-		JLabel[] enunciados = new JLabel[numCategoria];
+		String[][] preguntas = selecionarEnuciados(listaPreguntas, numPreguntas);
+		numPreguntas *= preguntas.length;
+
+		opciones = new JRadioButton[numPreguntas][2];
+		JLabel[] enunciados = new JLabel[numPreguntas];
+		Vector<String> lista = new Vector<String>();
+		for (int i = 0; i < preguntas.length; i++) 
+			for (int j = 1; j < preguntas[0].length; j++)
+				lista.add(preguntas[i][j]);
+
 		for (int i = 0; i < enunciados.length; i++) {
-			enunciados[i] = new JLabel("Enunciado "+i);
+			enunciados[i] = new JLabel(lista.get(i));
 			enunciados[i].setFont(new Font("Berlin Sans FB", Font.PLAIN, 16));
-			// cargar de base de datos en base al nuemro
 		}
-		
+
 		JPanel panelTabla = new JPanel(new MigLayout("", "[][]", "[][]"));
-		
-		for (int i = 0; i < numCategoria; i ++) {
+
+		for (int i = 0; i < numPreguntas; i ++) {
 			//enunciados[i].setBounds(0, 40*i, 270, 20);
-			
+
 			ButtonGroup bg = new ButtonGroup();
 			opciones[i][0] = new JRadioButton("Si");
 			opciones[i][0].setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
@@ -167,12 +190,12 @@ public class FiltroPreguntas extends JFrame {
 			//opciones[i][1].setBounds(135, 20+40*i, 130, 20);
 			bg.add(opciones[i][0]);
 			bg.add(opciones[i][1]);
-			
+
 			panelTabla.add(enunciados[i], "cell 0 "+(i*2)+" 2 1");
 			panelTabla.add(opciones[i][0], "cell 0 "+(1+i*2)+" 1 1");
 			panelTabla.add(opciones[i][1], "cell 1 "+(1+i*2)+" 1 1");
 		}
-		
+
 		JScrollPane sp = new JScrollPane(panelTabla);
 		sp.setBounds(20, 210, 270, 215);
 		contentPane.add(sp);
@@ -181,58 +204,123 @@ public class FiltroPreguntas extends JFrame {
 	}
 
 	/**
+	 * @param i
+	 * @param listadoPorCategorias
+	 * @return
+	 */
+
+	/**
 	 * @param listaPreguntas2 
 	 * @return
 	 */
-	private ArrayList<ArrayList<String>> preguntasCategoria(ArrayList<String[]> listaPreguntas2) {
-		
-		ArrayList<ArrayList<String>> resultado = new ArrayList<ArrayList<String>>() ;		
-		ArrayList<String> categorias = cantidadCategorias(listaPreguntas2);
-		String aux1 ="";
-		
-		for(int j=0; j<categorias.size();j++){
-			resultado.add(new ArrayList<String>());
-			resultado.get(j).add(categorias.get(j));
-		}
-	
-		for(int i=0;i<listaPreguntas2.size();i++){			
-				aux1 = listaPreguntas2.get(i)[3];
-				for(int z=0;z<resultado.size();z++){
-					if(resultado.get(z).get(i).equals(aux1)){
-						resultado.get(z).add(listaPreguntas2.get(i)[1]);
-					}	
-				}
-			}
-		
-		return resultado;
-	}
 
 	/**
 	 * 
 	 * @param listaPreguntas2
+	 * @param numPreguntas 
 	 * @return cantidad de categorias
 	 */
-	public ArrayList<String> cantidadCategorias(ArrayList<String[]> listaPreguntas2) {
-		ArrayList<String> cantidad = new ArrayList<String>();
-		String aux = "";
-		/*
-		 * 0 -- ID
-		 * 1 -- ENUNCIADO
-		 * 2 -- NOMBRE PROGRAMA
-		 * 3 -- NOMBRE CATEGORIA
-		 */
-		for(int i=0;i<listaPreguntas2.size();i++){
-			if(i==0){
-				aux = listaPreguntas2.get(i)[3];
-				cantidad.add(aux);
-			}
-			if(i > 0){
-				if(!aux.equals(listaPreguntas2.get(i)[3])){
-					cantidad.add(listaPreguntas2.get(i)[3]);
-				}
-			}
+	public String[][] selecionarEnuciados (ArrayList<String[]> listaPreguntas2, int numPreguntas) {
+		categorias = new Vector<String>();
+		for (int i = 0; i < listaPreguntas2.size(); i++) 
+			if(!categorias.contains(listaPreguntas2.get(i)[3]))
+				categorias.add(listaPreguntas2.get(i)[3]);
+
+		String[][] enunciados = new String[categorias.size()][numPreguntas+1];
+		for (int i = 0; i < categorias.size(); i++){ 
+			enunciados[i][0] = categorias.get(i);
+			Vector<String> preguntas = seleccionarPreguntas(listaPreguntas2, categorias.get(i));
+			while (preguntas.size() > numPreguntas)
+				preguntas.removeElementAt((int) (Math.random()*preguntas.size()-1));
+			for (int j = 1; j < enunciados[0].length; j++) 
+				enunciados[i][j] = preguntas.get(j-1);
 		}
-		
-		return cantidad;
+
+		return enunciados;
 	}
+
+	/**
+	 * @param listaPreguntas2
+	 * @param string
+	 * @return
+	 */
+	private Vector<String> seleccionarPreguntas(ArrayList<String[]> listaPreguntas2,
+			String categoria) {
+		Vector<String> enunciados = new Vector<String>();
+		for (int i = 0; i < listaPreguntas2.size(); i++){			
+			if (listaPreguntas2.get(i)[3].equals(categoria))
+				enunciados.add(listaPreguntas2.get(i)[1]);
+		}
+			return enunciados;
+	}
+
+	public JRadioButton[][] getOpciones() {
+		return opciones;
+	}
+
+	/**
+	 * @param opciones the opciones to set
+	 */
+	public void setOpciones(JRadioButton[][] opciones) {
+		this.opciones = opciones;
+	}
+
+	/**
+	 * @return the controlEnunciado
+	 */
+	public int getControlEnunciado() {
+		return controlEnunciado;
+	}
+
+	/**
+	 * @param controlEnunciado the controlEnunciado to set
+	 */
+	public void setControlEnunciado(int controlEnunciado) {
+		this.controlEnunciado = controlEnunciado;
+	}
+
+	/**
+	 * @return the listadoPorCategoriasElim
+	 */
+	public ArrayList<ArrayList<String>> getListadoPorCategoriasElim() {
+		return listadoPorCategoriasElim;
+	}
+
+	/**
+	 * @param listadoPorCategoriasElim the listadoPorCategoriasElim to set
+	 */
+	public void setListadoPorCategoriasElim(
+			ArrayList<ArrayList<String>> listadoPorCategoriasElim) {
+		this.listadoPorCategoriasElim = listadoPorCategoriasElim;
+	}
+
+	/**
+	 * @return the categorias
+	 */
+	public Vector<String> getCategorias() {
+		return categorias;
+	}
+
+	/**
+	 * @param categorias the categorias to set
+	 */
+	public void setCategorias(Vector<String> categorias) {
+		this.categorias = categorias;
+	}
+
+	/**
+	 * @return the nombreUsuario
+	 */
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	/**
+	 * @param nombreUsuario the nombreUsuario to set
+	 */
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	
 }

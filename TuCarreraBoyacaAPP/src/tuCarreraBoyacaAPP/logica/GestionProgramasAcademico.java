@@ -85,7 +85,7 @@ public class GestionProgramasAcademico {
 	 * @return elemento - string [] - Objeto que contiene los datos de la busqueda
 	 */
 	public String[] searchElementoRelacion(int idPrograma, int idInstitucion){
-		listado = readProgInstCosto();
+		listado = readProgramasCosto();
 		String[] elemento = new String[3];
 		for(int t=0; t<listado.size();t++){
 			elemento = listado.get(t);
@@ -107,7 +107,7 @@ public class GestionProgramasAcademico {
 	 * 
 	 * @returnObjeto ArrayList que contiene objetos de tipo String[]
 	 */
-	public ArrayList<String[]> readProgInstCosto(){
+	public ArrayList<String[]> readProgramasCosto(){
 		return academicoDao.selectProgramasCosto();
 	}
 	
@@ -150,12 +150,12 @@ public class GestionProgramasAcademico {
 	}
 	
 	public boolean updateRelacion(int idInstitucion, int idPrograma, String costo){
-		listado = readProgInstCosto();
+		listado = readProgramasCosto();
 		if(searchElementoRelacion(idPrograma, idInstitucion) != null){
 			for(int i=0; i<getAcademicos().size();i++){
 				if(Integer.parseInt(listado.get(i)[0]) == idInstitucion && Integer.parseInt(listado.get(i)[1]) == idPrograma){
 					academicoDao.updateRelacion(idInstitucion, idPrograma, costo);
-					listado = readProgInstCosto();
+					listado = readProgramasCosto();
 					return true;
 				}
 			}
@@ -192,7 +192,7 @@ public class GestionProgramasAcademico {
 	 * @return true si se elimino correctamente
 	 */
 	public boolean removeRelacion (int idPrograma, int idInstitucion){
-		ArrayList<String[]> elementos = readProgInstCosto();
+		ArrayList<String[]> elementos = readProgramasCosto();
 		String[] dato = searchElementoRelacion(idPrograma, idInstitucion);
 		String[] busqueda;
 		if(dato != null){

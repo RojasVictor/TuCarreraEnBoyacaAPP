@@ -33,7 +33,7 @@ import tuCarreraBoyacaAPP.GUI.InterfazAdmin.MenuAdmin;
 public class InicioTest extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_Nombre;
+	private JTextField txt_Nombre;	
 
 	/**
 	 * Launch the application.
@@ -121,16 +121,20 @@ public class InicioTest extends JFrame {
 			}
 			});
 		
+		
+		final InicioTest inicio = this;
+		
 		JButton btn_IniciarTest = new JButton("");
 		btn_IniciarTest.setIcon(new ImageIcon(this.getClass().getResource("Images/btn_IniciarTest.png")));
 		btn_IniciarTest.setBounds(212, 439, 60, 53);
 		contentPane.add(btn_IniciarTest);
 		btn_IniciarTest.addActionListener(new ActionListener(){
-			
+				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				FiltroPreguntas.main(null);				
+				setVisible(false);
+				FiltroPreguntas nuevoFiltro = new FiltroPreguntas(inicio);
+				nuevoFiltro.setVisible(true);							
 			}
 			});
 								
@@ -189,7 +193,9 @@ public class InicioTest extends JFrame {
 		lbl_panelBotones.setIcon(new ImageIcon(this.getClass().getResource("Images/panel.png")));
 		lbl_panelBotones.setBounds(10, 427, 278, 69);
 		contentPane.add(lbl_panelBotones);
-
+		
+		
+		
 	}
 	
 	public void soloLetras(JTextField letra){
@@ -209,4 +215,21 @@ public class InicioTest extends JFrame {
 		});
 		
 	}
+
+	/**
+	 * @return the txt_Nombre
+	 */
+	public JTextField getTxt_Nombre() {
+		return txt_Nombre;
+	}
+
+	/**
+	 * @param txt_Nombre the txt_Nombre to set
+	 */
+	public void setTxt_Nombre(JTextField txt_Nombre) {
+		this.txt_Nombre = txt_Nombre;
+	}
+	
+	
+	
 }

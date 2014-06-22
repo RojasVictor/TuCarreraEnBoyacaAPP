@@ -103,21 +103,27 @@ public class ProgramaAcademicoSql {
 	
 	/**
 	 * 
-	 * @return - Comando SQL para ejecutar sobre la base de datos
+	 * @return sentencia sql para la base de datos
 	 */
+	
 	public String selectProgramasCostos(){
-		return "SELECT * FROM programa_institucion;";
+		return "SELECT programa_academico.ID_PROGRAMA, "
+				+" NOMBRE_PROGRAMA, COSTO, NOMBRE_INSTITUCION, URL, categoria.NOMBRE_CATEGORIA"
+				+" FROM programa_academico"
+				+" JOIN (programa_institucion) JOIN (institucion) join (pregunta) join (categoria)"
+				+" WHERE programa_academico.ID_PROGRAMA = programa_institucion.ID_PROGRAMA"
+				+" AND programa_institucion.ID_INSTITUCION = institucion.ID_INSTITUCION"				
+				+" AND pregunta.ID_PROGRAMA = programa_academico.ID_PROGRAMA"
+				+" And pregunta.ID_CATEGORIA = categoria.ID_CATEGORIA"
+				+" ORDER BY ID_PROGRAMA;";
 	}
 	
 	/**
 	 * 
-	 * @return String - Comando SQL para ejecutar sobre la base de datos
-	 */
-	/**
 	 * @param idInstitucion
 	 * @param idPrograma
 	 * @param costo
-	 * @return
+	 * @return sentencia SQL para la base de datos
 	 */
 	public String updateRelacion(int idInstitucion, int idPrograma, String costo) {
 		return "UPDATE programa_institucion SET COSTO = '"

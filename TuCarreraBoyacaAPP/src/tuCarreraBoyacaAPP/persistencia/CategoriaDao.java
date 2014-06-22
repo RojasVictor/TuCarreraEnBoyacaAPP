@@ -17,8 +17,8 @@ import tuCarreraBoyacaAPP.logica.PreguntaTest;
  */
 public class CategoriaDao {
 
-	private CategoriaSql sqlCategoria;
-	private Conexion conexion;
+	private static CategoriaSql sqlCategoria;
+	private static Conexion conexion;
 	
 	
 	/**
@@ -29,7 +29,7 @@ public class CategoriaDao {
 		conexion = new Conexion();
 	}
 	
-	public ArrayList<Categoria> selectCategorias() {
+	public static ArrayList<Categoria> selectCategorias() {
 		ResultSet datos;
 		Categoria categoria;
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();

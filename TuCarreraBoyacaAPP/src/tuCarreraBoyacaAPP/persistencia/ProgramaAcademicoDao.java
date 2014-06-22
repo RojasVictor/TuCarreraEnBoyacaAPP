@@ -169,12 +169,18 @@ public class ProgramaAcademicoDao {
 				datos = sentencia.executeQuery(academicoSql.selectProgramasCostos());
 				while (datos.next()) {
 					String idPrograma = datos.getString("ID_PROGRAMA");
-					String idInstitucion = datos.getString("ID_INSTITUCION");
+					String idInstitucion = datos.getString("NOMBRE_PROGRAMA");
 					String costo = datos.getString("COSTO");
-					String [] elemento = new String[3];
+					String nombreInstitucion = datos.getString("NOMBRE_INSTITUCION");
+					String urlInstitucion = datos.getString("URL");
+					String categoria = datos.getString("NOMBRE_CATEGORIA");
+					String [] elemento = new String[6];
 					elemento[0] = idInstitucion;
 					elemento[1] = idPrograma;					
 					elemento[2] = costo;
+					elemento[3] = nombreInstitucion;
+					elemento[4] = urlInstitucion;
+					elemento[5] = categoria;
 					resultado.add(elemento);
 				}
 				return resultado;
